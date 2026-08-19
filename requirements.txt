@@ -1,0 +1,2 @@
+# Initialement aucune dépendance externe.
+# Les dépendances de l'API et du dashboard seront ajoutées après validation du simulateur.
