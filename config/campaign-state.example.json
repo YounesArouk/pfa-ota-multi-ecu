@@ -14,6 +14,7 @@
   "confirmed_ecus": 0,
   "rolled_back_ecus": 0,
   "rejected_ecus": 0,
+  "blocked_ecus": 0,
   "offline_ecus": 0,
   "progress_pct": 0,
   "elapsed_s": 0,

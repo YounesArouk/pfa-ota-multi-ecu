@@ -56,6 +56,7 @@ class CampaignOrchestrator:
         ecu_id: str | None = None,
         ota_status: str | None = None,
         progress_pct: int = 0,
+        rollback_trigger: str | None = None,
     ) -> None:
         """Ajoute un événement destiné au futur dashboard."""
 
@@ -76,7 +77,7 @@ class CampaignOrchestrator:
                 "ota_status": ota_status,
                 "progress_pct": progress_pct,
                 "message": message,
-                "rollback_trigger": None,
+                "rollback_trigger": rollback_trigger,
             }
         )
 
@@ -89,6 +90,7 @@ class CampaignOrchestrator:
         ),
         vehicle_release: str = "3.0.0",
         signature_valid: bool = True,
+        fault_injections: dict[str, str] | None = None,
     ) -> dict[str, Any]:
         """
         Construit un manifeste signé de simulation.
@@ -116,11 +118,54 @@ class CampaignOrchestrator:
                 "Le manifeste ne cible aucun ECU"
             )
 
+        fault_injections = dict(
+            fault_injections or {}
+        )
+        supported_faults = {"RB-01", "RB-04"}
+
+        unknown_fault_ecus = sorted(
+            set(fault_injections) - set(self.inventory)
+        )
+
+        if unknown_fault_ecus:
+            raise ValueError(
+                "Injection sur ECU inconnu : "
+                + ", ".join(unknown_fault_ecus)
+            )
+
+        unselected_fault_ecus = sorted(
+            set(fault_injections) - set(selected_ids)
+        )
+
+        if unselected_fault_ecus:
+            raise ValueError(
+                "Injection sur ECU non ciblé : "
+                + ", ".join(unselected_fault_ecus)
+            )
+
+        unsupported_faults = sorted(
+            {
+                str(fault)
+                for fault in fault_injections.values()
+                if fault not in supported_faults
+            }
+        )
+
+        if unsupported_faults:
+            raise ValueError(
+                "Scénario de défaut inconnu : "
+                + ", ".join(unsupported_faults)
+            )
+
         targets = []
 
         for ecu_id in sorted(selected_ids):
             ecu_data = self.inventory[ecu_id]
             target_version = ecu_data["target_version"]
+
+            fault_scenario = fault_injections.get(
+                ecu_id
+            )
 
             targets.append(
                 {
@@ -130,7 +175,13 @@ class CampaignOrchestrator:
                         f"{ecu_id.lower()}-"
                         f"{target_version}.img"
                     ),
-                    "checksum_valid": True,
+                    "checksum_valid": (
+                        fault_scenario != "RB-01"
+                    ),
+                    "self_test_valid": (
+                        fault_scenario != "RB-04"
+                    ),
+                    "fault_scenario": fault_scenario,
                 }
             )
 
@@ -275,6 +326,10 @@ class CampaignOrchestrator:
         self.events[-1]["campaign_id"] = campaign_id
 
         confirmed_ecus = 0
+        rejected_ecus = 0
+        rolled_back_ecus = 0
+        blocked_ecus = 0
+        processed_ecus = 0
         planned_wave_number = 0
 
         for inventory_wave in self.update_waves:
@@ -305,6 +360,50 @@ class CampaignOrchestrator:
             for ecu_id in selected_wave:
                 ecu = self.ecus[ecu_id]
                 target = target_map[ecu_id]
+
+                failed_dependencies = [
+                    dependency_id
+                    for dependency_id in ecu.dependencies
+                    if (
+                        dependency_id in target_map
+                        and self.ecus[
+                            dependency_id
+                        ].ota_status != "CONFIRMED"
+                    )
+                ]
+
+                if failed_dependencies:
+                    reason = (
+                        "Prérequis non confirmés : "
+                        + ", ".join(
+                            failed_dependencies
+                        )
+                    )
+
+                    ecu.mark_blocked(reason)
+                    blocked_ecus += 1
+                    processed_ecus += 1
+
+                    progress_pct = round(
+                        processed_ecus
+                        / len(target_map)
+                        * 100
+                    )
+
+                    self._log(
+                        level="WARNING",
+                        event_code=(
+                            "ECU_BLOCKED_DEPENDENCY"
+                        ),
+                        ecu_id=ecu_id,
+                        ota_status="BLOCKED",
+                        progress_pct=progress_pct,
+                        message=reason,
+                    )
+                    self.events[-1][
+                        "campaign_id"
+                    ] = campaign_id
+                    continue
 
                 if ecu_id == "ECU-01":
                     self._log(
@@ -338,49 +437,150 @@ class CampaignOrchestrator:
                     "campaign_id"
                 ] = campaign_id
 
-                ecu.run_nominal_update(
+                fault_scenario = target.get(
+                    "fault_scenario"
+                )
+
+                if fault_scenario:
+                    self._log(
+                        level="WARNING",
+                        event_code="FAULT_INJECTED",
+                        ecu_id=ecu_id,
+                        ota_status=(
+                            "FAULT_INJECTION"
+                        ),
+                        message=(
+                            f"Injection {fault_scenario} "
+                            f"dans {ecu.name}"
+                        ),
+                        rollback_trigger=(
+                            fault_scenario
+                        ),
+                    )
+                    self.events[-1][
+                        "campaign_id"
+                    ] = campaign_id
+
+                ecu.run_update(
                     target_version=(
                         target["target_version"]
                     ),
                     release_id=(
                         manifest["release_id"]
                     ),
+                    checksum_valid=target.get(
+                        "checksum_valid",
+                        True,
+                    ),
+                    self_test_valid=target.get(
+                        "self_test_valid",
+                        True,
+                    ),
                 )
 
-                confirmed_ecus += 1
+                processed_ecus += 1
 
                 progress_pct = round(
-                    confirmed_ecus
+                    processed_ecus
                     / len(target_map)
                     * 100
                 )
 
-                self._log(
-                    level="SUCCESS",
-                    event_code="ECU_CONFIRMED",
-                    ecu_id=ecu_id,
-                    ota_status=ecu.ota_status,
-                    progress_pct=progress_pct,
-                    message=(
-                        f"{ecu.name} confirmé sur "
-                        f"le banc "
-                        f"{ecu.active_partition}"
-                    ),
-                )
+                if ecu.ota_status == "CONFIRMED":
+                    confirmed_ecus += 1
+
+                    self._log(
+                        level="SUCCESS",
+                        event_code="ECU_CONFIRMED",
+                        ecu_id=ecu_id,
+                        ota_status=ecu.ota_status,
+                        progress_pct=progress_pct,
+                        message=(
+                            f"{ecu.name} confirmé sur "
+                            f"le banc "
+                            f"{ecu.active_partition}"
+                        ),
+                    )
+
+                elif ecu.ota_status == "REJECTED":
+                    rejected_ecus += 1
+
+                    self._log(
+                        level="ERROR",
+                        event_code=(
+                            ecu.rollback_trigger
+                            or "ECU_REJECTED"
+                        ),
+                        ecu_id=ecu_id,
+                        ota_status=ecu.ota_status,
+                        progress_pct=progress_pct,
+                        message=(
+                            ecu.last_error
+                            or "Mise à jour rejetée"
+                        ),
+                        rollback_trigger=(
+                            ecu.rollback_trigger
+                        ),
+                    )
+
+                elif ecu.ota_status == "ROLLED_BACK":
+                    rolled_back_ecus += 1
+
+                    self._log(
+                        level="WARNING",
+                        event_code=(
+                            ecu.rollback_trigger
+                            or "ECU_ROLLED_BACK"
+                        ),
+                        ecu_id=ecu_id,
+                        ota_status=ecu.ota_status,
+                        progress_pct=progress_pct,
+                        message=(
+                            ecu.last_error
+                            or "Rollback exécuté"
+                        ),
+                        rollback_trigger=(
+                            ecu.rollback_trigger
+                        ),
+                    )
+
+                else:
+                    raise RuntimeError(
+                        "État OTA final inattendu pour "
+                        f"{ecu_id}: {ecu.ota_status}"
+                    )
+
                 self.events[-1][
                     "campaign_id"
                 ] = campaign_id
 
-        self.status = "COMPLETED"
+        failure_count = (
+            rejected_ecus
+            + rolled_back_ecus
+            + blocked_ecus
+        )
+
+        if failure_count:
+            self.status = "COMPLETED_WITH_FAILURES"
+            final_level = "WARNING"
+            final_event = (
+                "CAMPAIGN_COMPLETED_WITH_FAILURES"
+            )
+        else:
+            self.status = "COMPLETED"
+            final_level = "SUCCESS"
+            final_event = "CAMPAIGN_COMPLETED"
 
         self._log(
-            level="SUCCESS",
-            event_code="CAMPAIGN_COMPLETED",
+            level=final_level,
+            event_code=final_event,
             progress_pct=100,
             message=(
                 f"Campagne terminée : "
-                f"{confirmed_ecus}/"
-                f"{len(target_map)} ECU confirmés"
+                f"{confirmed_ecus} confirmés, "
+                f"{rejected_ecus} rejetés, "
+                f"{rolled_back_ecus} restaurés, "
+                f"{blocked_ecus} bloqués"
             ),
         )
         self.events[-1]["campaign_id"] = campaign_id
@@ -388,12 +588,18 @@ class CampaignOrchestrator:
         return self.build_summary(
             manifest=manifest,
             confirmed_ecus=confirmed_ecus,
+            rejected_ecus=rejected_ecus,
+            rolled_back_ecus=rolled_back_ecus,
+            blocked_ecus=blocked_ecus,
         )
 
     def build_summary(
         self,
         manifest: dict[str, Any],
         confirmed_ecus: int,
+        rejected_ecus: int = 0,
+        rolled_back_ecus: int = 0,
+        blocked_ecus: int = 0,
     ) -> dict[str, Any]:
         """Construit le résumé destiné à l'API."""
 
@@ -424,11 +630,23 @@ class CampaignOrchestrator:
             "fleet_total_ecus": len(self.ecus),
             "total_ecus": len(targeted_ecus),
             "confirmed_ecus": confirmed_ecus,
-            "rolled_back_ecus": 0,
-            "rejected_ecus": 0,
+            "rolled_back_ecus": rolled_back_ecus,
+            "rejected_ecus": rejected_ecus,
+            "blocked_ecus": blocked_ecus,
             "offline_ecus": 0,
             "progress_pct": (
-                100 if targeted_ecus else 0
+                round(
+                    (
+                        confirmed_ecus
+                        + rejected_ecus
+                        + rolled_back_ecus
+                        + blocked_ecus
+                    )
+                    / len(targeted_ecus)
+                    * 100
+                )
+                if targeted_ecus
+                else 0
             ),
             "executed_waves": list(
                 self.executed_waves

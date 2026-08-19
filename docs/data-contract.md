@@ -97,3 +97,8 @@ Pour une mise à jour nominale, les deux champs valent `null`.
 Pour `RB-01`, la mise à jour est rejetée avant l'installation. Aucun rollback de partition n'est nécessaire.
 
 Pour `RB-04`, le self-test échoue après le redémarrage sur le nouveau slot. L'ECU réactive alors son ancien slot sans télécharger une seconde fois le logiciel.
+### Résultats d'une campagne multi-ECU
+
+Le résumé de campagne contient également `blocked_ecus`, qui indique le nombre d'ECU non installés parce qu'un de leurs prérequis n'a pas été confirmé.
+
+Une campagne contenant un rejet, un rollback ou un blocage utilise le statut `COMPLETED_WITH_FAILURES`. Ce statut signifie que l'orchestrateur a terminé le traitement de toutes les cibles, mais que certaines mises à jour n'ont pas été confirmées.

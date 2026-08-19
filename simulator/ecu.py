@@ -100,6 +100,22 @@ class VirtualECU:
             "Une mise à jour ne peut pas commencer depuis RECOVERY"
         )
 
+    def mark_blocked(
+        self,
+        reason: str,
+    ) -> dict[str, Any]:
+        """Bloque la mise à jour pour une dépendance invalide."""
+
+        if not reason:
+            raise ValueError("Raison du blocage absente")
+
+        self.last_error = reason
+        self.rollback_trigger = None
+        self.last_rollback_duration_s = None
+        self._set_state("BLOCKED", 0)
+
+        return self.to_dict()
+
     def run_update(
         self,
         target_version: str,
