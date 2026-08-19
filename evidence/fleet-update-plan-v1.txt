@@ -1,0 +1,38 @@
+Dataset : SYNTHETIC_PFE_V1
+Nombre d'ECU : 28
+Nombre de dépendances : 29
+Validation de l'inventaire : OK
+
+Vague 1 (1 ECU)
+  ECU-01 | Central_Gateway | 2.0.0 -> 3.0.0 | priorité 1
+Vague 2 (6 ECU)
+  ECU-03 | Vehicle_Security_Module | 3.1.0 -> 3.2.0 | priorité 2
+  ECU-05 | Powertrain_Domain_Controller | 4.0.0 -> 4.1.0 | priorité 2
+  ECU-10 | Chassis_Domain_Controller | 4.2.0 -> 4.3.0 | priorité 2
+  ECU-15 | ADAS_Domain_Controller | 8.0.0 -> 8.1.0 | priorité 2
+  ECU-20 | Body_Domain_Controller | 5.0.0 -> 5.1.0 | priorité 2
+  ECU-26 | Infotainment_Head_Unit | 9.0.0 -> 9.1.0 | priorité 2
+Vague 3 (17 ECU)
+  ECU-06 | Engine_Control_Module | 5.1.0 -> 5.2.0 | priorité 3
+  ECU-07 | Transmission_Control_Module | 3.6.0 -> 3.7.0 | priorité 3
+  ECU-08 | Battery_Management_System | 6.0.0 -> 6.1.0 | priorité 3
+  ECU-09 | Onboard_Charger | 2.8.0 -> 2.9.0 | priorité 3
+  ECU-11 | Brake_Control_Module | 7.0.0 -> 7.1.0 | priorité 3
+  ECU-12 | Steering_Control_Module | 5.4.0 -> 5.5.0 | priorité 3
+  ECU-13 | Suspension_Control_Module | 2.2.0 -> 2.3.0 | priorité 3
+  ECU-14 | Vehicle_Dynamics_Control | 3.3.0 -> 3.4.0 | priorité 3
+  ECU-16 | Front_Camera | 7.2.0 -> 7.3.0 | priorité 3
+  ECU-17 | Front_Radar | 6.5.0 -> 6.6.0 | priorité 3
+  ECU-18 | Corner_Radar_Left | 4.1.0 -> 4.2.0 | priorité 3
+  ECU-19 | Corner_Radar_Right | 4.1.0 -> 4.2.0 | priorité 3
+  ECU-21 | Zone_Front | 3.0.0 -> 3.1.0 | priorité 3
+  ECU-22 | Zone_Rear | 3.0.0 -> 3.1.0 | priorité 3
+  ECU-25 | HVAC_Control | 4.4.0 -> 4.5.0 | priorité 3
+  ECU-27 | Instrument_Cluster | 6.2.0 -> 6.3.0 | priorité 3
+  ECU-28 | Audio_Amplifier | 3.7.0 -> 3.8.0 | priorité 3
+Vague 4 (3 ECU)
+  ECU-04 | Diagnostic_Gateway | 2.4.0 -> 2.5.0 | priorité 4
+  ECU-23 | Door_Control_Left | 2.5.0 -> 2.6.0 | priorité 4
+  ECU-24 | Door_Control_Right | 2.5.0 -> 2.6.0 | priorité 4
+Vague 5 (1 ECU)
+  ECU-02 | Connectivity_Unit_EP150 | 1.4.0 -> 1.5.0 | priorité 5
