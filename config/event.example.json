@@ -1,0 +1,14 @@
+{
+  "schema_version": "1.0",
+  "event_id": "EVT-000001",
+  "timestamp": "2026-08-19T12:00:00Z",
+  "campaign_id": "CMP-001",
+  "ecu_id": "ECU-01",
+  "source_type": "SIMULATED",
+  "level": "INFO",
+  "event_code": "OTA_STATE_CHANGED",
+  "ota_status": "VERIFYING_SIGNATURE",
+  "progress_pct": 25,
+  "message": "Verification de la signature du manifeste",
+  "rollback_trigger": null
+}
