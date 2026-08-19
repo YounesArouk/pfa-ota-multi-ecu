@@ -28,7 +28,7 @@ class Partition:
 
 @dataclass
 class VirtualECU:
-    """Premier modèle d'un ECU OTA Python simulé."""
+    """Modèle d'un ECU OTA Python simulé avec partitions A/B."""
 
     ecu_id: str
     name: str
@@ -46,6 +46,8 @@ class VirtualECU:
     rollback_counter: int = 0
     accepted_releases: list[str] = field(default_factory=list)
     last_error: str | None = None
+    rollback_trigger: str | None = None
+    last_rollback_duration_s: float | None = None
     updated_at: str | None = None
 
     partitions: dict[str, Partition] = field(init=False)
@@ -95,15 +97,18 @@ class VirtualECU:
             return "A"
 
         raise RuntimeError(
-            "Une mise à jour nominale ne peut pas commencer depuis RECOVERY"
+            "Une mise à jour ne peut pas commencer depuis RECOVERY"
         )
 
-    def run_nominal_update(
+    def run_update(
         self,
         target_version: str,
         release_id: str,
+        *,
+        checksum_valid: bool = True,
+        self_test_valid: bool = True,
     ) -> dict[str, Any]:
-        """Exécute une mise à jour nominale sans panne."""
+        """Exécute une mise à jour avec injection facultative de défaut."""
 
         if not self.connected:
             raise RuntimeError("ECU non joignable")
@@ -121,10 +126,19 @@ class VirtualECU:
         self.previous_partition = self.active_partition
         self.previous_version = self.current_version
         self.last_error = None
+        self.rollback_trigger = None
+        self.last_rollback_duration_s = None
 
         self._set_state("DOWNLOADING", 15)
         self._set_state("VERIFYING_SIGNATURE", 30)
         self._set_state("VERIFYING_CHECKSUM", 45)
+
+        # RB-01 : le défaut est détecté avant toute écriture.
+        if not checksum_valid:
+            self.last_error = "RB-01: checksum mismatch"
+            self.rollback_trigger = "RB-01"
+            self._set_state("REJECTED", 45)
+            return self.to_dict()
 
         target_partition = self.get_inactive_partition()
         self.partitions[target_partition].status = "WRITING"
@@ -137,13 +151,47 @@ class VirtualECU:
         self.active_partition = target_partition
 
         self._set_state("SELF_TEST", 90)
-        self.health_status = "GOOD"
 
+        # RB-04 : l'échec arrive après installation et redémarrage.
+        if not self_test_valid:
+            self.health_status = "FAILED"
+            self.partitions[target_partition].status = "BAD"
+            self.last_error = "RB-04: self-test failure"
+            self.rollback_trigger = "RB-04"
+
+            self._set_state("ROLLBACK", 95)
+
+            self.active_partition = self.previous_partition
+            self.current_version = self.previous_version
+            self.partitions[self.previous_partition].status = "GOOD"
+
+            self.rollback_counter += 1
+            self.last_rollback_duration_s = 3.0
+            self.health_status = "GOOD"
+
+            self._set_state("ROLLED_BACK", 100)
+            return self.to_dict()
+
+        self.health_status = "GOOD"
         self.current_version = target_version
         self.accepted_releases.append(release_id)
         self._set_state("CONFIRMED", 100)
 
         return self.to_dict()
+
+    def run_nominal_update(
+        self,
+        target_version: str,
+        release_id: str,
+    ) -> dict[str, Any]:
+        """Conserve l'interface nominale utilisée par l'orchestrateur."""
+
+        return self.run_update(
+            target_version=target_version,
+            release_id=release_id,
+            checksum_valid=True,
+            self_test_valid=True,
+        )
 
     def to_dict(self) -> dict[str, Any]:
         """Convertit l'état interne dans le contrat JSON commun."""
@@ -170,5 +218,7 @@ class VirtualECU:
             "rollback_counter": self.rollback_counter,
             "accepted_releases": list(self.accepted_releases),
             "last_error": self.last_error,
+            "rollback_trigger": self.rollback_trigger,
+            "last_rollback_duration_s": self.last_rollback_duration_s,
             "updated_at": self.updated_at,
         }

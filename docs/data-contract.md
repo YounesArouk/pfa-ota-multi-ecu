@@ -85,3 +85,15 @@ La partition `RECOVERY` doit toujours avoir `read_only=true`.
 8. Le nombre total d'ECU d'une campagne doit être égal à 28.
 9. La campagne nominale doit respecter un budget simulé de 90 secondes.
 10. Chaque événement doit identifier sa source réelle ou simulée.
+## Extension pour les scénarios de rollback
+
+Les états ECU contiennent deux champs supplémentaires :
+
+- `rollback_trigger` : identifiant du défaut ayant provoqué le rejet ou le rollback, par exemple `RB-01` ou `RB-04` ;
+- `last_rollback_duration_s` : durée simulée du dernier rollback en secondes.
+
+Pour une mise à jour nominale, les deux champs valent `null`.
+
+Pour `RB-01`, la mise à jour est rejetée avant l'installation. Aucun rollback de partition n'est nécessaire.
+
+Pour `RB-04`, le self-test échoue après le redémarrage sur le nouveau slot. L'ECU réactive alors son ancien slot sans télécharger une seconde fois le logiciel.

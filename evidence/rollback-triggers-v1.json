@@ -1,0 +1,63 @@
+{
+  "schema_version": "1.0",
+  "evidence_id": "rollback-triggers-v1",
+  "source_type": "SIMULATED",
+  "generated_at": "2026-08-19T21:45:02+00:00",
+  "scenarios": {
+    "RB-01": {
+      "fault": "CHECKSUM_MISMATCH",
+      "decision": "REJECTED",
+      "rollback_trigger": "RB-01",
+      "final_version": "2.0.0",
+      "final_active_partition": "A",
+      "installation_started": false,
+      "release_accepted": false,
+      "inactive_partition": {
+        "version": null,
+        "status": "EMPTY",
+        "read_only": false
+      },
+      "state_history": [
+        "IDLE",
+        "DOWNLOADING",
+        "VERIFYING_SIGNATURE",
+        "VERIFYING_CHECKSUM",
+        "REJECTED"
+      ],
+      "last_error": "RB-01: checksum mismatch"
+    },
+    "RB-04": {
+      "fault": "SELF_TEST_FAILURE",
+      "decision": "ROLLED_BACK",
+      "rollback_trigger": "RB-04",
+      "final_version": "2.0.0",
+      "final_active_partition": "A",
+      "failed_partition": {
+        "version": "3.0.0",
+        "status": "BAD",
+        "read_only": false
+      },
+      "rollback_counter": 1,
+      "rollback_duration_s": 3.0,
+      "download_count": 1,
+      "release_accepted": false,
+      "recovery_partition": {
+        "version": "1.0.0",
+        "status": "GOOD",
+        "read_only": true
+      },
+      "state_history": [
+        "IDLE",
+        "DOWNLOADING",
+        "VERIFYING_SIGNATURE",
+        "VERIFYING_CHECKSUM",
+        "INSTALLING",
+        "REBOOTING",
+        "SELF_TEST",
+        "ROLLBACK",
+        "ROLLED_BACK"
+      ],
+      "last_error": "RB-04: self-test failure"
+    }
+  }
+}
