@@ -1,0 +1,79 @@
+{
+  "schema_version": "1.0",
+  "evidence_id": "recovery-fallback-v1",
+  "dataset_id": "SYNTHETIC_PFE_FAULTS_V1",
+  "source_type": "SIMULATED",
+  "generated_at": "2026-08-20T11:43:21+00:00",
+  "trigger": "PFE-RECOVERY",
+  "related_reference_codes": [
+    "RB-17",
+    "RB-19"
+  ],
+  "official_mapping_status": "PENDING",
+  "initial_state": {
+    "current_version": "2.0.0",
+    "active_partition": "A",
+    "partitions": {
+      "A": {
+        "version": "2.0.0",
+        "status": "GOOD",
+        "read_only": false
+      },
+      "B": {
+        "version": null,
+        "status": "EMPTY",
+        "read_only": false
+      },
+      "RECOVERY": {
+        "version": "1.0.0",
+        "status": "GOOD",
+        "read_only": true
+      }
+    }
+  },
+  "fallback_result": {
+    "ota_status": "RECOVERY_BOOT",
+    "rollback_trigger": "PFE-RECOVERY",
+    "current_version": "1.0.0",
+    "active_partition": "RECOVERY",
+    "health_status": "RECOVERY",
+    "recovery_boot_counter": 1,
+    "rollback_lockout": true,
+    "partitions": {
+      "A": {
+        "version": "2.0.0",
+        "status": "BAD",
+        "read_only": false
+      },
+      "B": {
+        "version": "3.0.0",
+        "status": "BAD",
+        "read_only": false
+      },
+      "RECOVERY": {
+        "version": "1.0.0",
+        "status": "GOOD",
+        "read_only": true
+      }
+    },
+    "failed_release_accepted": false
+  },
+  "automatic_retry": {
+    "ota_status": "RECOVERY_LOCKOUT",
+    "active_partition": "RECOVERY",
+    "downloads_before": 1,
+    "downloads_after": 1,
+    "release_accepted": false
+  },
+  "final_state_history": [
+    "IDLE",
+    "DOWNLOADING",
+    "VERIFYING_SIGNATURE",
+    "VERIFYING_CHECKSUM",
+    "INSTALLING",
+    "REBOOTING",
+    "SELF_TEST",
+    "RECOVERY_BOOT",
+    "RECOVERY_LOCKOUT"
+  ]
+}

@@ -33,6 +33,7 @@
   "rollback_counter": 0,
   "consecutive_rollback_counter": 0,
   "rollback_lockout": false,
+  "recovery_boot_counter": 0,
   "accepted_releases": [],
   "last_error": null,
 "rollback_trigger": null,

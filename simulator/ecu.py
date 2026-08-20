@@ -46,6 +46,7 @@ class VirtualECU:
     rollback_counter: int = 0
     consecutive_rollback_counter: int = 0
     rollback_lockout: bool = False
+    recovery_boot_counter: int = 0
     accepted_releases: list[str] = field(default_factory=list)
     last_error: str | None = None
     rollback_trigger: str | None = None
@@ -125,8 +126,24 @@ class VirtualECU:
         *,
         checksum_valid: bool = True,
         self_test_valid: bool = True,
+        dual_bank_failure: bool = False,
     ) -> dict[str, Any]:
         """Exécute une mise à jour avec injection facultative de défaut."""
+
+        if self.active_partition == "RECOVERY":
+            self.last_error = (
+                "PFE-RECOVERY: automatic OTA blocked "
+                "while running recovery image"
+            )
+            self.rollback_trigger = "PFE-RECOVERY"
+
+            if self.ota_status != "RECOVERY_LOCKOUT":
+                self._set_state(
+                    "RECOVERY_LOCKOUT",
+                    0,
+                )
+
+            return self.to_dict()
 
         if self.rollback_lockout:
             self.last_error = (
@@ -183,6 +200,42 @@ class VirtualECU:
         self.active_partition = target_partition
 
         self._set_state("SELF_TEST", 90)
+
+        # Les deux banques sont non démarrables.
+        if dual_bank_failure:
+            self.health_status = "FAILED"
+            self.partitions[
+                target_partition
+            ].status = "BAD"
+            self.partitions[
+                self.previous_partition
+            ].status = "BAD"
+
+            self.last_error = (
+                "PFE-RECOVERY: both A/B banks failed"
+            )
+            self.rollback_trigger = "PFE-RECOVERY"
+            self.recovery_boot_counter += 1
+            self.rollback_lockout = True
+
+            recovery_version = self.partitions[
+                "RECOVERY"
+            ].version
+
+            if recovery_version is None:
+                raise RuntimeError(
+                    "Version Recovery absente"
+                )
+
+            self.active_partition = "RECOVERY"
+            self.current_version = recovery_version
+            self.health_status = "RECOVERY"
+
+            self._set_state(
+                "RECOVERY_BOOT",
+                100,
+            )
+            return self.to_dict()
 
         # RB-04 : l'échec arrive après installation et redémarrage.
         if not self_test_valid:
@@ -268,6 +321,9 @@ class VirtualECU:
                 self.consecutive_rollback_counter
             ),
             "rollback_lockout": self.rollback_lockout,
+            "recovery_boot_counter": (
+                self.recovery_boot_counter
+            ),
             "accepted_releases": list(self.accepted_releases),
             "last_error": self.last_error,
             "rollback_trigger": self.rollback_trigger,

@@ -109,3 +109,18 @@ Le champ `consecutive_rollback_counter` compte les rollbacks successifs sans mis
 Après deux rollbacks consécutifs, `rollback_lockout` devient `true` et l'état OTA devient `ROLLBACK_LOCKOUT`. Une nouvelle tentative automatique est alors bloquée avant le téléchargement.
 
 Une mise à jour confirmée remet le compteur consécutif à zéro. Le compteur global `rollback_counter` reste conservé pour la traçabilité.
+
+## Démarrage sur la partition Recovery
+
+Le scénario provisoire `PFE-RECOVERY` représente une situation dans laquelle les banques A et B sont toutes les deux non démarrables.
+
+Dans ce cas :
+
+- les partitions A et B sont marquées `BAD` ;
+- la partition `RECOVERY` devient active ;
+- son image reste en lecture seule ;
+- `recovery_boot_counter` est incrémenté ;
+- les mises à jour automatiques sont bloquées ;
+- une intervention contrôlée est nécessaire pour restaurer les banques A/B.
+
+La correspondance exacte avec les codes officiels `RB-17` et `RB-19` devra être confirmée lorsque la feuille 03 correcte sera disponible.
