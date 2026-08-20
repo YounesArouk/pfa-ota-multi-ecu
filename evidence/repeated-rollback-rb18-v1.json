@@ -1,0 +1,67 @@
+{
+  "schema_version": "1.0",
+  "evidence_id": "repeated-rollback-rb18-v1",
+  "dataset_id": "SYNTHETIC_PFE_FAULTS_V1",
+  "source_type": "SIMULATED",
+  "generated_at": "2026-08-20T11:25:29+00:00",
+  "trigger": "RB-18",
+  "policy": {
+    "maximum_consecutive_rollbacks": 2,
+    "action": "BLOCK_AUTOMATIC_UPDATE"
+  },
+  "attempts": {
+    "first_failure": {
+      "ota_status": "ROLLED_BACK",
+      "rollback_trigger": "RB-04",
+      "rollback_counter": 1,
+      "consecutive_rollback_counter": 1,
+      "rollback_lockout": false,
+      "download_count": 1
+    },
+    "second_failure": {
+      "ota_status": "ROLLBACK_LOCKOUT",
+      "rollback_trigger": "RB-18",
+      "rollback_counter": 2,
+      "consecutive_rollback_counter": 2,
+      "rollback_lockout": true,
+      "download_count": 2
+    },
+    "third_automatic_attempt": {
+      "ota_status": "ROLLBACK_LOCKOUT",
+      "rollback_trigger": "RB-18",
+      "rollback_lockout": true,
+      "downloads_before": 2,
+      "downloads_after": 2,
+      "release_accepted": false
+    }
+  },
+  "final_state": {
+    "current_version": "2.0.0",
+    "active_partition": "A",
+    "ota_status": "ROLLBACK_LOCKOUT",
+    "rollback_counter": 2,
+    "consecutive_rollback_counter": 2,
+    "rollback_lockout": true,
+    "accepted_releases": [],
+    "state_history": [
+      "IDLE",
+      "DOWNLOADING",
+      "VERIFYING_SIGNATURE",
+      "VERIFYING_CHECKSUM",
+      "INSTALLING",
+      "REBOOTING",
+      "SELF_TEST",
+      "ROLLBACK",
+      "ROLLED_BACK",
+      "DOWNLOADING",
+      "VERIFYING_SIGNATURE",
+      "VERIFYING_CHECKSUM",
+      "INSTALLING",
+      "REBOOTING",
+      "SELF_TEST",
+      "ROLLBACK",
+      "ROLLED_BACK",
+      "ROLLBACK_LOCKOUT"
+    ]
+  }
+}

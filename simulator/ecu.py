@@ -44,6 +44,8 @@ class VirtualECU:
     progress_pct: int = 0
     dependencies: list[str] = field(default_factory=list)
     rollback_counter: int = 0
+    consecutive_rollback_counter: int = 0
+    rollback_lockout: bool = False
     accepted_releases: list[str] = field(default_factory=list)
     last_error: str | None = None
     rollback_trigger: str | None = None
@@ -126,6 +128,20 @@ class VirtualECU:
     ) -> dict[str, Any]:
         """Exécute une mise à jour avec injection facultative de défaut."""
 
+        if self.rollback_lockout:
+            self.last_error = (
+                "RB-18: repeated rollback loop prevented"
+            )
+            self.rollback_trigger = "RB-18"
+
+            if self.ota_status != "ROLLBACK_LOCKOUT":
+                self._set_state(
+                    "ROLLBACK_LOCKOUT",
+                    0,
+                )
+
+            return self.to_dict()
+
         if not self.connected:
             raise RuntimeError("ECU non joignable")
 
@@ -182,14 +198,30 @@ class VirtualECU:
             self.partitions[self.previous_partition].status = "GOOD"
 
             self.rollback_counter += 1
+            self.consecutive_rollback_counter += 1
             self.last_rollback_duration_s = 3.0
             self.health_status = "GOOD"
 
             self._set_state("ROLLED_BACK", 100)
+
+            if self.consecutive_rollback_counter >= 2:
+                self.rollback_lockout = True
+                self.rollback_trigger = "RB-18"
+                self.last_error = (
+                    "RB-18: repeated rollback loop "
+                    "prevented after two failures"
+                )
+                self._set_state(
+                    "ROLLBACK_LOCKOUT",
+                    100,
+                )
+
             return self.to_dict()
 
         self.health_status = "GOOD"
         self.current_version = target_version
+        self.consecutive_rollback_counter = 0
+        self.rollback_lockout = False
         self.accepted_releases.append(release_id)
         self._set_state("CONFIRMED", 100)
 
@@ -232,6 +264,10 @@ class VirtualECU:
             "progress_pct": self.progress_pct,
             "dependencies": list(self.dependencies),
             "rollback_counter": self.rollback_counter,
+            "consecutive_rollback_counter": (
+                self.consecutive_rollback_counter
+            ),
+            "rollback_lockout": self.rollback_lockout,
             "accepted_releases": list(self.accepted_releases),
             "last_error": self.last_error,
             "rollback_trigger": self.rollback_trigger,
