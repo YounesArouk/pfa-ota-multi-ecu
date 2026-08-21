@@ -124,3 +124,35 @@ Dans ce cas :
 - une intervention contrôlée est nécessaire pour restaurer les banques A/B.
 
 La correspondance exacte avec les codes officiels `RB-17` et `RB-19` devra être confirmée lorsque la feuille 03 correcte sera disponible.
+
+## Modèle temporel simulé
+
+Le résumé de campagne contient les champs temporels suivants :
+
+- `elapsed_s` : durée simulée totale de la campagne ;
+- `time_budget_s` : budget temporel de référence ;
+- `timing` : objet contenant les KPI temporels détaillés.
+
+L’objet `timing` contient :
+
+- `timing_model_id` : identifiant du modèle utilisé ;
+- `execution_policy` : politique d’exécution des vagues ;
+- `fleet_processing_s` : somme des durées individuelles de tous les ECU ;
+- `average_ecu_duration_s` : durée moyenne par ECU ;
+- `max_ecu_duration_s` : durée individuelle maximale ;
+- `min_ecu_duration_s` : durée individuelle minimale ;
+- `budget_status` : `WITHIN_BUDGET` ou `EXCEEDED` ;
+- `budget_margin_s` : marge restante ;
+- `budget_overrun_s` : dépassement du budget ;
+- `ecu_durations_s` : durée calculée pour chaque ECU ;
+- `wave_durations` : durée de chaque vague.
+
+Les ECU d’une même vague sont considérés comme exécutés en parallèle. La durée d’une vague correspond donc à la durée maximale de ses ECU.
+
+La durée totale d’une campagne est calculée comme la somme des durées de ses vagues.
+
+Chaque état ECU retourné dans le résumé de campagne contient également `elapsed_s`.
+
+Le modèle utilise un temps simulé accéléré. Il ne représente pas directement le temps réel d’un téléchargement automobile.
+
+La campagne nominale dure 75 secondes simulées et respecte le budget de 90 secondes. La campagne multi-défauts dure 99 secondes et dépasse le budget de 9 secondes à cause des rollbacks répétés et du démarrage Recovery.

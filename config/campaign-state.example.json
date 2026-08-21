@@ -23,5 +23,22 @@
   "total_waves": 0,
   "failure_scenario": null,
   "started_at": null,
-  "completed_at": null
+  "completed_at": null,
+  "locked_out_ecus": 0,
+  "recovery_ecus": 0,
+  "timing": {
+    "timing_model_id": "PFE_OTA_TIMING_V1",
+    "execution_policy": "PARALLEL_WITHIN_WAVE",
+    "time_budget_s": 90,
+    "elapsed_s": 0,
+    "fleet_processing_s": 0,
+    "average_ecu_duration_s": 0,
+    "max_ecu_duration_s": 0,
+    "min_ecu_duration_s": 0,
+    "budget_status": "NOT_EVALUATED",
+    "budget_margin_s": 90,
+    "budget_overrun_s": 0,
+    "ecu_durations_s": {},
+    "wave_durations": []
+  }
 }
