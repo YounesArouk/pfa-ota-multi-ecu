@@ -25,7 +25,7 @@
       "trigger_id": "RB-18",
       "name": "REPEATED_ROLLBACK_LOOP",
       "provenance": "SPEC_CONFIRMED",
-      "status": "IMPLEMENTED"
+      "status": "VALIDATED"
     },
     {
       "trigger_id": "PFE-RECOVERY",
@@ -35,7 +35,7 @@
         "RB-17",
         "RB-19"
       ],
-      "status": "IN_PROGRESS"
+      "status": "VALIDATED"
     }
   ]
 }

@@ -121,7 +121,12 @@ class CampaignOrchestrator:
         fault_injections = dict(
             fault_injections or {}
         )
-        supported_faults = {"RB-01", "RB-04"}
+        supported_faults = {
+            "RB-01",
+            "RB-04",
+            "RB-18",
+            "PFE-RECOVERY",
+        }
 
         unknown_fault_ecus = sorted(
             set(fault_injections) - set(self.inventory)
@@ -179,7 +184,21 @@ class CampaignOrchestrator:
                         fault_scenario != "RB-01"
                     ),
                     "self_test_valid": (
-                        fault_scenario != "RB-04"
+                        fault_scenario
+                        not in {
+                            "RB-04",
+                            "RB-18",
+                            "PFE-RECOVERY",
+                        }
+                    ),
+                    "dual_bank_failure": (
+                        fault_scenario
+                        == "PFE-RECOVERY"
+                    ),
+                    "repeat_failure_count": (
+                        2
+                        if fault_scenario == "RB-18"
+                        else 1
                     ),
                     "fault_scenario": fault_scenario,
                 }
@@ -329,6 +348,8 @@ class CampaignOrchestrator:
         rejected_ecus = 0
         rolled_back_ecus = 0
         blocked_ecus = 0
+        locked_out_ecus = 0
+        recovery_ecus = 0
         processed_ecus = 0
         planned_wave_number = 0
 
@@ -461,23 +482,51 @@ class CampaignOrchestrator:
                         "campaign_id"
                     ] = campaign_id
 
-                ecu.run_update(
-                    target_version=(
-                        target["target_version"]
-                    ),
-                    release_id=(
-                        manifest["release_id"]
-                    ),
-                    checksum_valid=target.get(
-                        "checksum_valid",
-                        True,
-                    ),
-                    self_test_valid=target.get(
-                        "self_test_valid",
-                        True,
-                    ),
-                )
+                if fault_scenario == "RB-18":
+                    repeat_count = target.get(
+                        "repeat_failure_count",
+                        2,
+                    )
 
+                    for attempt in range(
+                        1,
+                        repeat_count + 1,
+                    ):
+                        ecu.run_update(
+                            target_version=(
+                                target[
+                                    "target_version"
+                                ]
+                            ),
+                            release_id=(
+                                f"{manifest['release_id']}-"
+                                f"{ecu_id.lower()}-"
+                                f"attempt-{attempt}"
+                            ),
+                            checksum_valid=True,
+                            self_test_valid=False,
+                        )
+                else:
+                    ecu.run_update(
+                        target_version=(
+                            target["target_version"]
+                        ),
+                        release_id=(
+                            manifest["release_id"]
+                        ),
+                        checksum_valid=target.get(
+                            "checksum_valid",
+                            True,
+                        ),
+                        self_test_valid=target.get(
+                            "self_test_valid",
+                            True,
+                        ),
+                        dual_bank_failure=target.get(
+                            "dual_bank_failure",
+                            False,
+                        ),
+                    )
                 processed_ecus += 1
 
                 progress_pct = round(
@@ -524,6 +573,7 @@ class CampaignOrchestrator:
                     )
 
                 elif ecu.ota_status == "ROLLED_BACK":
+
                     rolled_back_ecus += 1
 
                     self._log(
@@ -544,6 +594,62 @@ class CampaignOrchestrator:
                         ),
                     )
 
+                elif (
+                    ecu.ota_status
+                    == "ROLLBACK_LOCKOUT"
+                ):
+                    locked_out_ecus += 1
+
+                    self._log(
+                        level="ERROR",
+                        event_code=(
+                            ecu.rollback_trigger
+                            or "RB-18"
+                        ),
+                        ecu_id=ecu_id,
+                        ota_status=ecu.ota_status,
+                        progress_pct=progress_pct,
+                        message=(
+                            ecu.last_error
+                            or (
+                                "ECU verrouillé après "
+                                "des rollbacks répétés"
+                            )
+                        ),
+                        rollback_trigger=(
+                            ecu.rollback_trigger
+                            or "RB-18"
+                        ),
+                    )
+
+                elif (
+                    ecu.ota_status
+                    == "RECOVERY_BOOT"
+                ):
+                    recovery_ecus += 1
+
+                    self._log(
+                        level="ERROR",
+                        event_code=(
+                            ecu.rollback_trigger
+                            or "PFE-RECOVERY"
+                        ),
+                        ecu_id=ecu_id,
+                        ota_status=ecu.ota_status,
+                        progress_pct=progress_pct,
+                        message=(
+                            ecu.last_error
+                            or (
+                                "Démarrage sur la "
+                                "partition Recovery"
+                            )
+                        ),
+                        rollback_trigger=(
+                            ecu.rollback_trigger
+                            or "PFE-RECOVERY"
+                        ),
+                    )
+
                 else:
                     raise RuntimeError(
                         "État OTA final inattendu pour "
@@ -558,8 +664,9 @@ class CampaignOrchestrator:
             rejected_ecus
             + rolled_back_ecus
             + blocked_ecus
+            + locked_out_ecus
+            + recovery_ecus
         )
-
         if failure_count:
             self.status = "COMPLETED_WITH_FAILURES"
             final_level = "WARNING"
@@ -580,7 +687,9 @@ class CampaignOrchestrator:
                 f"{confirmed_ecus} confirmés, "
                 f"{rejected_ecus} rejetés, "
                 f"{rolled_back_ecus} restaurés, "
-                f"{blocked_ecus} bloqués"
+                f"{blocked_ecus} bloqués, "
+                f"{locked_out_ecus} verrouillés, "
+                f"{recovery_ecus} en Recovery"
             ),
         )
         self.events[-1]["campaign_id"] = campaign_id
@@ -591,6 +700,8 @@ class CampaignOrchestrator:
             rejected_ecus=rejected_ecus,
             rolled_back_ecus=rolled_back_ecus,
             blocked_ecus=blocked_ecus,
+            locked_out_ecus=locked_out_ecus,
+            recovery_ecus=recovery_ecus,
         )
 
     def build_summary(
@@ -600,6 +711,8 @@ class CampaignOrchestrator:
         rejected_ecus: int = 0,
         rolled_back_ecus: int = 0,
         blocked_ecus: int = 0,
+        locked_out_ecus: int = 0,
+        recovery_ecus: int = 0,
     ) -> dict[str, Any]:
         """Construit le résumé destiné à l'API."""
 
@@ -633,6 +746,8 @@ class CampaignOrchestrator:
             "rolled_back_ecus": rolled_back_ecus,
             "rejected_ecus": rejected_ecus,
             "blocked_ecus": blocked_ecus,
+            "locked_out_ecus": locked_out_ecus,
+            "recovery_ecus": recovery_ecus,
             "offline_ecus": 0,
             "progress_pct": (
                 round(
@@ -641,6 +756,8 @@ class CampaignOrchestrator:
                         + rejected_ecus
                         + rolled_back_ecus
                         + blocked_ecus
+                        + locked_out_ecus
+                        + recovery_ecus
                     )
                     / len(targeted_ecus)
                     * 100
