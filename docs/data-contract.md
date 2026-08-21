@@ -102,3 +102,25 @@ Pour `RB-04`, le self-test échoue après le redémarrage sur le nouveau slot. L
 Le résumé de campagne contient également `blocked_ecus`, qui indique le nombre d'ECU non installés parce qu'un de leurs prérequis n'a pas été confirmé.
 
 Une campagne contenant un rejet, un rollback ou un blocage utilise le statut `COMPLETED_WITH_FAILURES`. Ce statut signifie que l'orchestrateur a terminé le traitement de toutes les cibles, mais que certaines mises à jour n'ont pas été confirmées.
+## Protection contre la boucle de rollback RB-18
+
+Le champ `consecutive_rollback_counter` compte les rollbacks successifs sans mise à jour confirmée entre eux.
+
+Après deux rollbacks consécutifs, `rollback_lockout` devient `true` et l'état OTA devient `ROLLBACK_LOCKOUT`. Une nouvelle tentative automatique est alors bloquée avant le téléchargement.
+
+Une mise à jour confirmée remet le compteur consécutif à zéro. Le compteur global `rollback_counter` reste conservé pour la traçabilité.
+
+## Démarrage sur la partition Recovery
+
+Le scénario provisoire `PFE-RECOVERY` représente une situation dans laquelle les banques A et B sont toutes les deux non démarrables.
+
+Dans ce cas :
+
+- les partitions A et B sont marquées `BAD` ;
+- la partition `RECOVERY` devient active ;
+- son image reste en lecture seule ;
+- `recovery_boot_counter` est incrémenté ;
+- les mises à jour automatiques sont bloquées ;
+- une intervention contrôlée est nécessaire pour restaurer les banques A/B.
+
+La correspondance exacte avec les codes officiels `RB-17` et `RB-19` devra être confirmée lorsque la feuille 03 correcte sera disponible.

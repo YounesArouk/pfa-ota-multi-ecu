@@ -1,0 +1,159 @@
+{
+  "schema_version": "1.0",
+  "evidence_id": "recovery-orchestration-v1",
+  "generated_at": "2026-08-21T15:53:07+00:00",
+  "dataset_id": "SYNTHETIC_PFE_FAULTS_V1",
+  "source_type": "SIMULATED",
+  "scenario": "PFE-RECOVERY",
+  "validation_status": "PASSED",
+  "expected_result": {
+    "ota_status": "RECOVERY_BOOT",
+    "active_partition": "RECOVERY",
+    "bank_a_status": "BAD",
+    "bank_b_status": "BAD",
+    "recovery_read_only": true,
+    "recovery_ecus": 1
+  },
+  "actual_result": {
+    "ecu_id": "ECU-02",
+    "ota_status": "RECOVERY_BOOT",
+    "rollback_trigger": "PFE-RECOVERY",
+    "active_partition": "RECOVERY",
+    "bank_a_status": "BAD",
+    "bank_b_status": "BAD",
+    "recovery_read_only": true,
+    "recovery_boot_counter": 1,
+    "recovery_ecus": 1,
+    "campaign_status": "COMPLETED_WITH_FAILURES",
+    "progress_pct": 100
+  },
+  "manifest": {
+    "schema_version": "1.0",
+    "campaign_id": "CMP-EVIDENCE-RECOVERY-001",
+    "release_id": "release-evidence-recovery-001",
+    "vehicle_release": "3.0.0",
+    "signature_valid": true,
+    "targets": [
+      {
+        "ecu_id": "ECU-02",
+        "target_version": "1.5.0",
+        "package": "ecu-02-1.5.0.img",
+        "checksum_valid": true,
+        "self_test_valid": false,
+        "dual_bank_failure": true,
+        "repeat_failure_count": 1,
+        "fault_scenario": "PFE-RECOVERY"
+      }
+    ]
+  },
+  "state_history": [
+    "IDLE",
+    "DOWNLOADING",
+    "VERIFYING_SIGNATURE",
+    "VERIFYING_CHECKSUM",
+    "INSTALLING",
+    "REBOOTING",
+    "SELF_TEST",
+    "RECOVERY_BOOT"
+  ],
+  "events": [
+    {
+      "schema_version": "1.0",
+      "event_id": "EVT-000001",
+      "timestamp": "2026-08-21T15:53:07+00:00",
+      "campaign_id": "CMP-EVIDENCE-RECOVERY-001",
+      "ecu_id": null,
+      "source_type": "SIMULATED",
+      "level": "SUCCESS",
+      "event_code": "MANIFEST_SIGNATURE_VALID",
+      "ota_status": null,
+      "progress_pct": 0,
+      "message": "Signature globale vérifiée avant toute modification d'ECU",
+      "rollback_trigger": null
+    },
+    {
+      "schema_version": "1.0",
+      "event_id": "EVT-000002",
+      "timestamp": "2026-08-21T15:53:07+00:00",
+      "campaign_id": "CMP-EVIDENCE-RECOVERY-001",
+      "ecu_id": null,
+      "source_type": "SIMULATED",
+      "level": "INFO",
+      "event_code": "CAMPAIGN_STARTED",
+      "ota_status": null,
+      "progress_pct": 0,
+      "message": "Campagne CMP-EVIDENCE-RECOVERY-001 démarrée pour 1 ECU",
+      "rollback_trigger": null
+    },
+    {
+      "schema_version": "1.0",
+      "event_id": "EVT-000003",
+      "timestamp": "2026-08-21T15:53:07+00:00",
+      "campaign_id": "CMP-EVIDENCE-RECOVERY-001",
+      "ecu_id": null,
+      "source_type": "SIMULATED",
+      "level": "INFO",
+      "event_code": "WAVE_STARTED",
+      "ota_status": null,
+      "progress_pct": 0,
+      "message": "Vague 1 : ECU-02",
+      "rollback_trigger": null
+    },
+    {
+      "schema_version": "1.0",
+      "event_id": "EVT-000004",
+      "timestamp": "2026-08-21T15:53:07+00:00",
+      "campaign_id": "CMP-EVIDENCE-RECOVERY-001",
+      "ecu_id": "ECU-02",
+      "source_type": "SIMULATED",
+      "level": "INFO",
+      "event_code": "ECU_UPDATE_STARTED",
+      "ota_status": "DOWNLOADING",
+      "progress_pct": 0,
+      "message": "Mise à jour de Connectivity_Unit_EP150 vers 1.5.0",
+      "rollback_trigger": null
+    },
+    {
+      "schema_version": "1.0",
+      "event_id": "EVT-000005",
+      "timestamp": "2026-08-21T15:53:07+00:00",
+      "campaign_id": "CMP-EVIDENCE-RECOVERY-001",
+      "ecu_id": "ECU-02",
+      "source_type": "SIMULATED",
+      "level": "WARNING",
+      "event_code": "FAULT_INJECTED",
+      "ota_status": "FAULT_INJECTION",
+      "progress_pct": 0,
+      "message": "Injection PFE-RECOVERY dans Connectivity_Unit_EP150",
+      "rollback_trigger": "PFE-RECOVERY"
+    },
+    {
+      "schema_version": "1.0",
+      "event_id": "EVT-000006",
+      "timestamp": "2026-08-21T15:53:07+00:00",
+      "campaign_id": "CMP-EVIDENCE-RECOVERY-001",
+      "ecu_id": "ECU-02",
+      "source_type": "SIMULATED",
+      "level": "ERROR",
+      "event_code": "PFE-RECOVERY",
+      "ota_status": "RECOVERY_BOOT",
+      "progress_pct": 100,
+      "message": "PFE-RECOVERY: both A/B banks failed",
+      "rollback_trigger": "PFE-RECOVERY"
+    },
+    {
+      "schema_version": "1.0",
+      "event_id": "EVT-000007",
+      "timestamp": "2026-08-21T15:53:07+00:00",
+      "campaign_id": "CMP-EVIDENCE-RECOVERY-001",
+      "ecu_id": null,
+      "source_type": "SIMULATED",
+      "level": "WARNING",
+      "event_code": "CAMPAIGN_COMPLETED_WITH_FAILURES",
+      "ota_status": null,
+      "progress_pct": 100,
+      "message": "Campagne terminée : 0 confirmés, 0 rejetés, 0 restaurés, 0 bloqués, 0 verrouillés, 1 en Recovery",
+      "rollback_trigger": null
+    }
+  ]
+}
