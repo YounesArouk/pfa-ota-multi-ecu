@@ -1,0 +1,472 @@
+{
+  "schema_version": "1.0",
+  "evidence_id": "mixed-timing-kpis-v1",
+  "generated_at": "2026-08-21T19:53:47+00:00",
+  "dataset_id": "SYNTHETIC_PFE_TIMING_V1",
+  "source_type": "SIMULATED",
+  "scenario": "MIXED_FAULTS_28_ECU",
+  "validation_status": "PASSED",
+  "expected_result": {
+    "campaign_status": "COMPLETED_WITH_FAILURES",
+    "total_ecus": 28,
+    "confirmed_ecus": 20,
+    "rejected_ecus": 1,
+    "rolled_back_ecus": 1,
+    "blocked_ecus": 4,
+    "locked_out_ecus": 1,
+    "recovery_ecus": 1,
+    "elapsed_s": 99.0,
+    "time_budget_s": 90.0,
+    "budget_status": "EXCEEDED",
+    "budget_margin_s": 0.0,
+    "budget_overrun_s": 9.0
+  },
+  "actual_result": {
+    "campaign_status": "COMPLETED_WITH_FAILURES",
+    "total_ecus": 28,
+    "confirmed_ecus": 20,
+    "rejected_ecus": 1,
+    "rolled_back_ecus": 1,
+    "blocked_ecus": 4,
+    "locked_out_ecus": 1,
+    "recovery_ecus": 1,
+    "elapsed_s": 99.0,
+    "time_budget_s": 90.0,
+    "budget_status": "EXCEEDED",
+    "budget_margin_s": 0.0,
+    "budget_overrun_s": 9.0
+  },
+  "manifest": {
+    "schema_version": "1.0",
+    "campaign_id": "CMP-TIMING-MIXED-001",
+    "release_id": "release-timing-mixed-001",
+    "vehicle_release": "3.0.0",
+    "signature_valid": true,
+    "targets": [
+      {
+        "ecu_id": "ECU-01",
+        "target_version": "3.0.0",
+        "package": "ecu-01-3.0.0.img",
+        "checksum_valid": true,
+        "self_test_valid": true,
+        "dual_bank_failure": false,
+        "repeat_failure_count": 1,
+        "fault_scenario": null
+      },
+      {
+        "ecu_id": "ECU-02",
+        "target_version": "1.5.0",
+        "package": "ecu-02-1.5.0.img",
+        "checksum_valid": true,
+        "self_test_valid": false,
+        "dual_bank_failure": true,
+        "repeat_failure_count": 1,
+        "fault_scenario": "PFE-RECOVERY"
+      },
+      {
+        "ecu_id": "ECU-03",
+        "target_version": "3.2.0",
+        "package": "ecu-03-3.2.0.img",
+        "checksum_valid": true,
+        "self_test_valid": true,
+        "dual_bank_failure": false,
+        "repeat_failure_count": 1,
+        "fault_scenario": null
+      },
+      {
+        "ecu_id": "ECU-04",
+        "target_version": "2.5.0",
+        "package": "ecu-04-2.5.0.img",
+        "checksum_valid": true,
+        "self_test_valid": true,
+        "dual_bank_failure": false,
+        "repeat_failure_count": 1,
+        "fault_scenario": null
+      },
+      {
+        "ecu_id": "ECU-05",
+        "target_version": "4.1.0",
+        "package": "ecu-05-4.1.0.img",
+        "checksum_valid": false,
+        "self_test_valid": true,
+        "dual_bank_failure": false,
+        "repeat_failure_count": 1,
+        "fault_scenario": "RB-01"
+      },
+      {
+        "ecu_id": "ECU-06",
+        "target_version": "5.2.0",
+        "package": "ecu-06-5.2.0.img",
+        "checksum_valid": true,
+        "self_test_valid": true,
+        "dual_bank_failure": false,
+        "repeat_failure_count": 1,
+        "fault_scenario": null
+      },
+      {
+        "ecu_id": "ECU-07",
+        "target_version": "3.7.0",
+        "package": "ecu-07-3.7.0.img",
+        "checksum_valid": true,
+        "self_test_valid": true,
+        "dual_bank_failure": false,
+        "repeat_failure_count": 1,
+        "fault_scenario": null
+      },
+      {
+        "ecu_id": "ECU-08",
+        "target_version": "6.1.0",
+        "package": "ecu-08-6.1.0.img",
+        "checksum_valid": true,
+        "self_test_valid": true,
+        "dual_bank_failure": false,
+        "repeat_failure_count": 1,
+        "fault_scenario": null
+      },
+      {
+        "ecu_id": "ECU-09",
+        "target_version": "2.9.0",
+        "package": "ecu-09-2.9.0.img",
+        "checksum_valid": true,
+        "self_test_valid": true,
+        "dual_bank_failure": false,
+        "repeat_failure_count": 1,
+        "fault_scenario": null
+      },
+      {
+        "ecu_id": "ECU-10",
+        "target_version": "4.3.0",
+        "package": "ecu-10-4.3.0.img",
+        "checksum_valid": true,
+        "self_test_valid": true,
+        "dual_bank_failure": false,
+        "repeat_failure_count": 1,
+        "fault_scenario": null
+      },
+      {
+        "ecu_id": "ECU-11",
+        "target_version": "7.1.0",
+        "package": "ecu-11-7.1.0.img",
+        "checksum_valid": true,
+        "self_test_valid": false,
+        "dual_bank_failure": false,
+        "repeat_failure_count": 1,
+        "fault_scenario": "RB-04"
+      },
+      {
+        "ecu_id": "ECU-12",
+        "target_version": "5.5.0",
+        "package": "ecu-12-5.5.0.img",
+        "checksum_valid": true,
+        "self_test_valid": true,
+        "dual_bank_failure": false,
+        "repeat_failure_count": 1,
+        "fault_scenario": null
+      },
+      {
+        "ecu_id": "ECU-13",
+        "target_version": "2.3.0",
+        "package": "ecu-13-2.3.0.img",
+        "checksum_valid": true,
+        "self_test_valid": true,
+        "dual_bank_failure": false,
+        "repeat_failure_count": 1,
+        "fault_scenario": null
+      },
+      {
+        "ecu_id": "ECU-14",
+        "target_version": "3.4.0",
+        "package": "ecu-14-3.4.0.img",
+        "checksum_valid": true,
+        "self_test_valid": true,
+        "dual_bank_failure": false,
+        "repeat_failure_count": 1,
+        "fault_scenario": null
+      },
+      {
+        "ecu_id": "ECU-15",
+        "target_version": "8.1.0",
+        "package": "ecu-15-8.1.0.img",
+        "checksum_valid": true,
+        "self_test_valid": true,
+        "dual_bank_failure": false,
+        "repeat_failure_count": 1,
+        "fault_scenario": null
+      },
+      {
+        "ecu_id": "ECU-16",
+        "target_version": "7.3.0",
+        "package": "ecu-16-7.3.0.img",
+        "checksum_valid": true,
+        "self_test_valid": true,
+        "dual_bank_failure": false,
+        "repeat_failure_count": 1,
+        "fault_scenario": null
+      },
+      {
+        "ecu_id": "ECU-17",
+        "target_version": "6.6.0",
+        "package": "ecu-17-6.6.0.img",
+        "checksum_valid": true,
+        "self_test_valid": false,
+        "dual_bank_failure": false,
+        "repeat_failure_count": 2,
+        "fault_scenario": "RB-18"
+      },
+      {
+        "ecu_id": "ECU-18",
+        "target_version": "4.2.0",
+        "package": "ecu-18-4.2.0.img",
+        "checksum_valid": true,
+        "self_test_valid": true,
+        "dual_bank_failure": false,
+        "repeat_failure_count": 1,
+        "fault_scenario": null
+      },
+      {
+        "ecu_id": "ECU-19",
+        "target_version": "4.2.0",
+        "package": "ecu-19-4.2.0.img",
+        "checksum_valid": true,
+        "self_test_valid": true,
+        "dual_bank_failure": false,
+        "repeat_failure_count": 1,
+        "fault_scenario": null
+      },
+      {
+        "ecu_id": "ECU-20",
+        "target_version": "5.1.0",
+        "package": "ecu-20-5.1.0.img",
+        "checksum_valid": true,
+        "self_test_valid": true,
+        "dual_bank_failure": false,
+        "repeat_failure_count": 1,
+        "fault_scenario": null
+      },
+      {
+        "ecu_id": "ECU-21",
+        "target_version": "3.1.0",
+        "package": "ecu-21-3.1.0.img",
+        "checksum_valid": true,
+        "self_test_valid": true,
+        "dual_bank_failure": false,
+        "repeat_failure_count": 1,
+        "fault_scenario": null
+      },
+      {
+        "ecu_id": "ECU-22",
+        "target_version": "3.1.0",
+        "package": "ecu-22-3.1.0.img",
+        "checksum_valid": true,
+        "self_test_valid": true,
+        "dual_bank_failure": false,
+        "repeat_failure_count": 1,
+        "fault_scenario": null
+      },
+      {
+        "ecu_id": "ECU-23",
+        "target_version": "2.6.0",
+        "package": "ecu-23-2.6.0.img",
+        "checksum_valid": true,
+        "self_test_valid": true,
+        "dual_bank_failure": false,
+        "repeat_failure_count": 1,
+        "fault_scenario": null
+      },
+      {
+        "ecu_id": "ECU-24",
+        "target_version": "2.6.0",
+        "package": "ecu-24-2.6.0.img",
+        "checksum_valid": true,
+        "self_test_valid": true,
+        "dual_bank_failure": false,
+        "repeat_failure_count": 1,
+        "fault_scenario": null
+      },
+      {
+        "ecu_id": "ECU-25",
+        "target_version": "4.5.0",
+        "package": "ecu-25-4.5.0.img",
+        "checksum_valid": true,
+        "self_test_valid": true,
+        "dual_bank_failure": false,
+        "repeat_failure_count": 1,
+        "fault_scenario": null
+      },
+      {
+        "ecu_id": "ECU-26",
+        "target_version": "9.1.0",
+        "package": "ecu-26-9.1.0.img",
+        "checksum_valid": true,
+        "self_test_valid": true,
+        "dual_bank_failure": false,
+        "repeat_failure_count": 1,
+        "fault_scenario": null
+      },
+      {
+        "ecu_id": "ECU-27",
+        "target_version": "6.3.0",
+        "package": "ecu-27-6.3.0.img",
+        "checksum_valid": true,
+        "self_test_valid": true,
+        "dual_bank_failure": false,
+        "repeat_failure_count": 1,
+        "fault_scenario": null
+      },
+      {
+        "ecu_id": "ECU-28",
+        "target_version": "3.8.0",
+        "package": "ecu-28-3.8.0.img",
+        "checksum_valid": true,
+        "self_test_valid": true,
+        "dual_bank_failure": false,
+        "repeat_failure_count": 1,
+        "fault_scenario": null
+      }
+    ]
+  },
+  "timing": {
+    "timing_model_id": "PFE_OTA_TIMING_V1",
+    "execution_policy": "PARALLEL_WITHIN_WAVE",
+    "time_budget_s": 90.0,
+    "elapsed_s": 99.0,
+    "fleet_processing_s": 378.0,
+    "average_ecu_duration_s": 13.5,
+    "max_ecu_duration_s": 36.0,
+    "min_ecu_duration_s": 0.0,
+    "budget_status": "EXCEEDED",
+    "budget_margin_s": 0.0,
+    "budget_overrun_s": 9.0,
+    "ecu_durations_s": {
+      "ECU-01": 15.0,
+      "ECU-03": 15.0,
+      "ECU-05": 6.0,
+      "ECU-10": 15.0,
+      "ECU-15": 15.0,
+      "ECU-20": 15.0,
+      "ECU-26": 15.0,
+      "ECU-06": 0.0,
+      "ECU-07": 0.0,
+      "ECU-08": 0.0,
+      "ECU-09": 0.0,
+      "ECU-11": 18.0,
+      "ECU-12": 15.0,
+      "ECU-13": 15.0,
+      "ECU-14": 15.0,
+      "ECU-16": 15.0,
+      "ECU-17": 36.0,
+      "ECU-18": 15.0,
+      "ECU-19": 15.0,
+      "ECU-21": 15.0,
+      "ECU-22": 15.0,
+      "ECU-25": 15.0,
+      "ECU-27": 15.0,
+      "ECU-28": 15.0,
+      "ECU-04": 15.0,
+      "ECU-23": 15.0,
+      "ECU-24": 15.0,
+      "ECU-02": 18.0
+    },
+    "wave_durations": [
+      {
+        "wave_number": 1,
+        "ecu_ids": [
+          "ECU-01"
+        ],
+        "elapsed_s": 15.0
+      },
+      {
+        "wave_number": 2,
+        "ecu_ids": [
+          "ECU-03",
+          "ECU-05",
+          "ECU-10",
+          "ECU-15",
+          "ECU-20",
+          "ECU-26"
+        ],
+        "elapsed_s": 15.0
+      },
+      {
+        "wave_number": 3,
+        "ecu_ids": [
+          "ECU-06",
+          "ECU-07",
+          "ECU-08",
+          "ECU-09",
+          "ECU-11",
+          "ECU-12",
+          "ECU-13",
+          "ECU-14",
+          "ECU-16",
+          "ECU-17",
+          "ECU-18",
+          "ECU-19",
+          "ECU-21",
+          "ECU-22",
+          "ECU-25",
+          "ECU-27",
+          "ECU-28"
+        ],
+        "elapsed_s": 36.0
+      },
+      {
+        "wave_number": 4,
+        "ecu_ids": [
+          "ECU-04",
+          "ECU-23",
+          "ECU-24"
+        ],
+        "elapsed_s": 15.0
+      },
+      {
+        "wave_number": 5,
+        "ecu_ids": [
+          "ECU-02"
+        ],
+        "elapsed_s": 18.0
+      }
+    ]
+  },
+  "executed_waves": [
+    [
+      "ECU-01"
+    ],
+    [
+      "ECU-03",
+      "ECU-05",
+      "ECU-10",
+      "ECU-15",
+      "ECU-20",
+      "ECU-26"
+    ],
+    [
+      "ECU-06",
+      "ECU-07",
+      "ECU-08",
+      "ECU-09",
+      "ECU-11",
+      "ECU-12",
+      "ECU-13",
+      "ECU-14",
+      "ECU-16",
+      "ECU-17",
+      "ECU-18",
+      "ECU-19",
+      "ECU-21",
+      "ECU-22",
+      "ECU-25",
+      "ECU-27",
+      "ECU-28"
+    ],
+    [
+      "ECU-04",
+      "ECU-23",
+      "ECU-24"
+    ],
+    [
+      "ECU-02"
+    ]
+  ],
+  "event_count": 65
+}

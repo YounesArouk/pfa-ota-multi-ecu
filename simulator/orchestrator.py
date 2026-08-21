@@ -9,6 +9,9 @@ from simulator.fleet_inventory import (
     load_inventory,
     validate_inventory,
 )
+from simulator.timing import (
+    build_timing_summary,
+)
 
 
 class CampaignOrchestrator:
@@ -721,10 +724,23 @@ class CampaignOrchestrator:
             for target in manifest["targets"]
         }
 
+        timing = build_timing_summary(
+            self.ecus,
+            self.executed_waves,
+        )
+
         targeted_ecus = [
             self.ecus[ecu_id].to_dict()
             for ecu_id in sorted(targeted_ids)
         ]
+
+        for ecu_state in targeted_ecus:
+            ecu_id = ecu_state["ecu_id"]
+            ecu_state["elapsed_s"] = (
+                timing["ecu_durations_s"][
+                    ecu_id
+                ]
+            )
 
         return {
             "schema_version": "1.0",
@@ -765,6 +781,11 @@ class CampaignOrchestrator:
                 if targeted_ecus
                 else 0
             ),
+            "elapsed_s": timing["elapsed_s"],
+            "time_budget_s": (
+                timing["time_budget_s"]
+            ),
+            "timing": timing,
             "executed_waves": list(
                 self.executed_waves
             ),

@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.0",
+  "model_id": "PFE_OTA_TIMING_V1",
+  "source_type": "SIMULATED",
+  "execution_policy": "PARALLEL_WITHIN_WAVE",
+  "nominal_time_budget_s": 90,
+  "state_durations_s": {
+    "IDLE": 0,
+    "DOWNLOADING": 4,
+    "VERIFYING_SIGNATURE": 1,
+    "VERIFYING_CHECKSUM": 1,
+    "INSTALLING": 5,
+    "REBOOTING": 2,
+    "SELF_TEST": 2,
+    "CONFIRMED": 0,
+    "REJECTED": 0,
+    "BLOCKED": 0,
+    "ROLLBACK": 3,
+    "ROLLED_BACK": 0,
+    "ROLLBACK_LOCKOUT": 0,
+    "RECOVERY_BOOT": 3,
+    "RECOVERY_LOCKOUT": 0
+  }
+}
