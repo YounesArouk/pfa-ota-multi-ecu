@@ -1,2 +1,6 @@
-# Initialement aucune dépendance externe.
-# Les dépendances de l'API et du dashboard seront ajoutées après validation du simulateur.
+# API REST et serveur ASGI
+fastapi==0.141.1
+uvicorn==0.52.1
+
+# Client HTTP utilisé par les tests de l'API
+httpx2==2.9.1

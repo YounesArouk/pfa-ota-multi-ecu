@@ -1,0 +1,85 @@
+{
+  "schema_version": "1.0",
+  "evidence_id": "common-api-v1",
+  "generated_at": "2026-08-21T23:05:18.110593+00:00",
+  "source_mode": "SIMULATION",
+  "validation_status": "PASSED",
+  "api": {
+    "title": "PFE Multi-ECU OTA API",
+    "version": "1.0.0",
+    "read_only": true,
+    "framework": {
+      "fastapi": "0.141.1",
+      "uvicorn": "0.52.1",
+      "httpx2": "2.9.1"
+    }
+  },
+  "reference_campaign": {
+    "campaign_id": "CMP-FINAL-MIXED-001",
+    "status": "COMPLETED_WITH_FAILURES",
+    "total_ecus": 28,
+    "confirmation_rate_pct": 71.43,
+    "budget_status": "EXCEEDED"
+  },
+  "endpoint_checks": [
+    {
+      "method": "GET",
+      "path": "/health",
+      "status_code": 200,
+      "response_type": "object",
+      "record_count": null
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/campaign",
+      "status_code": 200,
+      "response_type": "object",
+      "record_count": null
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/kpis",
+      "status_code": 200,
+      "response_type": "object",
+      "record_count": null
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/ecus",
+      "status_code": 200,
+      "response_type": "array",
+      "record_count": 28
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/waves",
+      "status_code": 200,
+      "response_type": "array",
+      "record_count": 5
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/events",
+      "status_code": 200,
+      "response_type": "array",
+      "record_count": 65
+    }
+  ],
+  "openapi": {
+    "status_code": 200,
+    "documented_paths": [
+      "/api/v1/campaign",
+      "/api/v1/ecus",
+      "/api/v1/events",
+      "/api/v1/kpis",
+      "/api/v1/waves",
+      "/health"
+    ]
+  },
+  "read_only_check": {
+    "method": "POST",
+    "path": "/api/v1/campaign",
+    "status_code": 405,
+    "expected_status_code": 405
+  }
+}

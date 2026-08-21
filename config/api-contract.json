@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "api_name": "PFE Multi-ECU OTA API",
+  "api_version": "1.0.0",
+  "source_mode": "SIMULATION",
+  "data_directory": "data/latest",
+  "read_only": true,
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/health",
+      "response_type": "object",
+      "data_source": null,
+      "description": "Vérifie que le service API est disponible."
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/campaign",
+      "response_type": "object",
+      "data_source": "campaign-summary.json",
+      "description": "Retourne le résumé complet de la campagne."
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/kpis",
+      "response_type": "object",
+      "data_source": "campaign-kpis.json",
+      "description": "Retourne les KPI fonctionnels et temporels."
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/ecus",
+      "response_type": "array",
+      "data_source": "ecu-results.csv",
+      "description": "Retourne les états finaux des ECU."
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/waves",
+      "response_type": "array",
+      "data_source": "wave-timing.csv",
+      "description": "Retourne les vagues et leurs durées."
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/events",
+      "response_type": "array",
+      "data_source": "events.csv",
+      "description": "Retourne les événements de la campagne."
+    }
+  ]
+}
