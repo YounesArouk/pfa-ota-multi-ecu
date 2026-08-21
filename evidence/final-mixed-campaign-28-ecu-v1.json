@@ -1,0 +1,2620 @@
+{
+  "schema_version": "1.0",
+  "evidence_id": "final-mixed-campaign-28-ecu-v1",
+  "generated_at": "2026-08-21T19:23:30+00:00",
+  "dataset_id": "SYNTHETIC_PFE_FLEET_V1",
+  "source_type": "SIMULATED",
+  "campaign_type": "FINAL_MIXED_28_ECU",
+  "validation_status": "PASSED",
+  "expected_status": "COMPLETED_WITH_FAILURES",
+  "actual_status": "COMPLETED_WITH_FAILURES",
+  "fault_injections": {
+    "ECU-05": "RB-01",
+    "ECU-11": "RB-04",
+    "ECU-17": "RB-18",
+    "ECU-02": "PFE-RECOVERY"
+  },
+  "expected_counters": {
+    "total_ecus": 28,
+    "confirmed_ecus": 20,
+    "rejected_ecus": 1,
+    "rolled_back_ecus": 1,
+    "blocked_ecus": 4,
+    "locked_out_ecus": 1,
+    "recovery_ecus": 1,
+    "progress_pct": 100
+  },
+  "actual_counters": {
+    "total_ecus": 28,
+    "confirmed_ecus": 20,
+    "rejected_ecus": 1,
+    "rolled_back_ecus": 1,
+    "blocked_ecus": 4,
+    "locked_out_ecus": 1,
+    "recovery_ecus": 1,
+    "progress_pct": 100
+  },
+  "blocked_ecus": [
+    "ECU-06",
+    "ECU-07",
+    "ECU-08",
+    "ECU-09"
+  ],
+  "executed_waves": [
+    [
+      "ECU-01"
+    ],
+    [
+      "ECU-03",
+      "ECU-05",
+      "ECU-10",
+      "ECU-15",
+      "ECU-20",
+      "ECU-26"
+    ],
+    [
+      "ECU-06",
+      "ECU-07",
+      "ECU-08",
+      "ECU-09",
+      "ECU-11",
+      "ECU-12",
+      "ECU-13",
+      "ECU-14",
+      "ECU-16",
+      "ECU-17",
+      "ECU-18",
+      "ECU-19",
+      "ECU-21",
+      "ECU-22",
+      "ECU-25",
+      "ECU-27",
+      "ECU-28"
+    ],
+    [
+      "ECU-04",
+      "ECU-23",
+      "ECU-24"
+    ],
+    [
+      "ECU-02"
+    ]
+  ],
+  "event_count": 65,
+  "manifest": {
+    "schema_version": "1.0",
+    "campaign_id": "CMP-FINAL-MIXED-001",
+    "release_id": "pfe-ota-vehicle-v3-final-mixed-001",
+    "vehicle_release": "3.0.0",
+    "signature_valid": true,
+    "targets": [
+      {
+        "ecu_id": "ECU-01",
+        "target_version": "3.0.0",
+        "package": "ecu-01-3.0.0.img",
+        "checksum_valid": true,
+        "self_test_valid": true,
+        "dual_bank_failure": false,
+        "repeat_failure_count": 1,
+        "fault_scenario": null
+      },
+      {
+        "ecu_id": "ECU-02",
+        "target_version": "1.5.0",
+        "package": "ecu-02-1.5.0.img",
+        "checksum_valid": true,
+        "self_test_valid": false,
+        "dual_bank_failure": true,
+        "repeat_failure_count": 1,
+        "fault_scenario": "PFE-RECOVERY"
+      },
+      {
+        "ecu_id": "ECU-03",
+        "target_version": "3.2.0",
+        "package": "ecu-03-3.2.0.img",
+        "checksum_valid": true,
+        "self_test_valid": true,
+        "dual_bank_failure": false,
+        "repeat_failure_count": 1,
+        "fault_scenario": null
+      },
+      {
+        "ecu_id": "ECU-04",
+        "target_version": "2.5.0",
+        "package": "ecu-04-2.5.0.img",
+        "checksum_valid": true,
+        "self_test_valid": true,
+        "dual_bank_failure": false,
+        "repeat_failure_count": 1,
+        "fault_scenario": null
+      },
+      {
+        "ecu_id": "ECU-05",
+        "target_version": "4.1.0",
+        "package": "ecu-05-4.1.0.img",
+        "checksum_valid": false,
+        "self_test_valid": true,
+        "dual_bank_failure": false,
+        "repeat_failure_count": 1,
+        "fault_scenario": "RB-01"
+      },
+      {
+        "ecu_id": "ECU-06",
+        "target_version": "5.2.0",
+        "package": "ecu-06-5.2.0.img",
+        "checksum_valid": true,
+        "self_test_valid": true,
+        "dual_bank_failure": false,
+        "repeat_failure_count": 1,
+        "fault_scenario": null
+      },
+      {
+        "ecu_id": "ECU-07",
+        "target_version": "3.7.0",
+        "package": "ecu-07-3.7.0.img",
+        "checksum_valid": true,
+        "self_test_valid": true,
+        "dual_bank_failure": false,
+        "repeat_failure_count": 1,
+        "fault_scenario": null
+      },
+      {
+        "ecu_id": "ECU-08",
+        "target_version": "6.1.0",
+        "package": "ecu-08-6.1.0.img",
+        "checksum_valid": true,
+        "self_test_valid": true,
+        "dual_bank_failure": false,
+        "repeat_failure_count": 1,
+        "fault_scenario": null
+      },
+      {
+        "ecu_id": "ECU-09",
+        "target_version": "2.9.0",
+        "package": "ecu-09-2.9.0.img",
+        "checksum_valid": true,
+        "self_test_valid": true,
+        "dual_bank_failure": false,
+        "repeat_failure_count": 1,
+        "fault_scenario": null
+      },
+      {
+        "ecu_id": "ECU-10",
+        "target_version": "4.3.0",
+        "package": "ecu-10-4.3.0.img",
+        "checksum_valid": true,
+        "self_test_valid": true,
+        "dual_bank_failure": false,
+        "repeat_failure_count": 1,
+        "fault_scenario": null
+      },
+      {
+        "ecu_id": "ECU-11",
+        "target_version": "7.1.0",
+        "package": "ecu-11-7.1.0.img",
+        "checksum_valid": true,
+        "self_test_valid": false,
+        "dual_bank_failure": false,
+        "repeat_failure_count": 1,
+        "fault_scenario": "RB-04"
+      },
+      {
+        "ecu_id": "ECU-12",
+        "target_version": "5.5.0",
+        "package": "ecu-12-5.5.0.img",
+        "checksum_valid": true,
+        "self_test_valid": true,
+        "dual_bank_failure": false,
+        "repeat_failure_count": 1,
+        "fault_scenario": null
+      },
+      {
+        "ecu_id": "ECU-13",
+        "target_version": "2.3.0",
+        "package": "ecu-13-2.3.0.img",
+        "checksum_valid": true,
+        "self_test_valid": true,
+        "dual_bank_failure": false,
+        "repeat_failure_count": 1,
+        "fault_scenario": null
+      },
+      {
+        "ecu_id": "ECU-14",
+        "target_version": "3.4.0",
+        "package": "ecu-14-3.4.0.img",
+        "checksum_valid": true,
+        "self_test_valid": true,
+        "dual_bank_failure": false,
+        "repeat_failure_count": 1,
+        "fault_scenario": null
+      },
+      {
+        "ecu_id": "ECU-15",
+        "target_version": "8.1.0",
+        "package": "ecu-15-8.1.0.img",
+        "checksum_valid": true,
+        "self_test_valid": true,
+        "dual_bank_failure": false,
+        "repeat_failure_count": 1,
+        "fault_scenario": null
+      },
+      {
+        "ecu_id": "ECU-16",
+        "target_version": "7.3.0",
+        "package": "ecu-16-7.3.0.img",
+        "checksum_valid": true,
+        "self_test_valid": true,
+        "dual_bank_failure": false,
+        "repeat_failure_count": 1,
+        "fault_scenario": null
+      },
+      {
+        "ecu_id": "ECU-17",
+        "target_version": "6.6.0",
+        "package": "ecu-17-6.6.0.img",
+        "checksum_valid": true,
+        "self_test_valid": false,
+        "dual_bank_failure": false,
+        "repeat_failure_count": 2,
+        "fault_scenario": "RB-18"
+      },
+      {
+        "ecu_id": "ECU-18",
+        "target_version": "4.2.0",
+        "package": "ecu-18-4.2.0.img",
+        "checksum_valid": true,
+        "self_test_valid": true,
+        "dual_bank_failure": false,
+        "repeat_failure_count": 1,
+        "fault_scenario": null
+      },
+      {
+        "ecu_id": "ECU-19",
+        "target_version": "4.2.0",
+        "package": "ecu-19-4.2.0.img",
+        "checksum_valid": true,
+        "self_test_valid": true,
+        "dual_bank_failure": false,
+        "repeat_failure_count": 1,
+        "fault_scenario": null
+      },
+      {
+        "ecu_id": "ECU-20",
+        "target_version": "5.1.0",
+        "package": "ecu-20-5.1.0.img",
+        "checksum_valid": true,
+        "self_test_valid": true,
+        "dual_bank_failure": false,
+        "repeat_failure_count": 1,
+        "fault_scenario": null
+      },
+      {
+        "ecu_id": "ECU-21",
+        "target_version": "3.1.0",
+        "package": "ecu-21-3.1.0.img",
+        "checksum_valid": true,
+        "self_test_valid": true,
+        "dual_bank_failure": false,
+        "repeat_failure_count": 1,
+        "fault_scenario": null
+      },
+      {
+        "ecu_id": "ECU-22",
+        "target_version": "3.1.0",
+        "package": "ecu-22-3.1.0.img",
+        "checksum_valid": true,
+        "self_test_valid": true,
+        "dual_bank_failure": false,
+        "repeat_failure_count": 1,
+        "fault_scenario": null
+      },
+      {
+        "ecu_id": "ECU-23",
+        "target_version": "2.6.0",
+        "package": "ecu-23-2.6.0.img",
+        "checksum_valid": true,
+        "self_test_valid": true,
+        "dual_bank_failure": false,
+        "repeat_failure_count": 1,
+        "fault_scenario": null
+      },
+      {
+        "ecu_id": "ECU-24",
+        "target_version": "2.6.0",
+        "package": "ecu-24-2.6.0.img",
+        "checksum_valid": true,
+        "self_test_valid": true,
+        "dual_bank_failure": false,
+        "repeat_failure_count": 1,
+        "fault_scenario": null
+      },
+      {
+        "ecu_id": "ECU-25",
+        "target_version": "4.5.0",
+        "package": "ecu-25-4.5.0.img",
+        "checksum_valid": true,
+        "self_test_valid": true,
+        "dual_bank_failure": false,
+        "repeat_failure_count": 1,
+        "fault_scenario": null
+      },
+      {
+        "ecu_id": "ECU-26",
+        "target_version": "9.1.0",
+        "package": "ecu-26-9.1.0.img",
+        "checksum_valid": true,
+        "self_test_valid": true,
+        "dual_bank_failure": false,
+        "repeat_failure_count": 1,
+        "fault_scenario": null
+      },
+      {
+        "ecu_id": "ECU-27",
+        "target_version": "6.3.0",
+        "package": "ecu-27-6.3.0.img",
+        "checksum_valid": true,
+        "self_test_valid": true,
+        "dual_bank_failure": false,
+        "repeat_failure_count": 1,
+        "fault_scenario": null
+      },
+      {
+        "ecu_id": "ECU-28",
+        "target_version": "3.8.0",
+        "package": "ecu-28-3.8.0.img",
+        "checksum_valid": true,
+        "self_test_valid": true,
+        "dual_bank_failure": false,
+        "repeat_failure_count": 1,
+        "fault_scenario": null
+      }
+    ]
+  },
+  "campaign_summary": {
+    "schema_version": "1.0",
+    "campaign_id": "CMP-FINAL-MIXED-001",
+    "release_id": "pfe-ota-vehicle-v3-final-mixed-001",
+    "target_version": "3.0.0",
+    "source_mode": "SIMULATION",
+    "rollback_policy": "LOCAL",
+    "status": "COMPLETED_WITH_FAILURES",
+    "manifest_signature_status": "VALID",
+    "dependency_graph_status": "VALID",
+    "fleet_total_ecus": 28,
+    "total_ecus": 28,
+    "confirmed_ecus": 20,
+    "rolled_back_ecus": 1,
+    "rejected_ecus": 1,
+    "blocked_ecus": 4,
+    "locked_out_ecus": 1,
+    "recovery_ecus": 1,
+    "offline_ecus": 0,
+    "progress_pct": 100,
+    "executed_waves": [
+      [
+        "ECU-01"
+      ],
+      [
+        "ECU-03",
+        "ECU-05",
+        "ECU-10",
+        "ECU-15",
+        "ECU-20",
+        "ECU-26"
+      ],
+      [
+        "ECU-06",
+        "ECU-07",
+        "ECU-08",
+        "ECU-09",
+        "ECU-11",
+        "ECU-12",
+        "ECU-13",
+        "ECU-14",
+        "ECU-16",
+        "ECU-17",
+        "ECU-18",
+        "ECU-19",
+        "ECU-21",
+        "ECU-22",
+        "ECU-25",
+        "ECU-27",
+        "ECU-28"
+      ],
+      [
+        "ECU-04",
+        "ECU-23",
+        "ECU-24"
+      ],
+      [
+        "ECU-02"
+      ]
+    ],
+    "ecus": [
+      {
+        "schema_version": "1.0",
+        "ecu_id": "ECU-01",
+        "name": "Central_Gateway",
+        "domain": "CONNECTIVITY",
+        "source_type": "SIMULATED",
+        "connected": true,
+        "current_version": "3.0.0",
+        "target_version": "3.0.0",
+        "active_partition": "B",
+        "partitions": {
+          "A": {
+            "version": "2.0.0",
+            "status": "GOOD",
+            "read_only": false
+          },
+          "B": {
+            "version": "3.0.0",
+            "status": "GOOD",
+            "read_only": false
+          },
+          "RECOVERY": {
+            "version": "1.0.0",
+            "status": "GOOD",
+            "read_only": true
+          }
+        },
+        "supports_live_rollback": true,
+        "ota_status": "CONFIRMED",
+        "health_status": "GOOD",
+        "progress_pct": 100,
+        "dependencies": [],
+        "rollback_counter": 0,
+        "consecutive_rollback_counter": 0,
+        "rollback_lockout": false,
+        "recovery_boot_counter": 0,
+        "accepted_releases": [
+          "pfe-ota-vehicle-v3-final-mixed-001"
+        ],
+        "last_error": null,
+        "rollback_trigger": null,
+        "last_rollback_duration_s": null,
+        "updated_at": "2026-08-21T19:23:30+00:00"
+      },
+      {
+        "schema_version": "1.0",
+        "ecu_id": "ECU-02",
+        "name": "Connectivity_Unit_EP150",
+        "domain": "CONNECTIVITY",
+        "source_type": "SIMULATED",
+        "connected": true,
+        "current_version": "1.0.0",
+        "target_version": "1.5.0",
+        "active_partition": "RECOVERY",
+        "partitions": {
+          "A": {
+            "version": "1.4.0",
+            "status": "BAD",
+            "read_only": false
+          },
+          "B": {
+            "version": "1.5.0",
+            "status": "BAD",
+            "read_only": false
+          },
+          "RECOVERY": {
+            "version": "1.0.0",
+            "status": "GOOD",
+            "read_only": true
+          }
+        },
+        "supports_live_rollback": true,
+        "ota_status": "RECOVERY_BOOT",
+        "health_status": "RECOVERY",
+        "progress_pct": 100,
+        "dependencies": [
+          "ECU-01"
+        ],
+        "rollback_counter": 0,
+        "consecutive_rollback_counter": 0,
+        "rollback_lockout": true,
+        "recovery_boot_counter": 1,
+        "accepted_releases": [],
+        "last_error": "PFE-RECOVERY: both A/B banks failed",
+        "rollback_trigger": "PFE-RECOVERY",
+        "last_rollback_duration_s": null,
+        "updated_at": "2026-08-21T19:23:30+00:00"
+      },
+      {
+        "schema_version": "1.0",
+        "ecu_id": "ECU-03",
+        "name": "Vehicle_Security_Module",
+        "domain": "CONNECTIVITY",
+        "source_type": "SIMULATED",
+        "connected": true,
+        "current_version": "3.2.0",
+        "target_version": "3.2.0",
+        "active_partition": "B",
+        "partitions": {
+          "A": {
+            "version": "3.1.0",
+            "status": "GOOD",
+            "read_only": false
+          },
+          "B": {
+            "version": "3.2.0",
+            "status": "GOOD",
+            "read_only": false
+          },
+          "RECOVERY": {
+            "version": "1.0.0",
+            "status": "GOOD",
+            "read_only": true
+          }
+        },
+        "supports_live_rollback": true,
+        "ota_status": "CONFIRMED",
+        "health_status": "GOOD",
+        "progress_pct": 100,
+        "dependencies": [
+          "ECU-01"
+        ],
+        "rollback_counter": 0,
+        "consecutive_rollback_counter": 0,
+        "rollback_lockout": false,
+        "recovery_boot_counter": 0,
+        "accepted_releases": [
+          "pfe-ota-vehicle-v3-final-mixed-001"
+        ],
+        "last_error": null,
+        "rollback_trigger": null,
+        "last_rollback_duration_s": null,
+        "updated_at": "2026-08-21T19:23:30+00:00"
+      },
+      {
+        "schema_version": "1.0",
+        "ecu_id": "ECU-04",
+        "name": "Diagnostic_Gateway",
+        "domain": "CONNECTIVITY",
+        "source_type": "SIMULATED",
+        "connected": true,
+        "current_version": "2.5.0",
+        "target_version": "2.5.0",
+        "active_partition": "B",
+        "partitions": {
+          "A": {
+            "version": "2.4.0",
+            "status": "GOOD",
+            "read_only": false
+          },
+          "B": {
+            "version": "2.5.0",
+            "status": "GOOD",
+            "read_only": false
+          },
+          "RECOVERY": {
+            "version": "1.0.0",
+            "status": "GOOD",
+            "read_only": true
+          }
+        },
+        "supports_live_rollback": true,
+        "ota_status": "CONFIRMED",
+        "health_status": "GOOD",
+        "progress_pct": 100,
+        "dependencies": [
+          "ECU-01"
+        ],
+        "rollback_counter": 0,
+        "consecutive_rollback_counter": 0,
+        "rollback_lockout": false,
+        "recovery_boot_counter": 0,
+        "accepted_releases": [
+          "pfe-ota-vehicle-v3-final-mixed-001"
+        ],
+        "last_error": null,
+        "rollback_trigger": null,
+        "last_rollback_duration_s": null,
+        "updated_at": "2026-08-21T19:23:30+00:00"
+      },
+      {
+        "schema_version": "1.0",
+        "ecu_id": "ECU-05",
+        "name": "Powertrain_Domain_Controller",
+        "domain": "POWERTRAIN",
+        "source_type": "SIMULATED",
+        "connected": true,
+        "current_version": "4.0.0",
+        "target_version": "4.1.0",
+        "active_partition": "A",
+        "partitions": {
+          "A": {
+            "version": "4.0.0",
+            "status": "GOOD",
+            "read_only": false
+          },
+          "B": {
+            "version": null,
+            "status": "EMPTY",
+            "read_only": false
+          },
+          "RECOVERY": {
+            "version": "1.0.0",
+            "status": "GOOD",
+            "read_only": true
+          }
+        },
+        "supports_live_rollback": true,
+        "ota_status": "REJECTED",
+        "health_status": "GOOD",
+        "progress_pct": 45,
+        "dependencies": [
+          "ECU-01"
+        ],
+        "rollback_counter": 0,
+        "consecutive_rollback_counter": 0,
+        "rollback_lockout": false,
+        "recovery_boot_counter": 0,
+        "accepted_releases": [],
+        "last_error": "RB-01: checksum mismatch",
+        "rollback_trigger": "RB-01",
+        "last_rollback_duration_s": null,
+        "updated_at": "2026-08-21T19:23:30+00:00"
+      },
+      {
+        "schema_version": "1.0",
+        "ecu_id": "ECU-06",
+        "name": "Engine_Control_Module",
+        "domain": "POWERTRAIN",
+        "source_type": "SIMULATED",
+        "connected": true,
+        "current_version": "5.1.0",
+        "target_version": null,
+        "active_partition": "A",
+        "partitions": {
+          "A": {
+            "version": "5.1.0",
+            "status": "GOOD",
+            "read_only": false
+          },
+          "B": {
+            "version": null,
+            "status": "EMPTY",
+            "read_only": false
+          },
+          "RECOVERY": {
+            "version": "1.0.0",
+            "status": "GOOD",
+            "read_only": true
+          }
+        },
+        "supports_live_rollback": true,
+        "ota_status": "BLOCKED",
+        "health_status": "GOOD",
+        "progress_pct": 0,
+        "dependencies": [
+          "ECU-05"
+        ],
+        "rollback_counter": 0,
+        "consecutive_rollback_counter": 0,
+        "rollback_lockout": false,
+        "recovery_boot_counter": 0,
+        "accepted_releases": [],
+        "last_error": "Prérequis non confirmés : ECU-05",
+        "rollback_trigger": null,
+        "last_rollback_duration_s": null,
+        "updated_at": "2026-08-21T19:23:30+00:00"
+      },
+      {
+        "schema_version": "1.0",
+        "ecu_id": "ECU-07",
+        "name": "Transmission_Control_Module",
+        "domain": "POWERTRAIN",
+        "source_type": "SIMULATED",
+        "connected": true,
+        "current_version": "3.6.0",
+        "target_version": null,
+        "active_partition": "A",
+        "partitions": {
+          "A": {
+            "version": "3.6.0",
+            "status": "GOOD",
+            "read_only": false
+          },
+          "B": {
+            "version": null,
+            "status": "EMPTY",
+            "read_only": false
+          },
+          "RECOVERY": {
+            "version": "1.0.0",
+            "status": "GOOD",
+            "read_only": true
+          }
+        },
+        "supports_live_rollback": true,
+        "ota_status": "BLOCKED",
+        "health_status": "GOOD",
+        "progress_pct": 0,
+        "dependencies": [
+          "ECU-05"
+        ],
+        "rollback_counter": 0,
+        "consecutive_rollback_counter": 0,
+        "rollback_lockout": false,
+        "recovery_boot_counter": 0,
+        "accepted_releases": [],
+        "last_error": "Prérequis non confirmés : ECU-05",
+        "rollback_trigger": null,
+        "last_rollback_duration_s": null,
+        "updated_at": "2026-08-21T19:23:30+00:00"
+      },
+      {
+        "schema_version": "1.0",
+        "ecu_id": "ECU-08",
+        "name": "Battery_Management_System",
+        "domain": "POWERTRAIN",
+        "source_type": "SIMULATED",
+        "connected": true,
+        "current_version": "6.0.0",
+        "target_version": null,
+        "active_partition": "A",
+        "partitions": {
+          "A": {
+            "version": "6.0.0",
+            "status": "GOOD",
+            "read_only": false
+          },
+          "B": {
+            "version": null,
+            "status": "EMPTY",
+            "read_only": false
+          },
+          "RECOVERY": {
+            "version": "1.0.0",
+            "status": "GOOD",
+            "read_only": true
+          }
+        },
+        "supports_live_rollback": true,
+        "ota_status": "BLOCKED",
+        "health_status": "GOOD",
+        "progress_pct": 0,
+        "dependencies": [
+          "ECU-05"
+        ],
+        "rollback_counter": 0,
+        "consecutive_rollback_counter": 0,
+        "rollback_lockout": false,
+        "recovery_boot_counter": 0,
+        "accepted_releases": [],
+        "last_error": "Prérequis non confirmés : ECU-05",
+        "rollback_trigger": null,
+        "last_rollback_duration_s": null,
+        "updated_at": "2026-08-21T19:23:30+00:00"
+      },
+      {
+        "schema_version": "1.0",
+        "ecu_id": "ECU-09",
+        "name": "Onboard_Charger",
+        "domain": "POWERTRAIN",
+        "source_type": "SIMULATED",
+        "connected": true,
+        "current_version": "2.8.0",
+        "target_version": null,
+        "active_partition": "A",
+        "partitions": {
+          "A": {
+            "version": "2.8.0",
+            "status": "GOOD",
+            "read_only": false
+          },
+          "B": {
+            "version": null,
+            "status": "EMPTY",
+            "read_only": false
+          },
+          "RECOVERY": {
+            "version": "1.0.0",
+            "status": "GOOD",
+            "read_only": true
+          }
+        },
+        "supports_live_rollback": true,
+        "ota_status": "BLOCKED",
+        "health_status": "GOOD",
+        "progress_pct": 0,
+        "dependencies": [
+          "ECU-05"
+        ],
+        "rollback_counter": 0,
+        "consecutive_rollback_counter": 0,
+        "rollback_lockout": false,
+        "recovery_boot_counter": 0,
+        "accepted_releases": [],
+        "last_error": "Prérequis non confirmés : ECU-05",
+        "rollback_trigger": null,
+        "last_rollback_duration_s": null,
+        "updated_at": "2026-08-21T19:23:30+00:00"
+      },
+      {
+        "schema_version": "1.0",
+        "ecu_id": "ECU-10",
+        "name": "Chassis_Domain_Controller",
+        "domain": "CHASSIS",
+        "source_type": "SIMULATED",
+        "connected": true,
+        "current_version": "4.3.0",
+        "target_version": "4.3.0",
+        "active_partition": "B",
+        "partitions": {
+          "A": {
+            "version": "4.2.0",
+            "status": "GOOD",
+            "read_only": false
+          },
+          "B": {
+            "version": "4.3.0",
+            "status": "GOOD",
+            "read_only": false
+          },
+          "RECOVERY": {
+            "version": "1.0.0",
+            "status": "GOOD",
+            "read_only": true
+          }
+        },
+        "supports_live_rollback": true,
+        "ota_status": "CONFIRMED",
+        "health_status": "GOOD",
+        "progress_pct": 100,
+        "dependencies": [
+          "ECU-01"
+        ],
+        "rollback_counter": 0,
+        "consecutive_rollback_counter": 0,
+        "rollback_lockout": false,
+        "recovery_boot_counter": 0,
+        "accepted_releases": [
+          "pfe-ota-vehicle-v3-final-mixed-001"
+        ],
+        "last_error": null,
+        "rollback_trigger": null,
+        "last_rollback_duration_s": null,
+        "updated_at": "2026-08-21T19:23:30+00:00"
+      },
+      {
+        "schema_version": "1.0",
+        "ecu_id": "ECU-11",
+        "name": "Brake_Control_Module",
+        "domain": "CHASSIS",
+        "source_type": "SIMULATED",
+        "connected": true,
+        "current_version": "7.0.0",
+        "target_version": "7.1.0",
+        "active_partition": "A",
+        "partitions": {
+          "A": {
+            "version": "7.0.0",
+            "status": "GOOD",
+            "read_only": false
+          },
+          "B": {
+            "version": "7.1.0",
+            "status": "BAD",
+            "read_only": false
+          },
+          "RECOVERY": {
+            "version": "1.0.0",
+            "status": "GOOD",
+            "read_only": true
+          }
+        },
+        "supports_live_rollback": true,
+        "ota_status": "ROLLED_BACK",
+        "health_status": "GOOD",
+        "progress_pct": 100,
+        "dependencies": [
+          "ECU-10"
+        ],
+        "rollback_counter": 1,
+        "consecutive_rollback_counter": 1,
+        "rollback_lockout": false,
+        "recovery_boot_counter": 0,
+        "accepted_releases": [],
+        "last_error": "RB-04: self-test failure",
+        "rollback_trigger": "RB-04",
+        "last_rollback_duration_s": 3.0,
+        "updated_at": "2026-08-21T19:23:30+00:00"
+      },
+      {
+        "schema_version": "1.0",
+        "ecu_id": "ECU-12",
+        "name": "Steering_Control_Module",
+        "domain": "CHASSIS",
+        "source_type": "SIMULATED",
+        "connected": true,
+        "current_version": "5.5.0",
+        "target_version": "5.5.0",
+        "active_partition": "B",
+        "partitions": {
+          "A": {
+            "version": "5.4.0",
+            "status": "GOOD",
+            "read_only": false
+          },
+          "B": {
+            "version": "5.5.0",
+            "status": "GOOD",
+            "read_only": false
+          },
+          "RECOVERY": {
+            "version": "1.0.0",
+            "status": "GOOD",
+            "read_only": true
+          }
+        },
+        "supports_live_rollback": true,
+        "ota_status": "CONFIRMED",
+        "health_status": "GOOD",
+        "progress_pct": 100,
+        "dependencies": [
+          "ECU-10"
+        ],
+        "rollback_counter": 0,
+        "consecutive_rollback_counter": 0,
+        "rollback_lockout": false,
+        "recovery_boot_counter": 0,
+        "accepted_releases": [
+          "pfe-ota-vehicle-v3-final-mixed-001"
+        ],
+        "last_error": null,
+        "rollback_trigger": null,
+        "last_rollback_duration_s": null,
+        "updated_at": "2026-08-21T19:23:30+00:00"
+      },
+      {
+        "schema_version": "1.0",
+        "ecu_id": "ECU-13",
+        "name": "Suspension_Control_Module",
+        "domain": "CHASSIS",
+        "source_type": "SIMULATED",
+        "connected": true,
+        "current_version": "2.3.0",
+        "target_version": "2.3.0",
+        "active_partition": "B",
+        "partitions": {
+          "A": {
+            "version": "2.2.0",
+            "status": "GOOD",
+            "read_only": false
+          },
+          "B": {
+            "version": "2.3.0",
+            "status": "GOOD",
+            "read_only": false
+          },
+          "RECOVERY": {
+            "version": "1.0.0",
+            "status": "GOOD",
+            "read_only": true
+          }
+        },
+        "supports_live_rollback": true,
+        "ota_status": "CONFIRMED",
+        "health_status": "GOOD",
+        "progress_pct": 100,
+        "dependencies": [
+          "ECU-10"
+        ],
+        "rollback_counter": 0,
+        "consecutive_rollback_counter": 0,
+        "rollback_lockout": false,
+        "recovery_boot_counter": 0,
+        "accepted_releases": [
+          "pfe-ota-vehicle-v3-final-mixed-001"
+        ],
+        "last_error": null,
+        "rollback_trigger": null,
+        "last_rollback_duration_s": null,
+        "updated_at": "2026-08-21T19:23:30+00:00"
+      },
+      {
+        "schema_version": "1.0",
+        "ecu_id": "ECU-14",
+        "name": "Vehicle_Dynamics_Control",
+        "domain": "CHASSIS",
+        "source_type": "SIMULATED",
+        "connected": true,
+        "current_version": "3.4.0",
+        "target_version": "3.4.0",
+        "active_partition": "B",
+        "partitions": {
+          "A": {
+            "version": "3.3.0",
+            "status": "GOOD",
+            "read_only": false
+          },
+          "B": {
+            "version": "3.4.0",
+            "status": "GOOD",
+            "read_only": false
+          },
+          "RECOVERY": {
+            "version": "1.0.0",
+            "status": "GOOD",
+            "read_only": true
+          }
+        },
+        "supports_live_rollback": true,
+        "ota_status": "CONFIRMED",
+        "health_status": "GOOD",
+        "progress_pct": 100,
+        "dependencies": [
+          "ECU-10"
+        ],
+        "rollback_counter": 0,
+        "consecutive_rollback_counter": 0,
+        "rollback_lockout": false,
+        "recovery_boot_counter": 0,
+        "accepted_releases": [
+          "pfe-ota-vehicle-v3-final-mixed-001"
+        ],
+        "last_error": null,
+        "rollback_trigger": null,
+        "last_rollback_duration_s": null,
+        "updated_at": "2026-08-21T19:23:30+00:00"
+      },
+      {
+        "schema_version": "1.0",
+        "ecu_id": "ECU-15",
+        "name": "ADAS_Domain_Controller",
+        "domain": "ADAS",
+        "source_type": "SIMULATED",
+        "connected": true,
+        "current_version": "8.1.0",
+        "target_version": "8.1.0",
+        "active_partition": "B",
+        "partitions": {
+          "A": {
+            "version": "8.0.0",
+            "status": "GOOD",
+            "read_only": false
+          },
+          "B": {
+            "version": "8.1.0",
+            "status": "GOOD",
+            "read_only": false
+          },
+          "RECOVERY": {
+            "version": "1.0.0",
+            "status": "GOOD",
+            "read_only": true
+          }
+        },
+        "supports_live_rollback": true,
+        "ota_status": "CONFIRMED",
+        "health_status": "GOOD",
+        "progress_pct": 100,
+        "dependencies": [
+          "ECU-01"
+        ],
+        "rollback_counter": 0,
+        "consecutive_rollback_counter": 0,
+        "rollback_lockout": false,
+        "recovery_boot_counter": 0,
+        "accepted_releases": [
+          "pfe-ota-vehicle-v3-final-mixed-001"
+        ],
+        "last_error": null,
+        "rollback_trigger": null,
+        "last_rollback_duration_s": null,
+        "updated_at": "2026-08-21T19:23:30+00:00"
+      },
+      {
+        "schema_version": "1.0",
+        "ecu_id": "ECU-16",
+        "name": "Front_Camera",
+        "domain": "ADAS",
+        "source_type": "SIMULATED",
+        "connected": true,
+        "current_version": "7.3.0",
+        "target_version": "7.3.0",
+        "active_partition": "B",
+        "partitions": {
+          "A": {
+            "version": "7.2.0",
+            "status": "GOOD",
+            "read_only": false
+          },
+          "B": {
+            "version": "7.3.0",
+            "status": "GOOD",
+            "read_only": false
+          },
+          "RECOVERY": {
+            "version": "1.0.0",
+            "status": "GOOD",
+            "read_only": true
+          }
+        },
+        "supports_live_rollback": true,
+        "ota_status": "CONFIRMED",
+        "health_status": "GOOD",
+        "progress_pct": 100,
+        "dependencies": [
+          "ECU-15"
+        ],
+        "rollback_counter": 0,
+        "consecutive_rollback_counter": 0,
+        "rollback_lockout": false,
+        "recovery_boot_counter": 0,
+        "accepted_releases": [
+          "pfe-ota-vehicle-v3-final-mixed-001"
+        ],
+        "last_error": null,
+        "rollback_trigger": null,
+        "last_rollback_duration_s": null,
+        "updated_at": "2026-08-21T19:23:30+00:00"
+      },
+      {
+        "schema_version": "1.0",
+        "ecu_id": "ECU-17",
+        "name": "Front_Radar",
+        "domain": "ADAS",
+        "source_type": "SIMULATED",
+        "connected": true,
+        "current_version": "6.5.0",
+        "target_version": "6.6.0",
+        "active_partition": "A",
+        "partitions": {
+          "A": {
+            "version": "6.5.0",
+            "status": "GOOD",
+            "read_only": false
+          },
+          "B": {
+            "version": "6.6.0",
+            "status": "BAD",
+            "read_only": false
+          },
+          "RECOVERY": {
+            "version": "1.0.0",
+            "status": "GOOD",
+            "read_only": true
+          }
+        },
+        "supports_live_rollback": true,
+        "ota_status": "ROLLBACK_LOCKOUT",
+        "health_status": "GOOD",
+        "progress_pct": 100,
+        "dependencies": [
+          "ECU-15"
+        ],
+        "rollback_counter": 2,
+        "consecutive_rollback_counter": 2,
+        "rollback_lockout": true,
+        "recovery_boot_counter": 0,
+        "accepted_releases": [],
+        "last_error": "RB-18: repeated rollback loop prevented after two failures",
+        "rollback_trigger": "RB-18",
+        "last_rollback_duration_s": 3.0,
+        "updated_at": "2026-08-21T19:23:30+00:00"
+      },
+      {
+        "schema_version": "1.0",
+        "ecu_id": "ECU-18",
+        "name": "Corner_Radar_Left",
+        "domain": "ADAS",
+        "source_type": "SIMULATED",
+        "connected": true,
+        "current_version": "4.2.0",
+        "target_version": "4.2.0",
+        "active_partition": "B",
+        "partitions": {
+          "A": {
+            "version": "4.1.0",
+            "status": "GOOD",
+            "read_only": false
+          },
+          "B": {
+            "version": "4.2.0",
+            "status": "GOOD",
+            "read_only": false
+          },
+          "RECOVERY": {
+            "version": "1.0.0",
+            "status": "GOOD",
+            "read_only": true
+          }
+        },
+        "supports_live_rollback": true,
+        "ota_status": "CONFIRMED",
+        "health_status": "GOOD",
+        "progress_pct": 100,
+        "dependencies": [
+          "ECU-15"
+        ],
+        "rollback_counter": 0,
+        "consecutive_rollback_counter": 0,
+        "rollback_lockout": false,
+        "recovery_boot_counter": 0,
+        "accepted_releases": [
+          "pfe-ota-vehicle-v3-final-mixed-001"
+        ],
+        "last_error": null,
+        "rollback_trigger": null,
+        "last_rollback_duration_s": null,
+        "updated_at": "2026-08-21T19:23:30+00:00"
+      },
+      {
+        "schema_version": "1.0",
+        "ecu_id": "ECU-19",
+        "name": "Corner_Radar_Right",
+        "domain": "ADAS",
+        "source_type": "SIMULATED",
+        "connected": true,
+        "current_version": "4.2.0",
+        "target_version": "4.2.0",
+        "active_partition": "B",
+        "partitions": {
+          "A": {
+            "version": "4.1.0",
+            "status": "GOOD",
+            "read_only": false
+          },
+          "B": {
+            "version": "4.2.0",
+            "status": "GOOD",
+            "read_only": false
+          },
+          "RECOVERY": {
+            "version": "1.0.0",
+            "status": "GOOD",
+            "read_only": true
+          }
+        },
+        "supports_live_rollback": true,
+        "ota_status": "CONFIRMED",
+        "health_status": "GOOD",
+        "progress_pct": 100,
+        "dependencies": [
+          "ECU-15"
+        ],
+        "rollback_counter": 0,
+        "consecutive_rollback_counter": 0,
+        "rollback_lockout": false,
+        "recovery_boot_counter": 0,
+        "accepted_releases": [
+          "pfe-ota-vehicle-v3-final-mixed-001"
+        ],
+        "last_error": null,
+        "rollback_trigger": null,
+        "last_rollback_duration_s": null,
+        "updated_at": "2026-08-21T19:23:30+00:00"
+      },
+      {
+        "schema_version": "1.0",
+        "ecu_id": "ECU-20",
+        "name": "Body_Domain_Controller",
+        "domain": "BODY_ZONE",
+        "source_type": "SIMULATED",
+        "connected": true,
+        "current_version": "5.1.0",
+        "target_version": "5.1.0",
+        "active_partition": "B",
+        "partitions": {
+          "A": {
+            "version": "5.0.0",
+            "status": "GOOD",
+            "read_only": false
+          },
+          "B": {
+            "version": "5.1.0",
+            "status": "GOOD",
+            "read_only": false
+          },
+          "RECOVERY": {
+            "version": "1.0.0",
+            "status": "GOOD",
+            "read_only": true
+          }
+        },
+        "supports_live_rollback": true,
+        "ota_status": "CONFIRMED",
+        "health_status": "GOOD",
+        "progress_pct": 100,
+        "dependencies": [
+          "ECU-01"
+        ],
+        "rollback_counter": 0,
+        "consecutive_rollback_counter": 0,
+        "rollback_lockout": false,
+        "recovery_boot_counter": 0,
+        "accepted_releases": [
+          "pfe-ota-vehicle-v3-final-mixed-001"
+        ],
+        "last_error": null,
+        "rollback_trigger": null,
+        "last_rollback_duration_s": null,
+        "updated_at": "2026-08-21T19:23:30+00:00"
+      },
+      {
+        "schema_version": "1.0",
+        "ecu_id": "ECU-21",
+        "name": "Zone_Front",
+        "domain": "BODY_ZONE",
+        "source_type": "SIMULATED",
+        "connected": true,
+        "current_version": "3.1.0",
+        "target_version": "3.1.0",
+        "active_partition": "B",
+        "partitions": {
+          "A": {
+            "version": "3.0.0",
+            "status": "GOOD",
+            "read_only": false
+          },
+          "B": {
+            "version": "3.1.0",
+            "status": "GOOD",
+            "read_only": false
+          },
+          "RECOVERY": {
+            "version": "1.0.0",
+            "status": "GOOD",
+            "read_only": true
+          }
+        },
+        "supports_live_rollback": true,
+        "ota_status": "CONFIRMED",
+        "health_status": "GOOD",
+        "progress_pct": 100,
+        "dependencies": [
+          "ECU-01",
+          "ECU-20"
+        ],
+        "rollback_counter": 0,
+        "consecutive_rollback_counter": 0,
+        "rollback_lockout": false,
+        "recovery_boot_counter": 0,
+        "accepted_releases": [
+          "pfe-ota-vehicle-v3-final-mixed-001"
+        ],
+        "last_error": null,
+        "rollback_trigger": null,
+        "last_rollback_duration_s": null,
+        "updated_at": "2026-08-21T19:23:30+00:00"
+      },
+      {
+        "schema_version": "1.0",
+        "ecu_id": "ECU-22",
+        "name": "Zone_Rear",
+        "domain": "BODY_ZONE",
+        "source_type": "SIMULATED",
+        "connected": true,
+        "current_version": "3.1.0",
+        "target_version": "3.1.0",
+        "active_partition": "B",
+        "partitions": {
+          "A": {
+            "version": "3.0.0",
+            "status": "GOOD",
+            "read_only": false
+          },
+          "B": {
+            "version": "3.1.0",
+            "status": "GOOD",
+            "read_only": false
+          },
+          "RECOVERY": {
+            "version": "1.0.0",
+            "status": "GOOD",
+            "read_only": true
+          }
+        },
+        "supports_live_rollback": true,
+        "ota_status": "CONFIRMED",
+        "health_status": "GOOD",
+        "progress_pct": 100,
+        "dependencies": [
+          "ECU-20"
+        ],
+        "rollback_counter": 0,
+        "consecutive_rollback_counter": 0,
+        "rollback_lockout": false,
+        "recovery_boot_counter": 0,
+        "accepted_releases": [
+          "pfe-ota-vehicle-v3-final-mixed-001"
+        ],
+        "last_error": null,
+        "rollback_trigger": null,
+        "last_rollback_duration_s": null,
+        "updated_at": "2026-08-21T19:23:30+00:00"
+      },
+      {
+        "schema_version": "1.0",
+        "ecu_id": "ECU-23",
+        "name": "Door_Control_Left",
+        "domain": "BODY_ZONE",
+        "source_type": "SIMULATED",
+        "connected": true,
+        "current_version": "2.6.0",
+        "target_version": "2.6.0",
+        "active_partition": "B",
+        "partitions": {
+          "A": {
+            "version": "2.5.0",
+            "status": "GOOD",
+            "read_only": false
+          },
+          "B": {
+            "version": "2.6.0",
+            "status": "GOOD",
+            "read_only": false
+          },
+          "RECOVERY": {
+            "version": "1.0.0",
+            "status": "GOOD",
+            "read_only": true
+          }
+        },
+        "supports_live_rollback": true,
+        "ota_status": "CONFIRMED",
+        "health_status": "GOOD",
+        "progress_pct": 100,
+        "dependencies": [
+          "ECU-21"
+        ],
+        "rollback_counter": 0,
+        "consecutive_rollback_counter": 0,
+        "rollback_lockout": false,
+        "recovery_boot_counter": 0,
+        "accepted_releases": [
+          "pfe-ota-vehicle-v3-final-mixed-001"
+        ],
+        "last_error": null,
+        "rollback_trigger": null,
+        "last_rollback_duration_s": null,
+        "updated_at": "2026-08-21T19:23:30+00:00"
+      },
+      {
+        "schema_version": "1.0",
+        "ecu_id": "ECU-24",
+        "name": "Door_Control_Right",
+        "domain": "BODY_ZONE",
+        "source_type": "SIMULATED",
+        "connected": true,
+        "current_version": "2.6.0",
+        "target_version": "2.6.0",
+        "active_partition": "B",
+        "partitions": {
+          "A": {
+            "version": "2.5.0",
+            "status": "GOOD",
+            "read_only": false
+          },
+          "B": {
+            "version": "2.6.0",
+            "status": "GOOD",
+            "read_only": false
+          },
+          "RECOVERY": {
+            "version": "1.0.0",
+            "status": "GOOD",
+            "read_only": true
+          }
+        },
+        "supports_live_rollback": true,
+        "ota_status": "CONFIRMED",
+        "health_status": "GOOD",
+        "progress_pct": 100,
+        "dependencies": [
+          "ECU-21"
+        ],
+        "rollback_counter": 0,
+        "consecutive_rollback_counter": 0,
+        "rollback_lockout": false,
+        "recovery_boot_counter": 0,
+        "accepted_releases": [
+          "pfe-ota-vehicle-v3-final-mixed-001"
+        ],
+        "last_error": null,
+        "rollback_trigger": null,
+        "last_rollback_duration_s": null,
+        "updated_at": "2026-08-21T19:23:30+00:00"
+      },
+      {
+        "schema_version": "1.0",
+        "ecu_id": "ECU-25",
+        "name": "HVAC_Control",
+        "domain": "BODY_ZONE",
+        "source_type": "SIMULATED",
+        "connected": true,
+        "current_version": "4.5.0",
+        "target_version": "4.5.0",
+        "active_partition": "B",
+        "partitions": {
+          "A": {
+            "version": "4.4.0",
+            "status": "GOOD",
+            "read_only": false
+          },
+          "B": {
+            "version": "4.5.0",
+            "status": "GOOD",
+            "read_only": false
+          },
+          "RECOVERY": {
+            "version": "1.0.0",
+            "status": "GOOD",
+            "read_only": true
+          }
+        },
+        "supports_live_rollback": true,
+        "ota_status": "CONFIRMED",
+        "health_status": "GOOD",
+        "progress_pct": 100,
+        "dependencies": [
+          "ECU-20"
+        ],
+        "rollback_counter": 0,
+        "consecutive_rollback_counter": 0,
+        "rollback_lockout": false,
+        "recovery_boot_counter": 0,
+        "accepted_releases": [
+          "pfe-ota-vehicle-v3-final-mixed-001"
+        ],
+        "last_error": null,
+        "rollback_trigger": null,
+        "last_rollback_duration_s": null,
+        "updated_at": "2026-08-21T19:23:30+00:00"
+      },
+      {
+        "schema_version": "1.0",
+        "ecu_id": "ECU-26",
+        "name": "Infotainment_Head_Unit",
+        "domain": "INFOTAINMENT",
+        "source_type": "SIMULATED",
+        "connected": true,
+        "current_version": "9.1.0",
+        "target_version": "9.1.0",
+        "active_partition": "B",
+        "partitions": {
+          "A": {
+            "version": "9.0.0",
+            "status": "GOOD",
+            "read_only": false
+          },
+          "B": {
+            "version": "9.1.0",
+            "status": "GOOD",
+            "read_only": false
+          },
+          "RECOVERY": {
+            "version": "1.0.0",
+            "status": "GOOD",
+            "read_only": true
+          }
+        },
+        "supports_live_rollback": true,
+        "ota_status": "CONFIRMED",
+        "health_status": "GOOD",
+        "progress_pct": 100,
+        "dependencies": [
+          "ECU-01"
+        ],
+        "rollback_counter": 0,
+        "consecutive_rollback_counter": 0,
+        "rollback_lockout": false,
+        "recovery_boot_counter": 0,
+        "accepted_releases": [
+          "pfe-ota-vehicle-v3-final-mixed-001"
+        ],
+        "last_error": null,
+        "rollback_trigger": null,
+        "last_rollback_duration_s": null,
+        "updated_at": "2026-08-21T19:23:30+00:00"
+      },
+      {
+        "schema_version": "1.0",
+        "ecu_id": "ECU-27",
+        "name": "Instrument_Cluster",
+        "domain": "INFOTAINMENT",
+        "source_type": "SIMULATED",
+        "connected": true,
+        "current_version": "6.3.0",
+        "target_version": "6.3.0",
+        "active_partition": "B",
+        "partitions": {
+          "A": {
+            "version": "6.2.0",
+            "status": "GOOD",
+            "read_only": false
+          },
+          "B": {
+            "version": "6.3.0",
+            "status": "GOOD",
+            "read_only": false
+          },
+          "RECOVERY": {
+            "version": "1.0.0",
+            "status": "GOOD",
+            "read_only": true
+          }
+        },
+        "supports_live_rollback": true,
+        "ota_status": "CONFIRMED",
+        "health_status": "GOOD",
+        "progress_pct": 100,
+        "dependencies": [
+          "ECU-20",
+          "ECU-26"
+        ],
+        "rollback_counter": 0,
+        "consecutive_rollback_counter": 0,
+        "rollback_lockout": false,
+        "recovery_boot_counter": 0,
+        "accepted_releases": [
+          "pfe-ota-vehicle-v3-final-mixed-001"
+        ],
+        "last_error": null,
+        "rollback_trigger": null,
+        "last_rollback_duration_s": null,
+        "updated_at": "2026-08-21T19:23:30+00:00"
+      },
+      {
+        "schema_version": "1.0",
+        "ecu_id": "ECU-28",
+        "name": "Audio_Amplifier",
+        "domain": "INFOTAINMENT",
+        "source_type": "SIMULATED",
+        "connected": true,
+        "current_version": "3.8.0",
+        "target_version": "3.8.0",
+        "active_partition": "B",
+        "partitions": {
+          "A": {
+            "version": "3.7.0",
+            "status": "GOOD",
+            "read_only": false
+          },
+          "B": {
+            "version": "3.8.0",
+            "status": "GOOD",
+            "read_only": false
+          },
+          "RECOVERY": {
+            "version": "1.0.0",
+            "status": "GOOD",
+            "read_only": true
+          }
+        },
+        "supports_live_rollback": true,
+        "ota_status": "CONFIRMED",
+        "health_status": "GOOD",
+        "progress_pct": 100,
+        "dependencies": [
+          "ECU-26"
+        ],
+        "rollback_counter": 0,
+        "consecutive_rollback_counter": 0,
+        "rollback_lockout": false,
+        "recovery_boot_counter": 0,
+        "accepted_releases": [
+          "pfe-ota-vehicle-v3-final-mixed-001"
+        ],
+        "last_error": null,
+        "rollback_trigger": null,
+        "last_rollback_duration_s": null,
+        "updated_at": "2026-08-21T19:23:30+00:00"
+      }
+    ],
+    "events": [
+      {
+        "schema_version": "1.0",
+        "event_id": "EVT-000001",
+        "timestamp": "2026-08-21T19:23:30+00:00",
+        "campaign_id": "CMP-FINAL-MIXED-001",
+        "ecu_id": null,
+        "source_type": "SIMULATED",
+        "level": "SUCCESS",
+        "event_code": "MANIFEST_SIGNATURE_VALID",
+        "ota_status": null,
+        "progress_pct": 0,
+        "message": "Signature globale vérifiée avant toute modification d'ECU",
+        "rollback_trigger": null
+      },
+      {
+        "schema_version": "1.0",
+        "event_id": "EVT-000002",
+        "timestamp": "2026-08-21T19:23:30+00:00",
+        "campaign_id": "CMP-FINAL-MIXED-001",
+        "ecu_id": null,
+        "source_type": "SIMULATED",
+        "level": "INFO",
+        "event_code": "CAMPAIGN_STARTED",
+        "ota_status": null,
+        "progress_pct": 0,
+        "message": "Campagne CMP-FINAL-MIXED-001 démarrée pour 28 ECU",
+        "rollback_trigger": null
+      },
+      {
+        "schema_version": "1.0",
+        "event_id": "EVT-000003",
+        "timestamp": "2026-08-21T19:23:30+00:00",
+        "campaign_id": "CMP-FINAL-MIXED-001",
+        "ecu_id": null,
+        "source_type": "SIMULATED",
+        "level": "INFO",
+        "event_code": "WAVE_STARTED",
+        "ota_status": null,
+        "progress_pct": 0,
+        "message": "Vague 1 : ECU-01",
+        "rollback_trigger": null
+      },
+      {
+        "schema_version": "1.0",
+        "event_id": "EVT-000004",
+        "timestamp": "2026-08-21T19:23:30+00:00",
+        "campaign_id": "CMP-FINAL-MIXED-001",
+        "ecu_id": "ECU-01",
+        "source_type": "SIMULATED",
+        "level": "INFO",
+        "event_code": "CAMPAIGN_STATE_PERSISTED",
+        "ota_status": null,
+        "progress_pct": 0,
+        "message": "État de campagne sauvegardé avant la mise à jour du Central Gateway",
+        "rollback_trigger": null
+      },
+      {
+        "schema_version": "1.0",
+        "event_id": "EVT-000005",
+        "timestamp": "2026-08-21T19:23:30+00:00",
+        "campaign_id": "CMP-FINAL-MIXED-001",
+        "ecu_id": "ECU-01",
+        "source_type": "SIMULATED",
+        "level": "INFO",
+        "event_code": "ECU_UPDATE_STARTED",
+        "ota_status": "DOWNLOADING",
+        "progress_pct": 0,
+        "message": "Mise à jour de Central_Gateway vers 3.0.0",
+        "rollback_trigger": null
+      },
+      {
+        "schema_version": "1.0",
+        "event_id": "EVT-000006",
+        "timestamp": "2026-08-21T19:23:30+00:00",
+        "campaign_id": "CMP-FINAL-MIXED-001",
+        "ecu_id": "ECU-01",
+        "source_type": "SIMULATED",
+        "level": "SUCCESS",
+        "event_code": "ECU_CONFIRMED",
+        "ota_status": "CONFIRMED",
+        "progress_pct": 4,
+        "message": "Central_Gateway confirmé sur le banc B",
+        "rollback_trigger": null
+      },
+      {
+        "schema_version": "1.0",
+        "event_id": "EVT-000007",
+        "timestamp": "2026-08-21T19:23:30+00:00",
+        "campaign_id": "CMP-FINAL-MIXED-001",
+        "ecu_id": null,
+        "source_type": "SIMULATED",
+        "level": "INFO",
+        "event_code": "WAVE_STARTED",
+        "ota_status": null,
+        "progress_pct": 0,
+        "message": "Vague 2 : ECU-03, ECU-05, ECU-10, ECU-15, ECU-20, ECU-26",
+        "rollback_trigger": null
+      },
+      {
+        "schema_version": "1.0",
+        "event_id": "EVT-000008",
+        "timestamp": "2026-08-21T19:23:30+00:00",
+        "campaign_id": "CMP-FINAL-MIXED-001",
+        "ecu_id": "ECU-03",
+        "source_type": "SIMULATED",
+        "level": "INFO",
+        "event_code": "ECU_UPDATE_STARTED",
+        "ota_status": "DOWNLOADING",
+        "progress_pct": 0,
+        "message": "Mise à jour de Vehicle_Security_Module vers 3.2.0",
+        "rollback_trigger": null
+      },
+      {
+        "schema_version": "1.0",
+        "event_id": "EVT-000009",
+        "timestamp": "2026-08-21T19:23:30+00:00",
+        "campaign_id": "CMP-FINAL-MIXED-001",
+        "ecu_id": "ECU-03",
+        "source_type": "SIMULATED",
+        "level": "SUCCESS",
+        "event_code": "ECU_CONFIRMED",
+        "ota_status": "CONFIRMED",
+        "progress_pct": 7,
+        "message": "Vehicle_Security_Module confirmé sur le banc B",
+        "rollback_trigger": null
+      },
+      {
+        "schema_version": "1.0",
+        "event_id": "EVT-000010",
+        "timestamp": "2026-08-21T19:23:30+00:00",
+        "campaign_id": "CMP-FINAL-MIXED-001",
+        "ecu_id": "ECU-05",
+        "source_type": "SIMULATED",
+        "level": "INFO",
+        "event_code": "ECU_UPDATE_STARTED",
+        "ota_status": "DOWNLOADING",
+        "progress_pct": 0,
+        "message": "Mise à jour de Powertrain_Domain_Controller vers 4.1.0",
+        "rollback_trigger": null
+      },
+      {
+        "schema_version": "1.0",
+        "event_id": "EVT-000011",
+        "timestamp": "2026-08-21T19:23:30+00:00",
+        "campaign_id": "CMP-FINAL-MIXED-001",
+        "ecu_id": "ECU-05",
+        "source_type": "SIMULATED",
+        "level": "WARNING",
+        "event_code": "FAULT_INJECTED",
+        "ota_status": "FAULT_INJECTION",
+        "progress_pct": 0,
+        "message": "Injection RB-01 dans Powertrain_Domain_Controller",
+        "rollback_trigger": "RB-01"
+      },
+      {
+        "schema_version": "1.0",
+        "event_id": "EVT-000012",
+        "timestamp": "2026-08-21T19:23:30+00:00",
+        "campaign_id": "CMP-FINAL-MIXED-001",
+        "ecu_id": "ECU-05",
+        "source_type": "SIMULATED",
+        "level": "ERROR",
+        "event_code": "RB-01",
+        "ota_status": "REJECTED",
+        "progress_pct": 11,
+        "message": "RB-01: checksum mismatch",
+        "rollback_trigger": "RB-01"
+      },
+      {
+        "schema_version": "1.0",
+        "event_id": "EVT-000013",
+        "timestamp": "2026-08-21T19:23:30+00:00",
+        "campaign_id": "CMP-FINAL-MIXED-001",
+        "ecu_id": "ECU-10",
+        "source_type": "SIMULATED",
+        "level": "INFO",
+        "event_code": "ECU_UPDATE_STARTED",
+        "ota_status": "DOWNLOADING",
+        "progress_pct": 0,
+        "message": "Mise à jour de Chassis_Domain_Controller vers 4.3.0",
+        "rollback_trigger": null
+      },
+      {
+        "schema_version": "1.0",
+        "event_id": "EVT-000014",
+        "timestamp": "2026-08-21T19:23:30+00:00",
+        "campaign_id": "CMP-FINAL-MIXED-001",
+        "ecu_id": "ECU-10",
+        "source_type": "SIMULATED",
+        "level": "SUCCESS",
+        "event_code": "ECU_CONFIRMED",
+        "ota_status": "CONFIRMED",
+        "progress_pct": 14,
+        "message": "Chassis_Domain_Controller confirmé sur le banc B",
+        "rollback_trigger": null
+      },
+      {
+        "schema_version": "1.0",
+        "event_id": "EVT-000015",
+        "timestamp": "2026-08-21T19:23:30+00:00",
+        "campaign_id": "CMP-FINAL-MIXED-001",
+        "ecu_id": "ECU-15",
+        "source_type": "SIMULATED",
+        "level": "INFO",
+        "event_code": "ECU_UPDATE_STARTED",
+        "ota_status": "DOWNLOADING",
+        "progress_pct": 0,
+        "message": "Mise à jour de ADAS_Domain_Controller vers 8.1.0",
+        "rollback_trigger": null
+      },
+      {
+        "schema_version": "1.0",
+        "event_id": "EVT-000016",
+        "timestamp": "2026-08-21T19:23:30+00:00",
+        "campaign_id": "CMP-FINAL-MIXED-001",
+        "ecu_id": "ECU-15",
+        "source_type": "SIMULATED",
+        "level": "SUCCESS",
+        "event_code": "ECU_CONFIRMED",
+        "ota_status": "CONFIRMED",
+        "progress_pct": 18,
+        "message": "ADAS_Domain_Controller confirmé sur le banc B",
+        "rollback_trigger": null
+      },
+      {
+        "schema_version": "1.0",
+        "event_id": "EVT-000017",
+        "timestamp": "2026-08-21T19:23:30+00:00",
+        "campaign_id": "CMP-FINAL-MIXED-001",
+        "ecu_id": "ECU-20",
+        "source_type": "SIMULATED",
+        "level": "INFO",
+        "event_code": "ECU_UPDATE_STARTED",
+        "ota_status": "DOWNLOADING",
+        "progress_pct": 0,
+        "message": "Mise à jour de Body_Domain_Controller vers 5.1.0",
+        "rollback_trigger": null
+      },
+      {
+        "schema_version": "1.0",
+        "event_id": "EVT-000018",
+        "timestamp": "2026-08-21T19:23:30+00:00",
+        "campaign_id": "CMP-FINAL-MIXED-001",
+        "ecu_id": "ECU-20",
+        "source_type": "SIMULATED",
+        "level": "SUCCESS",
+        "event_code": "ECU_CONFIRMED",
+        "ota_status": "CONFIRMED",
+        "progress_pct": 21,
+        "message": "Body_Domain_Controller confirmé sur le banc B",
+        "rollback_trigger": null
+      },
+      {
+        "schema_version": "1.0",
+        "event_id": "EVT-000019",
+        "timestamp": "2026-08-21T19:23:30+00:00",
+        "campaign_id": "CMP-FINAL-MIXED-001",
+        "ecu_id": "ECU-26",
+        "source_type": "SIMULATED",
+        "level": "INFO",
+        "event_code": "ECU_UPDATE_STARTED",
+        "ota_status": "DOWNLOADING",
+        "progress_pct": 0,
+        "message": "Mise à jour de Infotainment_Head_Unit vers 9.1.0",
+        "rollback_trigger": null
+      },
+      {
+        "schema_version": "1.0",
+        "event_id": "EVT-000020",
+        "timestamp": "2026-08-21T19:23:30+00:00",
+        "campaign_id": "CMP-FINAL-MIXED-001",
+        "ecu_id": "ECU-26",
+        "source_type": "SIMULATED",
+        "level": "SUCCESS",
+        "event_code": "ECU_CONFIRMED",
+        "ota_status": "CONFIRMED",
+        "progress_pct": 25,
+        "message": "Infotainment_Head_Unit confirmé sur le banc B",
+        "rollback_trigger": null
+      },
+      {
+        "schema_version": "1.0",
+        "event_id": "EVT-000021",
+        "timestamp": "2026-08-21T19:23:30+00:00",
+        "campaign_id": "CMP-FINAL-MIXED-001",
+        "ecu_id": null,
+        "source_type": "SIMULATED",
+        "level": "INFO",
+        "event_code": "WAVE_STARTED",
+        "ota_status": null,
+        "progress_pct": 0,
+        "message": "Vague 3 : ECU-06, ECU-07, ECU-08, ECU-09, ECU-11, ECU-12, ECU-13, ECU-14, ECU-16, ECU-17, ECU-18, ECU-19, ECU-21, ECU-22, ECU-25, ECU-27, ECU-28",
+        "rollback_trigger": null
+      },
+      {
+        "schema_version": "1.0",
+        "event_id": "EVT-000022",
+        "timestamp": "2026-08-21T19:23:30+00:00",
+        "campaign_id": "CMP-FINAL-MIXED-001",
+        "ecu_id": "ECU-06",
+        "source_type": "SIMULATED",
+        "level": "WARNING",
+        "event_code": "ECU_BLOCKED_DEPENDENCY",
+        "ota_status": "BLOCKED",
+        "progress_pct": 29,
+        "message": "Prérequis non confirmés : ECU-05",
+        "rollback_trigger": null
+      },
+      {
+        "schema_version": "1.0",
+        "event_id": "EVT-000023",
+        "timestamp": "2026-08-21T19:23:30+00:00",
+        "campaign_id": "CMP-FINAL-MIXED-001",
+        "ecu_id": "ECU-07",
+        "source_type": "SIMULATED",
+        "level": "WARNING",
+        "event_code": "ECU_BLOCKED_DEPENDENCY",
+        "ota_status": "BLOCKED",
+        "progress_pct": 32,
+        "message": "Prérequis non confirmés : ECU-05",
+        "rollback_trigger": null
+      },
+      {
+        "schema_version": "1.0",
+        "event_id": "EVT-000024",
+        "timestamp": "2026-08-21T19:23:30+00:00",
+        "campaign_id": "CMP-FINAL-MIXED-001",
+        "ecu_id": "ECU-08",
+        "source_type": "SIMULATED",
+        "level": "WARNING",
+        "event_code": "ECU_BLOCKED_DEPENDENCY",
+        "ota_status": "BLOCKED",
+        "progress_pct": 36,
+        "message": "Prérequis non confirmés : ECU-05",
+        "rollback_trigger": null
+      },
+      {
+        "schema_version": "1.0",
+        "event_id": "EVT-000025",
+        "timestamp": "2026-08-21T19:23:30+00:00",
+        "campaign_id": "CMP-FINAL-MIXED-001",
+        "ecu_id": "ECU-09",
+        "source_type": "SIMULATED",
+        "level": "WARNING",
+        "event_code": "ECU_BLOCKED_DEPENDENCY",
+        "ota_status": "BLOCKED",
+        "progress_pct": 39,
+        "message": "Prérequis non confirmés : ECU-05",
+        "rollback_trigger": null
+      },
+      {
+        "schema_version": "1.0",
+        "event_id": "EVT-000026",
+        "timestamp": "2026-08-21T19:23:30+00:00",
+        "campaign_id": "CMP-FINAL-MIXED-001",
+        "ecu_id": "ECU-11",
+        "source_type": "SIMULATED",
+        "level": "INFO",
+        "event_code": "ECU_UPDATE_STARTED",
+        "ota_status": "DOWNLOADING",
+        "progress_pct": 0,
+        "message": "Mise à jour de Brake_Control_Module vers 7.1.0",
+        "rollback_trigger": null
+      },
+      {
+        "schema_version": "1.0",
+        "event_id": "EVT-000027",
+        "timestamp": "2026-08-21T19:23:30+00:00",
+        "campaign_id": "CMP-FINAL-MIXED-001",
+        "ecu_id": "ECU-11",
+        "source_type": "SIMULATED",
+        "level": "WARNING",
+        "event_code": "FAULT_INJECTED",
+        "ota_status": "FAULT_INJECTION",
+        "progress_pct": 0,
+        "message": "Injection RB-04 dans Brake_Control_Module",
+        "rollback_trigger": "RB-04"
+      },
+      {
+        "schema_version": "1.0",
+        "event_id": "EVT-000028",
+        "timestamp": "2026-08-21T19:23:30+00:00",
+        "campaign_id": "CMP-FINAL-MIXED-001",
+        "ecu_id": "ECU-11",
+        "source_type": "SIMULATED",
+        "level": "WARNING",
+        "event_code": "RB-04",
+        "ota_status": "ROLLED_BACK",
+        "progress_pct": 43,
+        "message": "RB-04: self-test failure",
+        "rollback_trigger": "RB-04"
+      },
+      {
+        "schema_version": "1.0",
+        "event_id": "EVT-000029",
+        "timestamp": "2026-08-21T19:23:30+00:00",
+        "campaign_id": "CMP-FINAL-MIXED-001",
+        "ecu_id": "ECU-12",
+        "source_type": "SIMULATED",
+        "level": "INFO",
+        "event_code": "ECU_UPDATE_STARTED",
+        "ota_status": "DOWNLOADING",
+        "progress_pct": 0,
+        "message": "Mise à jour de Steering_Control_Module vers 5.5.0",
+        "rollback_trigger": null
+      },
+      {
+        "schema_version": "1.0",
+        "event_id": "EVT-000030",
+        "timestamp": "2026-08-21T19:23:30+00:00",
+        "campaign_id": "CMP-FINAL-MIXED-001",
+        "ecu_id": "ECU-12",
+        "source_type": "SIMULATED",
+        "level": "SUCCESS",
+        "event_code": "ECU_CONFIRMED",
+        "ota_status": "CONFIRMED",
+        "progress_pct": 46,
+        "message": "Steering_Control_Module confirmé sur le banc B",
+        "rollback_trigger": null
+      },
+      {
+        "schema_version": "1.0",
+        "event_id": "EVT-000031",
+        "timestamp": "2026-08-21T19:23:30+00:00",
+        "campaign_id": "CMP-FINAL-MIXED-001",
+        "ecu_id": "ECU-13",
+        "source_type": "SIMULATED",
+        "level": "INFO",
+        "event_code": "ECU_UPDATE_STARTED",
+        "ota_status": "DOWNLOADING",
+        "progress_pct": 0,
+        "message": "Mise à jour de Suspension_Control_Module vers 2.3.0",
+        "rollback_trigger": null
+      },
+      {
+        "schema_version": "1.0",
+        "event_id": "EVT-000032",
+        "timestamp": "2026-08-21T19:23:30+00:00",
+        "campaign_id": "CMP-FINAL-MIXED-001",
+        "ecu_id": "ECU-13",
+        "source_type": "SIMULATED",
+        "level": "SUCCESS",
+        "event_code": "ECU_CONFIRMED",
+        "ota_status": "CONFIRMED",
+        "progress_pct": 50,
+        "message": "Suspension_Control_Module confirmé sur le banc B",
+        "rollback_trigger": null
+      },
+      {
+        "schema_version": "1.0",
+        "event_id": "EVT-000033",
+        "timestamp": "2026-08-21T19:23:30+00:00",
+        "campaign_id": "CMP-FINAL-MIXED-001",
+        "ecu_id": "ECU-14",
+        "source_type": "SIMULATED",
+        "level": "INFO",
+        "event_code": "ECU_UPDATE_STARTED",
+        "ota_status": "DOWNLOADING",
+        "progress_pct": 0,
+        "message": "Mise à jour de Vehicle_Dynamics_Control vers 3.4.0",
+        "rollback_trigger": null
+      },
+      {
+        "schema_version": "1.0",
+        "event_id": "EVT-000034",
+        "timestamp": "2026-08-21T19:23:30+00:00",
+        "campaign_id": "CMP-FINAL-MIXED-001",
+        "ecu_id": "ECU-14",
+        "source_type": "SIMULATED",
+        "level": "SUCCESS",
+        "event_code": "ECU_CONFIRMED",
+        "ota_status": "CONFIRMED",
+        "progress_pct": 54,
+        "message": "Vehicle_Dynamics_Control confirmé sur le banc B",
+        "rollback_trigger": null
+      },
+      {
+        "schema_version": "1.0",
+        "event_id": "EVT-000035",
+        "timestamp": "2026-08-21T19:23:30+00:00",
+        "campaign_id": "CMP-FINAL-MIXED-001",
+        "ecu_id": "ECU-16",
+        "source_type": "SIMULATED",
+        "level": "INFO",
+        "event_code": "ECU_UPDATE_STARTED",
+        "ota_status": "DOWNLOADING",
+        "progress_pct": 0,
+        "message": "Mise à jour de Front_Camera vers 7.3.0",
+        "rollback_trigger": null
+      },
+      {
+        "schema_version": "1.0",
+        "event_id": "EVT-000036",
+        "timestamp": "2026-08-21T19:23:30+00:00",
+        "campaign_id": "CMP-FINAL-MIXED-001",
+        "ecu_id": "ECU-16",
+        "source_type": "SIMULATED",
+        "level": "SUCCESS",
+        "event_code": "ECU_CONFIRMED",
+        "ota_status": "CONFIRMED",
+        "progress_pct": 57,
+        "message": "Front_Camera confirmé sur le banc B",
+        "rollback_trigger": null
+      },
+      {
+        "schema_version": "1.0",
+        "event_id": "EVT-000037",
+        "timestamp": "2026-08-21T19:23:30+00:00",
+        "campaign_id": "CMP-FINAL-MIXED-001",
+        "ecu_id": "ECU-17",
+        "source_type": "SIMULATED",
+        "level": "INFO",
+        "event_code": "ECU_UPDATE_STARTED",
+        "ota_status": "DOWNLOADING",
+        "progress_pct": 0,
+        "message": "Mise à jour de Front_Radar vers 6.6.0",
+        "rollback_trigger": null
+      },
+      {
+        "schema_version": "1.0",
+        "event_id": "EVT-000038",
+        "timestamp": "2026-08-21T19:23:30+00:00",
+        "campaign_id": "CMP-FINAL-MIXED-001",
+        "ecu_id": "ECU-17",
+        "source_type": "SIMULATED",
+        "level": "WARNING",
+        "event_code": "FAULT_INJECTED",
+        "ota_status": "FAULT_INJECTION",
+        "progress_pct": 0,
+        "message": "Injection RB-18 dans Front_Radar",
+        "rollback_trigger": "RB-18"
+      },
+      {
+        "schema_version": "1.0",
+        "event_id": "EVT-000039",
+        "timestamp": "2026-08-21T19:23:30+00:00",
+        "campaign_id": "CMP-FINAL-MIXED-001",
+        "ecu_id": "ECU-17",
+        "source_type": "SIMULATED",
+        "level": "ERROR",
+        "event_code": "RB-18",
+        "ota_status": "ROLLBACK_LOCKOUT",
+        "progress_pct": 61,
+        "message": "RB-18: repeated rollback loop prevented after two failures",
+        "rollback_trigger": "RB-18"
+      },
+      {
+        "schema_version": "1.0",
+        "event_id": "EVT-000040",
+        "timestamp": "2026-08-21T19:23:30+00:00",
+        "campaign_id": "CMP-FINAL-MIXED-001",
+        "ecu_id": "ECU-18",
+        "source_type": "SIMULATED",
+        "level": "INFO",
+        "event_code": "ECU_UPDATE_STARTED",
+        "ota_status": "DOWNLOADING",
+        "progress_pct": 0,
+        "message": "Mise à jour de Corner_Radar_Left vers 4.2.0",
+        "rollback_trigger": null
+      },
+      {
+        "schema_version": "1.0",
+        "event_id": "EVT-000041",
+        "timestamp": "2026-08-21T19:23:30+00:00",
+        "campaign_id": "CMP-FINAL-MIXED-001",
+        "ecu_id": "ECU-18",
+        "source_type": "SIMULATED",
+        "level": "SUCCESS",
+        "event_code": "ECU_CONFIRMED",
+        "ota_status": "CONFIRMED",
+        "progress_pct": 64,
+        "message": "Corner_Radar_Left confirmé sur le banc B",
+        "rollback_trigger": null
+      },
+      {
+        "schema_version": "1.0",
+        "event_id": "EVT-000042",
+        "timestamp": "2026-08-21T19:23:30+00:00",
+        "campaign_id": "CMP-FINAL-MIXED-001",
+        "ecu_id": "ECU-19",
+        "source_type": "SIMULATED",
+        "level": "INFO",
+        "event_code": "ECU_UPDATE_STARTED",
+        "ota_status": "DOWNLOADING",
+        "progress_pct": 0,
+        "message": "Mise à jour de Corner_Radar_Right vers 4.2.0",
+        "rollback_trigger": null
+      },
+      {
+        "schema_version": "1.0",
+        "event_id": "EVT-000043",
+        "timestamp": "2026-08-21T19:23:30+00:00",
+        "campaign_id": "CMP-FINAL-MIXED-001",
+        "ecu_id": "ECU-19",
+        "source_type": "SIMULATED",
+        "level": "SUCCESS",
+        "event_code": "ECU_CONFIRMED",
+        "ota_status": "CONFIRMED",
+        "progress_pct": 68,
+        "message": "Corner_Radar_Right confirmé sur le banc B",
+        "rollback_trigger": null
+      },
+      {
+        "schema_version": "1.0",
+        "event_id": "EVT-000044",
+        "timestamp": "2026-08-21T19:23:30+00:00",
+        "campaign_id": "CMP-FINAL-MIXED-001",
+        "ecu_id": "ECU-21",
+        "source_type": "SIMULATED",
+        "level": "INFO",
+        "event_code": "ECU_UPDATE_STARTED",
+        "ota_status": "DOWNLOADING",
+        "progress_pct": 0,
+        "message": "Mise à jour de Zone_Front vers 3.1.0",
+        "rollback_trigger": null
+      },
+      {
+        "schema_version": "1.0",
+        "event_id": "EVT-000045",
+        "timestamp": "2026-08-21T19:23:30+00:00",
+        "campaign_id": "CMP-FINAL-MIXED-001",
+        "ecu_id": "ECU-21",
+        "source_type": "SIMULATED",
+        "level": "SUCCESS",
+        "event_code": "ECU_CONFIRMED",
+        "ota_status": "CONFIRMED",
+        "progress_pct": 71,
+        "message": "Zone_Front confirmé sur le banc B",
+        "rollback_trigger": null
+      },
+      {
+        "schema_version": "1.0",
+        "event_id": "EVT-000046",
+        "timestamp": "2026-08-21T19:23:30+00:00",
+        "campaign_id": "CMP-FINAL-MIXED-001",
+        "ecu_id": "ECU-22",
+        "source_type": "SIMULATED",
+        "level": "INFO",
+        "event_code": "ECU_UPDATE_STARTED",
+        "ota_status": "DOWNLOADING",
+        "progress_pct": 0,
+        "message": "Mise à jour de Zone_Rear vers 3.1.0",
+        "rollback_trigger": null
+      },
+      {
+        "schema_version": "1.0",
+        "event_id": "EVT-000047",
+        "timestamp": "2026-08-21T19:23:30+00:00",
+        "campaign_id": "CMP-FINAL-MIXED-001",
+        "ecu_id": "ECU-22",
+        "source_type": "SIMULATED",
+        "level": "SUCCESS",
+        "event_code": "ECU_CONFIRMED",
+        "ota_status": "CONFIRMED",
+        "progress_pct": 75,
+        "message": "Zone_Rear confirmé sur le banc B",
+        "rollback_trigger": null
+      },
+      {
+        "schema_version": "1.0",
+        "event_id": "EVT-000048",
+        "timestamp": "2026-08-21T19:23:30+00:00",
+        "campaign_id": "CMP-FINAL-MIXED-001",
+        "ecu_id": "ECU-25",
+        "source_type": "SIMULATED",
+        "level": "INFO",
+        "event_code": "ECU_UPDATE_STARTED",
+        "ota_status": "DOWNLOADING",
+        "progress_pct": 0,
+        "message": "Mise à jour de HVAC_Control vers 4.5.0",
+        "rollback_trigger": null
+      },
+      {
+        "schema_version": "1.0",
+        "event_id": "EVT-000049",
+        "timestamp": "2026-08-21T19:23:30+00:00",
+        "campaign_id": "CMP-FINAL-MIXED-001",
+        "ecu_id": "ECU-25",
+        "source_type": "SIMULATED",
+        "level": "SUCCESS",
+        "event_code": "ECU_CONFIRMED",
+        "ota_status": "CONFIRMED",
+        "progress_pct": 79,
+        "message": "HVAC_Control confirmé sur le banc B",
+        "rollback_trigger": null
+      },
+      {
+        "schema_version": "1.0",
+        "event_id": "EVT-000050",
+        "timestamp": "2026-08-21T19:23:30+00:00",
+        "campaign_id": "CMP-FINAL-MIXED-001",
+        "ecu_id": "ECU-27",
+        "source_type": "SIMULATED",
+        "level": "INFO",
+        "event_code": "ECU_UPDATE_STARTED",
+        "ota_status": "DOWNLOADING",
+        "progress_pct": 0,
+        "message": "Mise à jour de Instrument_Cluster vers 6.3.0",
+        "rollback_trigger": null
+      },
+      {
+        "schema_version": "1.0",
+        "event_id": "EVT-000051",
+        "timestamp": "2026-08-21T19:23:30+00:00",
+        "campaign_id": "CMP-FINAL-MIXED-001",
+        "ecu_id": "ECU-27",
+        "source_type": "SIMULATED",
+        "level": "SUCCESS",
+        "event_code": "ECU_CONFIRMED",
+        "ota_status": "CONFIRMED",
+        "progress_pct": 82,
+        "message": "Instrument_Cluster confirmé sur le banc B",
+        "rollback_trigger": null
+      },
+      {
+        "schema_version": "1.0",
+        "event_id": "EVT-000052",
+        "timestamp": "2026-08-21T19:23:30+00:00",
+        "campaign_id": "CMP-FINAL-MIXED-001",
+        "ecu_id": "ECU-28",
+        "source_type": "SIMULATED",
+        "level": "INFO",
+        "event_code": "ECU_UPDATE_STARTED",
+        "ota_status": "DOWNLOADING",
+        "progress_pct": 0,
+        "message": "Mise à jour de Audio_Amplifier vers 3.8.0",
+        "rollback_trigger": null
+      },
+      {
+        "schema_version": "1.0",
+        "event_id": "EVT-000053",
+        "timestamp": "2026-08-21T19:23:30+00:00",
+        "campaign_id": "CMP-FINAL-MIXED-001",
+        "ecu_id": "ECU-28",
+        "source_type": "SIMULATED",
+        "level": "SUCCESS",
+        "event_code": "ECU_CONFIRMED",
+        "ota_status": "CONFIRMED",
+        "progress_pct": 86,
+        "message": "Audio_Amplifier confirmé sur le banc B",
+        "rollback_trigger": null
+      },
+      {
+        "schema_version": "1.0",
+        "event_id": "EVT-000054",
+        "timestamp": "2026-08-21T19:23:30+00:00",
+        "campaign_id": "CMP-FINAL-MIXED-001",
+        "ecu_id": null,
+        "source_type": "SIMULATED",
+        "level": "INFO",
+        "event_code": "WAVE_STARTED",
+        "ota_status": null,
+        "progress_pct": 0,
+        "message": "Vague 4 : ECU-04, ECU-23, ECU-24",
+        "rollback_trigger": null
+      },
+      {
+        "schema_version": "1.0",
+        "event_id": "EVT-000055",
+        "timestamp": "2026-08-21T19:23:30+00:00",
+        "campaign_id": "CMP-FINAL-MIXED-001",
+        "ecu_id": "ECU-04",
+        "source_type": "SIMULATED",
+        "level": "INFO",
+        "event_code": "ECU_UPDATE_STARTED",
+        "ota_status": "DOWNLOADING",
+        "progress_pct": 0,
+        "message": "Mise à jour de Diagnostic_Gateway vers 2.5.0",
+        "rollback_trigger": null
+      },
+      {
+        "schema_version": "1.0",
+        "event_id": "EVT-000056",
+        "timestamp": "2026-08-21T19:23:30+00:00",
+        "campaign_id": "CMP-FINAL-MIXED-001",
+        "ecu_id": "ECU-04",
+        "source_type": "SIMULATED",
+        "level": "SUCCESS",
+        "event_code": "ECU_CONFIRMED",
+        "ota_status": "CONFIRMED",
+        "progress_pct": 89,
+        "message": "Diagnostic_Gateway confirmé sur le banc B",
+        "rollback_trigger": null
+      },
+      {
+        "schema_version": "1.0",
+        "event_id": "EVT-000057",
+        "timestamp": "2026-08-21T19:23:30+00:00",
+        "campaign_id": "CMP-FINAL-MIXED-001",
+        "ecu_id": "ECU-23",
+        "source_type": "SIMULATED",
+        "level": "INFO",
+        "event_code": "ECU_UPDATE_STARTED",
+        "ota_status": "DOWNLOADING",
+        "progress_pct": 0,
+        "message": "Mise à jour de Door_Control_Left vers 2.6.0",
+        "rollback_trigger": null
+      },
+      {
+        "schema_version": "1.0",
+        "event_id": "EVT-000058",
+        "timestamp": "2026-08-21T19:23:30+00:00",
+        "campaign_id": "CMP-FINAL-MIXED-001",
+        "ecu_id": "ECU-23",
+        "source_type": "SIMULATED",
+        "level": "SUCCESS",
+        "event_code": "ECU_CONFIRMED",
+        "ota_status": "CONFIRMED",
+        "progress_pct": 93,
+        "message": "Door_Control_Left confirmé sur le banc B",
+        "rollback_trigger": null
+      },
+      {
+        "schema_version": "1.0",
+        "event_id": "EVT-000059",
+        "timestamp": "2026-08-21T19:23:30+00:00",
+        "campaign_id": "CMP-FINAL-MIXED-001",
+        "ecu_id": "ECU-24",
+        "source_type": "SIMULATED",
+        "level": "INFO",
+        "event_code": "ECU_UPDATE_STARTED",
+        "ota_status": "DOWNLOADING",
+        "progress_pct": 0,
+        "message": "Mise à jour de Door_Control_Right vers 2.6.0",
+        "rollback_trigger": null
+      },
+      {
+        "schema_version": "1.0",
+        "event_id": "EVT-000060",
+        "timestamp": "2026-08-21T19:23:30+00:00",
+        "campaign_id": "CMP-FINAL-MIXED-001",
+        "ecu_id": "ECU-24",
+        "source_type": "SIMULATED",
+        "level": "SUCCESS",
+        "event_code": "ECU_CONFIRMED",
+        "ota_status": "CONFIRMED",
+        "progress_pct": 96,
+        "message": "Door_Control_Right confirmé sur le banc B",
+        "rollback_trigger": null
+      },
+      {
+        "schema_version": "1.0",
+        "event_id": "EVT-000061",
+        "timestamp": "2026-08-21T19:23:30+00:00",
+        "campaign_id": "CMP-FINAL-MIXED-001",
+        "ecu_id": null,
+        "source_type": "SIMULATED",
+        "level": "INFO",
+        "event_code": "WAVE_STARTED",
+        "ota_status": null,
+        "progress_pct": 0,
+        "message": "Vague 5 : ECU-02",
+        "rollback_trigger": null
+      },
+      {
+        "schema_version": "1.0",
+        "event_id": "EVT-000062",
+        "timestamp": "2026-08-21T19:23:30+00:00",
+        "campaign_id": "CMP-FINAL-MIXED-001",
+        "ecu_id": "ECU-02",
+        "source_type": "SIMULATED",
+        "level": "INFO",
+        "event_code": "ECU_UPDATE_STARTED",
+        "ota_status": "DOWNLOADING",
+        "progress_pct": 0,
+        "message": "Mise à jour de Connectivity_Unit_EP150 vers 1.5.0",
+        "rollback_trigger": null
+      },
+      {
+        "schema_version": "1.0",
+        "event_id": "EVT-000063",
+        "timestamp": "2026-08-21T19:23:30+00:00",
+        "campaign_id": "CMP-FINAL-MIXED-001",
+        "ecu_id": "ECU-02",
+        "source_type": "SIMULATED",
+        "level": "WARNING",
+        "event_code": "FAULT_INJECTED",
+        "ota_status": "FAULT_INJECTION",
+        "progress_pct": 0,
+        "message": "Injection PFE-RECOVERY dans Connectivity_Unit_EP150",
+        "rollback_trigger": "PFE-RECOVERY"
+      },
+      {
+        "schema_version": "1.0",
+        "event_id": "EVT-000064",
+        "timestamp": "2026-08-21T19:23:30+00:00",
+        "campaign_id": "CMP-FINAL-MIXED-001",
+        "ecu_id": "ECU-02",
+        "source_type": "SIMULATED",
+        "level": "ERROR",
+        "event_code": "PFE-RECOVERY",
+        "ota_status": "RECOVERY_BOOT",
+        "progress_pct": 100,
+        "message": "PFE-RECOVERY: both A/B banks failed",
+        "rollback_trigger": "PFE-RECOVERY"
+      },
+      {
+        "schema_version": "1.0",
+        "event_id": "EVT-000065",
+        "timestamp": "2026-08-21T19:23:30+00:00",
+        "campaign_id": "CMP-FINAL-MIXED-001",
+        "ecu_id": null,
+        "source_type": "SIMULATED",
+        "level": "WARNING",
+        "event_code": "CAMPAIGN_COMPLETED_WITH_FAILURES",
+        "ota_status": null,
+        "progress_pct": 100,
+        "message": "Campagne terminée : 20 confirmés, 1 rejetés, 1 restaurés, 4 bloqués, 1 verrouillés, 1 en Recovery",
+        "rollback_trigger": null
+      }
+    ]
+  }
+}
