@@ -1,0 +1,88 @@
+{
+  "schema_version": "1.0",
+  "evidence_id": "multi-ecu-dashboard-v1",
+  "generated_at": "2026-08-22T00:27:17.251407+00:00",
+  "source_mode": "SIMULATION",
+  "validation_status": "PASSED",
+  "dashboard": {
+    "name": "PFE OTA Command Center",
+    "version": "1.0.0",
+    "route": "/dashboard/",
+    "refresh_interval_s": 10,
+    "section_count": 6,
+    "api_route_count": 6
+  },
+  "reference_campaign": {
+    "campaign_id": "CMP-FINAL-MIXED-001",
+    "status": "COMPLETED_WITH_FAILURES",
+    "total_ecus": 28,
+    "event_count": 65,
+    "wave_count": 5,
+    "elapsed_s": 99.0,
+    "time_budget_s": 90.0,
+    "budget_status": "EXCEEDED",
+    "status_distribution": {
+      "CONFIRMED": 20,
+      "RECOVERY_BOOT": 1,
+      "REJECTED": 1,
+      "BLOCKED": 4,
+      "ROLLED_BACK": 1,
+      "ROLLBACK_LOCKOUT": 1
+    },
+    "wave_durations_s": [
+      15.0,
+      15.0,
+      36.0,
+      15.0,
+      18.0
+    ]
+  },
+  "interface_checks": {
+    "responsive_css": true,
+    "reduced_motion_support": true,
+    "local_assets_only": true,
+    "automatic_refresh": true,
+    "ecu_search": true,
+    "status_filter": true,
+    "event_level_filter": true,
+    "html_escaping": true
+  },
+  "required_javascript_functions": [
+    "renderCampaign",
+    "renderStatusChart",
+    "renderWaveChart",
+    "renderEcuTable",
+    "renderEventTable",
+    "loadDashboard"
+  ],
+  "asset_checks": [
+    {
+      "filename": "index.html",
+      "route": "/dashboard/",
+      "status_code": 200,
+      "content_type": "text/html; charset=utf-8",
+      "sha256": "acc9ef6b1cb9b4693c16da257f669506c4997d82717350c22906fad7d8f55f75"
+    },
+    {
+      "filename": "styles.css",
+      "route": "/dashboard/styles.css",
+      "status_code": 200,
+      "content_type": "text/css; charset=utf-8",
+      "sha256": "667b4bae45a503b5c7743f75a8334630080deed647746a1e871453a4ff8afb1a"
+    },
+    {
+      "filename": "app.js",
+      "route": "/dashboard/app.js",
+      "status_code": 200,
+      "content_type": "text/javascript; charset=utf-8",
+      "sha256": "f36d43c5265f741d11c900a6e1aa4f69d92b536567679aeb005ade573ae4e313"
+    },
+    {
+      "filename": "config.json",
+      "route": "/dashboard/config.json",
+      "status_code": 200,
+      "content_type": "application/json",
+      "sha256": "78c8f3cd2ecde69cf969bc546944563d18846441c5ebdcc408abdac093afd524"
+    }
+  ]
+}
