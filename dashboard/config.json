@@ -1,0 +1,71 @@
+{
+  "schema_version": "1.0",
+  "dashboard_name": "PFE OTA Command Center",
+  "dashboard_version": "1.0.0",
+  "source_mode": "SIMULATION",
+  "refresh_interval_s": 10,
+  "time_budget_s": 90,
+  "api_routes": {
+    "health": "/health",
+    "campaign": "/api/v1/campaign",
+    "kpis": "/api/v1/kpis",
+    "ecus": "/api/v1/ecus",
+    "waves": "/api/v1/waves",
+    "events": "/api/v1/events"
+  },
+  "sections": [
+    "campaign_overview",
+    "functional_kpis",
+    "status_distribution",
+    "wave_timing",
+    "ecu_table",
+    "event_log"
+  ],
+  "status_definitions": [
+    {
+      "status": "CONFIRMED",
+      "label": "Confirmé",
+      "color": "#22C55E",
+      "severity": "SUCCESS"
+    },
+    {
+      "status": "REJECTED",
+      "label": "Rejeté",
+      "color": "#EF4444",
+      "severity": "ERROR"
+    },
+    {
+      "status": "ROLLED_BACK",
+      "label": "Restauré",
+      "color": "#F59E0B",
+      "severity": "WARNING"
+    },
+    {
+      "status": "BLOCKED",
+      "label": "Bloqué",
+      "color": "#64748B",
+      "severity": "WARNING"
+    },
+    {
+      "status": "ROLLBACK_LOCKOUT",
+      "label": "Verrouillé",
+      "color": "#A855F7",
+      "severity": "CRITICAL"
+    },
+    {
+      "status": "RECOVERY_BOOT",
+      "label": "Recovery",
+      "color": "#06B6D4",
+      "severity": "CRITICAL"
+    }
+  ],
+  "theme": {
+    "background": "#07111F",
+    "surface": "#0E1B2B",
+    "surface_alt": "#13243A",
+    "border": "#223550",
+    "primary": "#2F80ED",
+    "text": "#EAF2FF",
+    "muted_text": "#8FA3BF"
+  }
+}

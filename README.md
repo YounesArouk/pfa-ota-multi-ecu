@@ -43,9 +43,12 @@ Les données sont actuellement simulées et identifiées par le mode `SIMULATION
 - KPI fonctionnels et temporels ;
 - exports JSON et CSV ;
 - API REST en lecture seule ;
+- dashboard multi-ECU opérationnel ;
+- graphiques et tableaux filtrables ;
+- rafraîchissement automatique ;
 - documentation OpenAPI ;
 - preuves JSON reproductibles ;
-- 100 tests automatiques.
+- 113 tests automatiques.
 
 ## Résultat de référence
 
@@ -88,6 +91,8 @@ api.main:app \
 --port 8000
 ```
 
+Dashboard : http://127.0.0.1:8000/dashboard/
+
 Documentation interactive :
 
 ```text
@@ -107,6 +112,8 @@ http://127.0.0.1:8000/docs
 
 La documentation détaillée se trouve dans `docs/common-api.md`.
 
+Documentation du dashboard : `docs/dashboard.md`.
+
 ## Tests
 
 Avec `.venv` activé :
@@ -119,13 +126,13 @@ discover -s tests -v
 Résultat validé :
 
 ```text
-Ran 100 tests
+Ran 113 tests
 OK
 ```
 
 ## Données de référence
 
-Les données destinées à l’API et au futur dashboard sont dans :
+Les données destinées à l’API et au dashboard sont dans :
 
 ```text
 data/latest/
@@ -145,7 +152,7 @@ Ce répertoire contient :
 api/         API REST et chargeur de données
 config/      contrats et configurations
 data/        inventaire et exports de référence
-dashboard/   futur dashboard multi-ECU
+dashboard/   interface de supervision multi-ECU
 docs/        documentation technique
 evidence/    preuves JSON
 simulator/   ECU, orchestrateur, timing et exporteur
@@ -163,11 +170,10 @@ tests/       tests automatiques
 - `additional-faults-pass-v1` ;
 - `final-mixed-campaign-pass-v1` ;
 - `simulated-timing-kpis-pass-v1` ;
-- `campaign-exports-pass-v1`.
+- `campaign-exports-pass-v1` ;
+- `common-api-pass-v1` ;
 
 ## Prochaines étapes
 
-- développer le dashboard multi-ECU ;
-- connecter le dashboard à l’API ;
 - ajouter le connecteur vers la cible QEMU/RAUC ;
 - préparer la démonstration hybride.

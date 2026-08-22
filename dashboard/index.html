@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+  >
+  <meta
+    name="description"
+    content="Supervision de la campagne OTA multi-ECU"
+  >
+  <title>PFE OTA Command Center</title>
+  <link rel="icon" href="data:,">
+  <link
+    rel="stylesheet"
+    href="/dashboard/styles.css"
+  >
+  <script
+    src="/dashboard/app.js"
+    defer
+  ></script>
+</head>
+
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand">
+        <div
+          class="brand-mark"
+          aria-hidden="true"
+        >
+          OTA
+        </div>
+
+        <div>
+          <p class="eyebrow">
+            Secure Vehicle Software
+          </p>
+          <h1>PFE OTA Command Center</h1>
+        </div>
+      </div>
+
+      <div class="topbar-actions">
+        <div
+          class="connection-state"
+          id="connectionState"
+          role="status"
+        >
+          <span
+            class="status-dot"
+            id="connectionDot"
+          ></span>
+          <span id="connectionLabel">
+            Connexion…
+          </span>
+        </div>
+
+        <button
+          class="button button-primary"
+          id="refreshButton"
+          type="button"
+        >
+          Actualiser
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <div
+        class="error-banner"
+        id="errorBanner"
+        role="alert"
+        hidden
+      ></div>
+
+      <section
+        class="campaign-hero"
+        aria-labelledby="campaignTitle"
+      >
+        <div>
+          <p class="section-label">
+            Campagne active
+          </p>
+
+          <div class="campaign-heading">
+            <h2 id="campaignTitle">
+              Chargement…
+            </h2>
+
+            <span
+              class="status-pill"
+              id="campaignStatus"
+            >
+              —
+            </span>
+          </div>
+
+          <p
+            class="campaign-release"
+            id="campaignRelease"
+          >
+            Release : —
+          </p>
+        </div>
+
+        <div class="campaign-meta">
+          <div>
+            <span>Source</span>
+            <strong id="sourceMode">—</strong>
+          </div>
+
+          <div>
+            <span>Dernière actualisation</span>
+            <strong id="lastUpdated">—</strong>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="kpi-section"
+        aria-labelledby="kpiTitle"
+      >
+        <div class="section-heading">
+          <div>
+            <p class="section-label">
+              Vue flotte
+            </p>
+            <h2 id="kpiTitle">
+              Indicateurs principaux
+            </h2>
+          </div>
+        </div>
+
+        <div class="kpi-grid">
+          <article class="kpi-card">
+            <span>ECU ciblés</span>
+            <strong id="totalEcus">—</strong>
+            <small>Flotte complète</small>
+          </article>
+
+          <article class="kpi-card success">
+            <span>Confirmés</span>
+            <strong id="confirmedEcus">—</strong>
+            <small id="confirmationRate">
+              — %
+            </small>
+          </article>
+
+          <article class="kpi-card danger">
+            <span>Échecs</span>
+            <strong id="failedEcus">—</strong>
+            <small id="failureRate">
+              — %
+            </small>
+          </article>
+
+          <article class="kpi-card">
+            <span>Durée campagne</span>
+            <strong id="elapsedTime">—</strong>
+            <small>secondes simulées</small>
+          </article>
+
+          <article class="kpi-card">
+            <span>Budget temporel</span>
+            <strong id="timeBudget">—</strong>
+            <small>secondes</small>
+          </article>
+
+          <article
+            class="kpi-card"
+            id="budgetCard"
+          >
+            <span>Marge budget</span>
+            <strong id="budgetMargin">—</strong>
+            <small id="budgetStatus">—</small>
+          </article>
+        </div>
+      </section>
+
+      <section class="visual-grid">
+        <article class="panel">
+          <div class="panel-heading">
+            <div>
+              <p class="section-label">
+                Résultats
+              </p>
+              <h2>Répartition des états</h2>
+            </div>
+
+            <span class="panel-unit">
+              28 ECU
+            </span>
+          </div>
+
+          <div
+            class="status-chart"
+            id="statusChart"
+            aria-label="Répartition des états OTA"
+          >
+            <p class="loading-text">
+              Chargement des états…
+            </p>
+          </div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-heading">
+            <div>
+              <p class="section-label">
+                Orchestration
+              </p>
+              <h2>Durée des vagues</h2>
+            </div>
+
+            <span class="panel-unit">
+              secondes
+            </span>
+          </div>
+
+          <div
+            class="wave-chart"
+            id="waveChart"
+            aria-label="Durée des vagues OTA"
+          >
+            <p class="loading-text">
+              Chargement des vagues…
+            </p>
+          </div>
+        </article>
+      </section>
+
+      <section
+        class="panel table-panel"
+        aria-labelledby="ecuTableTitle"
+      >
+        <div class="panel-heading table-heading">
+          <div>
+            <p class="section-label">
+              Flotte
+            </p>
+            <h2 id="ecuTableTitle">
+              État des ECU
+            </h2>
+          </div>
+
+          <div class="table-controls">
+            <label>
+              <span class="sr-only">
+                Rechercher un ECU
+              </span>
+              <input
+                id="ecuSearch"
+                type="search"
+                placeholder="Rechercher un ECU…"
+              >
+            </label>
+
+            <label>
+              <span class="sr-only">
+                Filtrer par état
+              </span>
+              <select id="statusFilter">
+                <option value="">
+                  Tous les états
+                </option>
+              </select>
+            </label>
+          </div>
+        </div>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>ECU</th>
+                <th>Nom</th>
+                <th>Domaine</th>
+                <th>Version cible</th>
+                <th>État OTA</th>
+                <th>Durée</th>
+                <th>Partition</th>
+                <th>Défaut</th>
+              </tr>
+            </thead>
+
+            <tbody id="ecuTableBody">
+              <tr>
+                <td colspan="8">
+                  Chargement des ECU…
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p
+          class="table-summary"
+          id="ecuTableSummary"
+        >
+          —
+        </p>
+      </section>
+
+      <section
+        class="panel table-panel"
+        aria-labelledby="eventTableTitle"
+      >
+        <div class="panel-heading table-heading">
+          <div>
+            <p class="section-label">
+              Traçabilité
+            </p>
+            <h2 id="eventTableTitle">
+              Journal des événements
+            </h2>
+          </div>
+
+          <label>
+            <span class="sr-only">
+              Filtrer les événements
+            </span>
+            <select id="eventLevelFilter">
+              <option value="">
+                Tous les niveaux
+              </option>
+              <option value="INFO">INFO</option>
+              <option value="WARNING">
+                WARNING
+              </option>
+              <option value="ERROR">
+                ERROR
+              </option>
+            </select>
+          </label>
+        </div>
+
+        <div class="table-wrapper event-table">
+          <table>
+            <thead>
+              <tr>
+                <th>Heure</th>
+                <th>ECU</th>
+                <th>Niveau</th>
+                <th>Code</th>
+                <th>État OTA</th>
+                <th>Message</th>
+              </tr>
+            </thead>
+
+            <tbody id="eventTableBody">
+              <tr>
+                <td colspan="6">
+                  Chargement des événements…
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p
+          class="table-summary"
+          id="eventTableSummary"
+        >
+          —
+        </p>
+      </section>
+    </main>
+
+    <footer>
+      <span>
+        PFE OTA Multi-ECU Simulator
+      </span>
+      <span>
+        Données simulées · API v1
+      </span>
+    </footer>
+  </div>
+
+  <noscript>
+    JavaScript doit être activé pour afficher
+    le dashboard.
+  </noscript>
+</body>
+</html>

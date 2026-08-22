@@ -1,7 +1,10 @@
 from collections.abc import Callable
+from pathlib import Path
 from typing import Any
 
 from fastapi import FastAPI, HTTPException
+from fastapi.responses import RedirectResponse
+from fastapi.staticfiles import StaticFiles
 
 from api.data_store import (
     CampaignDataError,
@@ -13,6 +16,12 @@ API_TITLE = "PFE Multi-ECU OTA API"
 API_VERSION = "1.0.0"
 SOURCE_MODE = "SIMULATION"
 
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+DASHBOARD_DIRECTORY = (
+    PROJECT_ROOT
+    / "dashboard"
+)
+
 app = FastAPI(
     title=API_TITLE,
     version=API_VERSION,
@@ -20,6 +29,15 @@ app = FastAPI(
         "API en lecture seule pour les données "
         "de campagne OTA multi-ECU."
     ),
+)
+
+app.mount(
+    "/dashboard",
+    StaticFiles(
+        directory=DASHBOARD_DIRECTORY,
+        html=True,
+    ),
+    name="dashboard",
 )
 
 data_store = CampaignDataStore()
@@ -35,6 +53,17 @@ def _load_or_raise(
             status_code=500,
             detail=str(error),
         ) from error
+
+
+@app.get(
+    "/",
+    include_in_schema=False,
+)
+def get_root() -> RedirectResponse:
+    return RedirectResponse(
+        url="/dashboard/",
+        status_code=307,
+    )
 
 
 @app.get(
