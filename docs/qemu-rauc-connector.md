@@ -99,6 +99,16 @@ OVMF est nécessaire parce que l’image WIC démarre avec EFI et GRUB.
 
 L’overlay QCOW2 protège l’image WIC originale contre les modifications directes.
 
+Le cycle de vie de QEMU est automatisé par :
+
+```text
+scripts/start-qemu-rauc.sh
+scripts/status-qemu-rauc.sh
+scripts/stop-qemu-rauc.sh
+```
+
+Le script de démarrage attend successivement le port SSH, la cible Yocto et la validation du health check RAUC.
+
 ## 6. Lecture des données réelles
 
 Le connecteur est implémenté dans :
@@ -222,7 +232,10 @@ La validation a confirmé :
 - le health check `GOOD` ;
 - la séparation entre 28 ECU simulés et `QEMU-ECU-01` ;
 - le mode hors ligne contrôlé ;
-- l’affichage réel dans le dashboard hybride.
+- l’affichage réel dans le dashboard hybride ;
+- le démarrage automatisé de QEMU ;
+- l’attente du health check ;
+- l’arrêt propre de la cible.
 
 La suite complète contient :
 
@@ -264,12 +277,12 @@ Le journal démontre notamment :
 
 Le connecteur est en lecture seule : il supervise la cible, mais ne lance pas encore une installation RAUC depuis le dashboard.
 
-Le lancement de QEMU repose encore sur une commande manuelle utilisant OVMF et un overlay QCOW2.
+Le lancement et l’arrêt de QEMU sont automatisés, mais les chemins par défaut correspondent encore à l’environnement local du démonstrateur.
 
 La politique SSH est adaptée au démonstrateur local, pas à un environnement de production.
 
 Les prochaines améliorations concernent :
 
-- l’automatisation du démarrage et de l’arrêt de QEMU ;
-- la démonstration d’une mise à jour RAUC observée depuis le dashboard ;
-- la préparation du scénario final de démonstration hybride.
+- le déclenchement sécurisé d’une installation RAUC ;
+- la gestion de plusieurs cibles réelles ;
+- l’adaptation des scripts à un environnement de production.

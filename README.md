@@ -44,6 +44,7 @@ Le système utilise le mode `HYBRID` : les KPI de campagne proviennent de 28 ECU
 - exports JSON et CSV ;
 - API REST en lecture seule ;
 - connecteur SSH vers la cible QEMU/RAUC ;
+- scripts de démarrage, statut et arrêt de QEMU ;
 - séparation entre flotte simulée et cible réelle ;
 - fonctionnement contrôlé lorsque QEMU est hors ligne ;
 - dashboard multi-ECU opérationnel ;
@@ -188,8 +189,8 @@ Image dédiée au connecteur :
 - `multi-ecu-dashboard-pass-v1` ;
 - `qemu-rauc-connector-pass-v1` ;
 
-## Prochaines étapes
+## Perspectives
 
-- automatiser le démarrage et l’arrêt de QEMU ;
-- exécuter une mise à jour RAUC observée depuis le dashboard ;
-- préparer la démonstration hybride finale.
+- déclencher une installation RAUC depuis une interface sécurisée ;
+- gérer plusieurs cibles QEMU ou physiques ;
+- ajouter authentification, TLS et contrôle d’accès.
