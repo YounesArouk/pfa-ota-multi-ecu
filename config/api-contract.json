@@ -2,7 +2,7 @@
   "schema_version": "1.0",
   "api_name": "PFE Multi-ECU OTA API",
   "api_version": "1.0.0",
-  "source_mode": "SIMULATION",
+  "source_mode": "HYBRID",
   "data_directory": "data/latest",
   "read_only": true,
   "routes": [
@@ -47,6 +47,22 @@
       "response_type": "array",
       "data_source": "events.csv",
       "description": "Retourne les événements de la campagne."
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/qemu-ecu",
+      "response_type": "object",
+      "data_source": null,
+      "live_source": "SSH QEMU/RAUC",
+      "description": "Retourne l’état de la cible Yocto/RAUC exécutée sous QEMU."
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/sources",
+      "response_type": "object",
+      "data_source": "campaign-summary.json",
+      "live_source": "SSH QEMU/RAUC",
+      "description": "Décrit séparément la flotte simulée et la cible QEMU/RAUC."
     }
   ]
 }

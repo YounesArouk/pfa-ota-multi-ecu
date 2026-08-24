@@ -2,7 +2,7 @@
   "schema_version": "1.0",
   "dashboard_name": "PFE OTA Command Center",
   "dashboard_version": "1.0.0",
-  "source_mode": "SIMULATION",
+  "source_mode": "HYBRID",
   "refresh_interval_s": 10,
   "time_budget_s": 90,
   "api_routes": {
@@ -11,10 +11,13 @@
     "kpis": "/api/v1/kpis",
     "ecus": "/api/v1/ecus",
     "waves": "/api/v1/waves",
-    "events": "/api/v1/events"
+    "events": "/api/v1/events",
+    "qemu_ecu": "/api/v1/qemu-ecu",
+    "sources": "/api/v1/sources"
   },
   "sections": [
     "campaign_overview",
+    "qemu_rauc_target",
     "functional_kpis",
     "status_distribution",
     "wave_timing",

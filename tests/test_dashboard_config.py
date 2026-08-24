@@ -38,7 +38,7 @@ class DashboardConfigurationTests(
         )
         self.assertEqual(
             self.config["source_mode"],
-            "SIMULATION",
+            "HYBRID",
         )
         self.assertEqual(
             self.config["time_budget_s"],
@@ -106,7 +106,11 @@ class DashboardConfigurationTests(
     def test_sections_are_unique(self):
         sections = self.config["sections"]
 
-        self.assertEqual(len(sections), 6)
+        self.assertEqual(len(sections), 7)
+        self.assertIn(
+            "qemu_rauc_target",
+            sections,
+        )
         self.assertEqual(
             len(sections),
             len(set(sections)),

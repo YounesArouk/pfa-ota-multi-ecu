@@ -1,6 +1,6 @@
 # PFE OTA Multi-ECU Simulator
 
-Plateforme de simulation d’une campagne OTA sécurisée sur 28 ECU avec dépendances, partitions A/B, rollback, Recovery, KPI temporels, exports JSON/CSV et API REST.
+Plateforme hybride de mise à jour OTA sécurisée combinant une flotte simulée de 28 ECU et une cible Yocto/RAUC réelle exécutée sous QEMU.
 
 ## Contexte
 
@@ -24,7 +24,7 @@ API REST FastAPI
 Dashboard multi-ECU
 ```
 
-Les données sont actuellement simulées et identifiées par le mode `SIMULATION`.
+Le système utilise le mode `HYBRID` : les KPI de campagne proviennent de 28 ECU simulés, tandis que la cible `QEMU-ECU-01` expose séparément son état Yocto/RAUC réel.
 
 ## Fonctionnalités validées
 
@@ -43,12 +43,16 @@ Les données sont actuellement simulées et identifiées par le mode `SIMULATION
 - KPI fonctionnels et temporels ;
 - exports JSON et CSV ;
 - API REST en lecture seule ;
+- connecteur SSH vers la cible QEMU/RAUC ;
+- scripts de démarrage, statut et arrêt de QEMU ;
+- séparation entre flotte simulée et cible réelle ;
+- fonctionnement contrôlé lorsque QEMU est hors ligne ;
 - dashboard multi-ECU opérationnel ;
 - graphiques et tableaux filtrables ;
 - rafraîchissement automatique ;
 - documentation OpenAPI ;
 - preuves JSON reproductibles ;
-- 113 tests automatiques.
+- 120 tests automatiques.
 
 ## Résultat de référence
 
@@ -109,8 +113,12 @@ http://127.0.0.1:8000/docs
 | `GET` | `/api/v1/ecus` |
 | `GET` | `/api/v1/waves` |
 | `GET` | `/api/v1/events` |
+| `GET` | `/api/v1/qemu-ecu` |
+| `GET` | `/api/v1/sources` |
 
-La documentation détaillée se trouve dans `docs/common-api.md`.
+La documentation détaillée de l’API se trouve dans `docs/common-api.md`.
+
+La documentation du connecteur réel se trouve dans `docs/qemu-rauc-connector.md`.
 
 Documentation du dashboard : `docs/dashboard.md`.
 
@@ -126,7 +134,7 @@ discover -s tests -v
 Résultat validé :
 
 ```text
-Ran 113 tests
+Ran 120 tests
 OK
 ```
 
@@ -165,6 +173,12 @@ tests/       tests automatiques
 - commit validé : `048ff33` ;
 - tag : `pfe-ota-mono-ecu-v2-validated`.
 
+Image dédiée au connecteur :
+
+- branche : `feature/v2-dashboard-connector` ;
+- commit : `a19f3e3` ;
+- image : `pfe-ota-dashboard-image`.
+
 ## Jalons Git multi-ECU
 
 - `additional-faults-pass-v1` ;
@@ -172,8 +186,11 @@ tests/       tests automatiques
 - `simulated-timing-kpis-pass-v1` ;
 - `campaign-exports-pass-v1` ;
 - `common-api-pass-v1` ;
+- `multi-ecu-dashboard-pass-v1` ;
+- `qemu-rauc-connector-pass-v1` ;
 
-## Prochaines étapes
+## Perspectives
 
-- ajouter le connecteur vers la cible QEMU/RAUC ;
-- préparer la démonstration hybride.
+- déclencher une installation RAUC depuis une interface sécurisée ;
+- gérer plusieurs cibles QEMU ou physiques ;
+- ajouter authentification, TLS et contrôle d’accès.

@@ -123,6 +123,15 @@ class DashboardTests(unittest.TestCase):
             "refreshButton",
             "campaignTitle",
             "totalEcus",
+            "qemuPanelTitle",
+            "qemuConnection",
+            "qemuEcuId",
+            "qemuSourceType",
+            "qemuVersion",
+            "qemuSlot",
+            "qemuOtaStatus",
+            "qemuHealthStatus",
+            "qemuError",
             "statusChart",
             "waveChart",
             "ecuSearch",
@@ -173,6 +182,7 @@ class DashboardTests(unittest.TestCase):
         required_functions = {
             "function escapeHtml",
             "function renderCampaign",
+            "function renderQemuTarget",
             "function renderStatusChart",
             "function renderWaveChart",
             "function renderEcuTable",
@@ -180,6 +190,14 @@ class DashboardTests(unittest.TestCase):
             "async function loadDashboard",
             "async function initialize",
         }
+        self.assertIn(
+            "routes.sources",
+            javascript,
+        )
+        self.assertIn(
+            "sources.qemu_rauc_target",
+            javascript,
+        )
 
         for function_name in required_functions:
             self.assertIn(

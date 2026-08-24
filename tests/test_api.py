@@ -32,7 +32,7 @@ class CampaignAPITests(unittest.TestCase):
         )
         self.assertEqual(
             data["source_mode"],
-            "SIMULATION",
+            "HYBRID",
         )
         self.assertTrue(data["read_only"])
 
@@ -145,6 +145,8 @@ class CampaignAPITests(unittest.TestCase):
             "/api/v1/ecus",
             "/api/v1/waves",
             "/api/v1/events",
+            "/api/v1/qemu-ecu",
+            "/api/v1/sources",
         }
 
         self.assertEqual(
