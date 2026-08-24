@@ -2,7 +2,7 @@
 
 ## 1. Objectif
 
-Le dashboard fournit une vue de supervision de la campagne OTA simulée sur 28 ECU.
+Le dashboard fournit une vue hybride combinant la campagne OTA simulée sur 28 ECU et l’état réel d’une cible Yocto/RAUC sous QEMU.
 
 Il permet de consulter :
 
@@ -12,20 +12,21 @@ Il permet de consulter :
 - la répartition des états OTA ;
 - les durées des vagues ;
 - les résultats détaillés des ECU ;
-- le journal des événements.
+- le journal des événements ;
+- la connexion de la cible QEMU ;
+- la version Yocto et le slot RAUC actif ;
+- l’état réel du health check.
 
 ## 2. Architecture
 
 Le dashboard est servi par la même application FastAPI que l’API :
 
 ```text
-Simulateur
-    ↓
-Exports JSON et CSV
-    ↓
-API FastAPI
-    ↓
-Dashboard HTML/CSS/JavaScript
+Simulation → Exports JSON/CSV ─┐
+                              ├→ API FastAPI
+QEMU/RAUC réel → SSH ─────────┘
+                                     ↓
+                         Dashboard hybride
 ```
 
 L’adresse du dashboard est :
@@ -61,6 +62,8 @@ Le dashboard charge les routes suivantes :
 | `/api/v1/ecus` | Tableau des 28 ECU |
 | `/api/v1/waves` | Graphique des cinq vagues |
 | `/api/v1/events` | Journal des événements |
+| `/api/v1/qemu-ecu` | État direct de la cible QEMU/RAUC |
+| `/api/v1/sources` | Sources simulée et réelle |
 
 Les données sont actualisées automatiquement toutes les 10 secondes.
 
@@ -159,7 +162,7 @@ La validation couvre :
 
 - les quatre ressources statiques ;
 - la redirection depuis `/` ;
-- les six routes API ;
+- les huit routes API ;
 - les identifiants HTML obligatoires ;
 - l’unicité des identifiants ;
 - l’absence de ressources externes ;
@@ -168,12 +171,13 @@ La validation couvre :
 - le contrat de configuration ;
 - l’exécution réelle avec Uvicorn et Firefox.
 
-Le projet contient 113 tests automatiques réussis.
+Le projet contient 120 tests automatiques réussis.
 
-La preuve est disponible dans :
+Les preuves sont disponibles dans :
 
 ```text
 evidence/multi-ecu-dashboard-v1.json
+evidence/qemu-rauc-hybrid-connector-v1.json
 ```
 
 ## 11. Limites
@@ -182,11 +186,11 @@ Cette version utilise un instantané de campagne exporté dans `data/latest`.
 
 Elle ne comprend pas encore :
 
-- données temps réel provenant de QEMU/RAUC ;
+- commande d’installation RAUC depuis l’interface ;
 - authentification utilisateur ;
 - gestion de plusieurs campagnes ;
 - acquittement des alertes ;
 - export depuis l’interface ;
 - persistance des préférences utilisateur.
 
-Ces fonctions pourront être ajoutées lors de l’intégration hybride.
+La cible QEMU/RAUC est maintenant supervisée en temps réel, mais reste volontairement séparée des KPI de la flotte simulée.

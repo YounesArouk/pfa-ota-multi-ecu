@@ -2,15 +2,17 @@
 
 ## 1. Objectif
 
-L’API commune expose en lecture seule les résultats de la campagne OTA multi-ECU.
+L’API commune expose en lecture seule les résultats de la campagne OTA multi-ECU et l’état de la cible Yocto/RAUC sous QEMU.
 
 Elle constitue l’interface entre :
 
 ```text
-Simulateur → Exporteur → data/latest → API → Dashboard
+Simulation → Exports JSON/CSV ─┐
+                              ├→ API → Dashboard
+QEMU/RAUC réel → SSH ─────────┘
 ```
 
-Les données exposées sont simulées et déterministes. Elles ne proviennent pas encore directement de la cible QEMU/RAUC.
+L’API utilise le mode `HYBRID`. Les données de campagne restent simulées et déterministes, tandis que les routes dédiées à QEMU lisent l’état réel de la cible Yocto/RAUC par SSH.
 
 ## 2. Technologies
 
@@ -54,6 +56,8 @@ Le chargeur `api/data_store.py` convertit les valeurs CSV en types JSON adaptés
 | `GET` | `/api/v1/ecus` | Résultats des 28 ECU |
 | `GET` | `/api/v1/waves` | Résultats des cinq vagues |
 | `GET` | `/api/v1/events` | Événements de campagne |
+| `GET` | `/api/v1/qemu-ecu` | État de la cible QEMU/RAUC |
+| `GET` | `/api/v1/sources` | Description des sources hybrides |
 
 Le contrat machine lisible est disponible dans :
 
@@ -131,18 +135,19 @@ La validation comprend :
 
 - tests du contrat API ;
 - tests du chargeur JSON/CSV ;
-- tests des six routes ;
+- tests des huit routes ;
 - contrôle des types JSON ;
 - contrôle OpenAPI ;
 - contrôle du mode lecture seule ;
 - exécution réelle avec Uvicorn.
 
-Le projet contient actuellement 100 tests automatiques réussis.
+Le projet contient actuellement 120 tests automatiques réussis.
 
-La preuve est enregistrée dans :
+Les preuves sont enregistrées dans :
 
 ```text
 evidence/common-api-v1.json
+evidence/qemu-rauc-hybrid-connector-v1.json
 ```
 
 ## 10. Limites
@@ -155,8 +160,8 @@ Elle ne comprend pas encore :
 - chiffrement TLS ;
 - contrôle d’accès par rôle ;
 - pagination des événements ;
-- données temps réel ;
-- connexion directe à QEMU/RAUC ;
+- gestion de plusieurs cibles QEMU ;
+- commande d’installation RAUC depuis l’API ;
 - configuration CORS pour un dashboard sur une autre origine.
 
-Ces éléments pourront être ajoutés pendant l’intégration du dashboard et du connecteur QEMU.
+La connexion SSH actuelle est réservée au démonstrateur local. Une architecture de production nécessiterait une gestion sécurisée des identités, certificats et autorisations.

@@ -2,17 +2,24 @@
 BdsDxe: starting Boot0001 "UEFI QEMU HARDDISK QM00001 " from PciRoot(0x0)/Pci(0x1F,0x2)/Sata(0x0,0xFFFF,0x0)
 [H[J[1;1H[?25l[m[H[J[1;1H[2;30HGNU GRUB  version 2.12
 
-[m[4;2H+----------------------------------------------------------------------------+[5;2H|[5;79H|[6;2H|[6;79H|[7;2H|[7;79H|[8;2H|[8;79H|[9;2H|[9;79H|[10;2H|[10;79H|[11;2H|[11;79H|[12;2H|[12;79H|[13;2H|[13;79H|[14;2H|[14;79H|[15;2H|[15;79H|[16;2H|[16;79H|[17;2H+----------------------------------------------------------------------------+[m[18;2H[19;2H[m     Use the ^ and v keys to select which entry is highlighted.          
-      Press enter to boot the selected OS, `e' to edit the commands       
-      before booting or `c' for a command-line.                           [5;80H [7m[5;3H*PFE OTA - Slot A                                                           [m[5;78H[m[m[6;3H PFE OTA - Slot B                                                           [m[6;78H[m[m[7;3H                                                                            [m[7;78H[m[m[8;3H                                                                            [m[8;78H[m[m[9;3H                                                                            [m[9;78H[m[m[10;3H                                                                            [m[10;78H[m[m[11;3H                                                                            [m[11;78H[m[m[12;3H                                                                            [m[12;78H[m[m[13;3H                                                                            [m[13;78H[m[m[14;3H                                                                            [m[14;78H[m[m[15;3H                                                                            [m[15;78H[m[m[16;3H                                                                            [m[16;78H[m[16;80H [5;78H[0m[30m[40m[2J[01;01H[0m[37m[40m[02;40HGNU GRUB  version 2.12
 
-[04;02H┌────────────────────────────────────────────────────────────────────────────────────────────────┐[05;02H││[06;02H││[07;02H││[08;02H││[09;02H││[10;02H││[11;02H││[12;02H││[13;02H││[14;02H││[15;02H││[16;02H││[17;02H││[18;02H││[19;02H││[20;02H││[21;02H││[22;02H││[23;02H││[24;02H└────────────────────────────────────────────────────────────────────────────────────────────────┘[25;02H[26;02H     Use the ▲ and ▼ keys to select which entry is highlighted.                              
-      Press enter to boot the selected OS, `e' to edit the commands before booting or `c' for 
-      a command-line.                                                                          [0m[30m[47m[05;03H*PFE OTA - Slot A                                                                               [0m[37m[40m[06;03H PFE OTA - Slot B                                                                               [07;03H                                                                                                [08;03H                                                                                                [09;03H                                                                                                [10;03H                                                                                                [11;03H                                                                                                [12;03H                                                                                                [13;03H                                                                                                [14;03H                                                                                                [15;03H                                                                                                [16;03H                                                                                                [17;03H                                                                                                [18;03H                                                                                                [19;03H                                                                                                [20;03H                                                                                                [21;03H                                                                                                [22;03H                                                                                                [23;03H                                                                                                 [29;01H   The highlighted entry will be executed automatically in 3s.                                     [22;1H   The highlighted entry will be executed automatically in 3s.                 [5;78H[29;01H   The highlighted entry will be executed automatically in 2s.                                     [22;1H   The highlighted entry will be executed automatically in 2s.                 [5;78H[29;01H   The highlighted entry will be executed automatically in 1s.                                     [22;1H   The highlighted entry will be executed automatically in 1s.                 [5;78H[29;01H   The highlighted entry will be executed automatically in 0s.                                     [22;1H   The highlighted entry will be executed automatically in 0s.                 [5;78H[0m[30m[40m[2J[01;01H[0m[37m[40m[?25h[H[J[1;1H[H[J[1;1H[0m[30m[40m[2J[01;01H[0m[37m[40m    Booting `PFE OTA - Slot A'Booting `PFE OTA - Slot A'
+[m[4;2H+----------------------------------------------------------------------------+[5;2H|[5;79H|[6;2H|[6;79H|[7;2H|[7;79H|[8;2H|[8;79H|[9;2H|[9;79H|[10;2H|[10;79H|[11;2H|[11;79H|[12;2H|[12;79H|[13;2H|[13;79H|[14;2H|[14;79H|[15;2H|[15;79H|[16;2H|[16;79H|[17;2H+----------------------------------------------------------------------------+[m[18;2H[19;2H[m     Use the ^ and v keys to select which entry is highlighted.
 
+      Press enter to boot the selected OS, `e' to edit the commands
+
+      before booting or `c' for a command-line.                           [5;80H [7m[5;3H*PFE OTA - Slot A                                                           [m[5;78H[m[m[6;3H PFE OTA - Slot B                                                           [m[6;78H[m[m[7;3H                                                                            [m[7;78H[m[m[8;3H                                                                            [m[8;78H[m[m[9;3H                                                                            [m[9;78H[m[m[10;3H                                                                            [m[10;78H[m[m[11;3H                                                                            [m[11;78H[m[m[12;3H                                                                            [m[12;78H[m[m[13;3H                                                                            [m[13;78H[m[m[14;3H                                                                            [m[14;78H[m[m[15;3H                                                                            [m[15;78H[m[m[16;3H                                                                            [m[16;78H[m[16;80H [5;78H[0m[30m[40m[2J[01;01H[0m[37m[40m[02;40HGNU GRUB  version 2.12
 
 
-[    0.000000] Linux version 6.6.142-yocto-standard (oe-user@oe-host) (x86_64-poky-linux-gcc (GCC) 13.4.0, GNU ld (GNU Binutils) 2.42.0.20240723) #1 SMP PREEMPT_DYNAMIC Tue Jun 23 17:26:15 UTC 2026
+[04;02H┌────────────────────────────────────────────────────────────────────────────────────────────────┐[05;02H││[06;02H││[07;02H││[08;02H││[09;02H││[10;02H││[11;02H││[12;02H││[13;02H││[14;02H││[15;02H││[16;02H││[17;02H││[18;02H││[19;02H││[20;02H││[21;02H││[22;02H││[23;02H││[24;02H└────────────────────────────────────────────────────────────────────────────────────────────────┘[25;02H[26;02H     Use the ▲ and ▼ keys to select which entry is highlighted.
+
+      Press enter to boot the selected OS, `e' to edit the commands before booting or `c' for
+
+      a command-line.                                                                          [0m[30m[47m[05;03H*PFE OTA - Slot A                                                                               [0m[37m[40m[06;03H PFE OTA - Slot B                                                                               [07;03H                                                                                                [08;03H                                                                                                [09;03H                                                                                                [10;03H                                                                                                [11;03H                                                                                                [12;03H                                                                                                [13;03H                                                                                                [14;03H                                                                                                [15;03H                                                                                                [16;03H                                                                                                [17;03H                                                                                                [18;03H                                                                                                [19;03H                                                                                                [20;03H                                                                                                [21;03H                                                                                                [22;03H                                                                                                [23;03H                                                                                                 [29;01H   The highlighted entry will be executed automatically in 3s.                                     [22;1H   The highlighted entry will be executed automatically in 3s.                 [5;78H[29;01H   The highlighted entry will be executed automatically in 2s.                                     [22;1H   The highlighted entry will be executed automatically in 2s.                 [5;78H[29;01H   The highlighted entry will be executed automatically in 1s.                                     [22;1H   The highlighted entry will be executed automatically in 1s.                 [5;78H[29;01H   The highlighted entry will be executed automatically in 0s.                                     [22;1H   The highlighted entry will be executed automatically in 0s.                 [5;78H[0m[30m[40m[2J[01;01H[0m[37m[40m[?25h[H[J[1;1H[H[J[1;1H[0m[30m[40m[2J[01;01H[0m[37m[40m    Booting `PFE OTA - Slot A'Booting `PFE OTA - Slot A'
+
+
+
+
+[    0.000000] Linux version 6.6.142-yocto-standard (oe-user@oe-host) (x86_64-poky-linux-gcc (GCC) 13.4.0, GNU ld (GNU Binutils) 2.42.0.20240723) #1 SMP PREEMPT_DYNAMIC Tue Jun 23 17:26:15 UTC 2026
 [    0.000000] Command line: BOOT_IMAGE=/bzImage root=/dev/sda2 rootwait rw rootfstype=ext4 console=ttyS0,115200 console=tty0 noapic panic=60 rauc.slot=A
 [    0.000000] BIOS-provided physical RAM map:
 [    0.000000] BIOS-e820: [mem 0x0000000000000000-0x000000000009ffff] usable
@@ -61,14 +68,14 @@ BdsDxe: starting Boot0001 "UEFI QEMU HARDDISK QM00001 " from PciRoot(0x0)/Pci(0x
 [    0.000000] reserve setup_data: [mem 0x00000000ffc00000-0x00000000ffffffff] reserved
 [    0.000000] reserve setup_data: [mem 0x000000fd00000000-0x000000ffffffffff] reserved
 [    0.000000] efi: EFI v2.7 by Ubuntu distribution of EDK II
-[    0.000000] efi: SMBIOS=0x7f988000 SMBIOS 3.0=0x7f986000 ACPI=0x7fb7e000 ACPI 2.0=0x7fb7e014 MEMATTR=0x7eb4d018 
+[    0.000000] efi: SMBIOS=0x7f988000 SMBIOS 3.0=0x7f986000 ACPI=0x7fb7e000 ACPI 2.0=0x7fb7e014 MEMATTR=0x7eb4d018
 [    0.000000] efi: Remove mem128: MMIO range=[0xffc00000-0xffffffff] (4MB) from e820 map
 [    0.000000] SMBIOS 3.0.0 present.
 [    0.000000] DMI: QEMU Standard PC (Q35 + ICH9, 2009), BIOS 2024.02-2ubuntu0.9 06/02/2026
 [    0.000000] tsc: Fast TSC calibration failed
 [    0.000000] last_pfn = 0x7feec max_arch_pfn = 0x10000000000
 [    0.000000] MTRR map: 4 entries (2 fixed + 2 variable; max 18), built from 8 variable MTRRs
-[    0.000000] x86/PAT: Configuration [0-7]: WB  WC  UC- UC  WB  WP  UC- WT  
+[    0.000000] x86/PAT: Configuration [0-7]: WB  WC  UC- UC  WB  WP  UC- WT
 [    0.000000] Using GB pages for direct mapping
 [    0.000000] Secure boot disabled
 [    0.000000] ACPI: Early table checksum verification disabled
@@ -345,7 +352,7 @@ BdsDxe: starting Boot0001 "UEFI QEMU HARDDISK QM00001 " from PciRoot(0x0)/Pci(0x
 [    1.193495] Key type id_resolver registered
 [    1.195201] Key type id_legacy registered
 [    1.218235] Key type cifs.idmap registered
-[    1.515100] xor: automatically using best checksumming function   avx       
+[    1.515100] xor: automatically using best checksumming function   avx
 [    1.517064] Key type asymmetric registered
 [    1.517731] Asymmetric key parser 'x509' registered
 [    1.520283] Block layer SCSI generic (bsg) driver version 0.4 loaded (major 250)
@@ -371,7 +378,7 @@ BdsDxe: starting Boot0001 "UEFI QEMU HARDDISK QM00001 " from PciRoot(0x0)/Pci(0x
 [    2.871273] loop: module loaded
 [    3.621376] ACPI: \_SB_.LNKA: Enabled at IRQ 10
 [    3.621376] ahci 0000:00:1f.2: AHCI 0001.0000 32 slots 6 ports 1.5 Gbps 0x3f impl SATA mode
-[    3.621376] ahci 0000:00:1f.2: flags: 64bit ncq only 
+[    3.621376] ahci 0000:00:1f.2: flags: 64bit ncq only
 [    3.680379] scsi host0: ahci
 [    3.724834] scsi host1: ahci
 [    3.737914] scsi host2: ahci
@@ -486,26 +493,49 @@ BdsDxe: starting Boot0001 "UEFI QEMU HARDDISK QM00001 " from PciRoot(0x0)/Pci(0x
 [   20.143166] udevd[138]: starting version 3.2.14
 [   20.691238] udevd[139]: starting eudev-3.2.14
 [   27.594944] EXT4-fs (sda2): re-mounted 9a33dcd1-f484-4865-99fe-f5a5b60c612c.
-INIT: Entering runlevel: 5
+
+INIT: Entering runlevel: 5
+
+
 Configuring network interfaces... [   54.794843] e1000: eth0 NIC Link is Up 1000 Mbps Full Duplex, Flow Control: RX
-udhcpc: started, v1.36.1
-udhcpc: broadcasting discover
-udhcpc: broadcasting select for 10.0.2.15, server 10.0.2.2
-udhcpc: lease of 10.0.2.15 obtained from 10.0.2.2, lease time 86400
-/etc/udhcpc.d/50default: Adding DNS 10.0.2.3
-done.
-Starting system message bus: dbus.
-Starting Dropbear SSH server: Generating 2048 bit rsa key, this may take a while...
-Public key portion is:
-ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC4bqAcmGYWl9yrKrx7vuOY1P1PBVqXJapUivCZfXEjQ2tmC4fLQGAbcKuzuJbq5MzqTZV8cq1CeCz/EDdiLPw7g9rqMb+dT29KI768QyVwLJkivZtCM8lYj+YagZMB0q9O1mCZZOasL1pbJA6sqiioMBxoOy3HunzqfI3RqL4P17zRjiy/zjJ2rr+maVSeuzXT/uk4ILXZV+V/ohBsxNCwiCVys+lRhu7o/Ll3YvM6BArPWfW1rpVeyaO49gMV2avl4+7tmja0VzSgyXRHZwSGrQ3STqYqVsruGOruusd5XHx7BEkRHwKqZkTIxwrk38snomdZANjVQar+o61bhl9V root@qemux86-64
-Fingerprint: SHA256:vyGIqh3IQreN/Aq0hmOJOL6g0t64YvaNNU+lnBUmj54
-dropbear.
-Starting syslogd/klogd: done
-Starting PFE OTA health check...
-2026-08-24 10:26:42 pfe-healthcheck: Debut du controle de sante.
-2026-08-24 10:26:59 pfe-healthcheck: SUCCES - tous les tests sont valides.
-2026-08-24 10:27:00 pfe-healthcheck: Le slot courant est marque good.
-
+udhcpc: started, v1.36.1
+
+udhcpc: broadcasting discover
+
+udhcpc: broadcasting select for 10.0.2.15, server 10.0.2.2
+
+udhcpc: lease of 10.0.2.15 obtained from 10.0.2.2, lease time 86400
+
+/etc/udhcpc.d/50default: Adding DNS 10.0.2.3
+
+done.
+
+Starting system message bus: dbus.
+
+Starting Dropbear SSH server: Generating 2048 bit rsa key, this may take a while...
+
+Public key portion is:
+
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC4bqAcmGYWl9yrKrx7vuOY1P1PBVqXJapUivCZfXEjQ2tmC4fLQGAbcKuzuJbq5MzqTZV8cq1CeCz/EDdiLPw7g9rqMb+dT29KI768QyVwLJkivZtCM8lYj+YagZMB0q9O1mCZZOasL1pbJA6sqiioMBxoOy3HunzqfI3RqL4P17zRjiy/zjJ2rr+maVSeuzXT/uk4ILXZV+V/ohBsxNCwiCVys+lRhu7o/Ll3YvM6BArPWfW1rpVeyaO49gMV2avl4+7tmja0VzSgyXRHZwSGrQ3STqYqVsruGOruusd5XHx7BEkRHwKqZkTIxwrk38snomdZANjVQar+o61bhl9V root@qemux86-64
+
+Fingerprint: SHA256:vyGIqh3IQreN/Aq0hmOJOL6g0t64YvaNNU+lnBUmj54
+
+dropbear.
+
+Starting syslogd/klogd: done
+
+Starting PFE OTA health check...
+
+2026-08-24 10:26:42 pfe-healthcheck: Debut du controle de sante.
+
+2026-08-24 10:26:59 pfe-healthcheck: SUCCES - tous les tests sont valides.
+
+2026-08-24 10:27:00 pfe-healthcheck: Le slot courant est marque good.
+
+
+
 Poky (Yocto Project Reference Distro) 5.0.19 qemux86-64 /dev/ttyS0
-
-qemux86-64 login: 
+
+
+
+qemux86-64 login:

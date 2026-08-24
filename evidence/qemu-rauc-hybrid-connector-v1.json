@@ -78,9 +78,10 @@
   },
   "serial_evidence": {
     "path": "evidence/qemu-rauc-hybrid-connector-v1.log",
-    "sha256": "073a7d256f61109e826b1d9c2feebdc05323b5b278a7e1f57171ef6c16f1dd99",
+    "sha256": "0cc3501efb6643e45409473479d76016d6dd9cf4c90f52201927147441a6ab1e",
     "healthcheck_success": true,
-    "slot_marked_good": true
+    "slot_marked_good": true,
+    "normalization": "UTF-8, LF line endings, trailing horizontal whitespace removed"
   },
   "automated_validation": {
     "test_count": 120,
