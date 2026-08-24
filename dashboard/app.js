@@ -7,6 +7,8 @@ const state = {
   ecus: [],
   waves: [],
   events: [],
+  sources: null,
+  qemu: null,
   loading: false,
 };
 
@@ -28,6 +30,15 @@ function cacheElements() {
     "sourceMode",
     "lastUpdated",
     "totalEcus",
+    "statusTotalEcus",
+    "qemuConnection",
+    "qemuEcuId",
+    "qemuSourceType",
+    "qemuVersion",
+    "qemuSlot",
+    "qemuOtaStatus",
+    "qemuHealthStatus",
+    "qemuError",
     "confirmedEcus",
     "confirmationRate",
     "failedEcus",
@@ -245,9 +256,8 @@ function renderCampaign() {
     `Release : ${campaign.release_id}`
   );
   elements.sourceMode.textContent = (
-    campaign.source_mode
+    state.sources.source_mode
   );
-
   const statusColor = getStatusColor(
     campaign.status,
   );
@@ -277,6 +287,10 @@ function renderCampaign() {
   );
 
   elements.totalEcus.textContent = (
+    kpis.total_ecus
+  );
+
+  elements.statusTotalEcus.textContent = (
     kpis.total_ecus
   );
   elements.confirmedEcus.textContent = (
@@ -741,8 +755,74 @@ function renderEventTable() {
     + `sur ${state.events.length}`
   );
 }
+function renderQemuTarget() {
+  const qemu = state.qemu;
+  const connected = Boolean(qemu.connected);
+
+  elements.qemuConnection.textContent = (
+    connected
+      ? "Connecté"
+      : "Hors ligne"
+  );
+
+  elements.qemuConnection.classList.remove(
+    "online",
+    "offline",
+  );
+
+  elements.qemuConnection.classList.add(
+    connected
+      ? "online"
+      : "offline",
+  );
+
+  elements.qemuEcuId.textContent = displayValue(
+    qemu.ecu_id,
+  );
+
+  elements.qemuSourceType.textContent = (
+    displayValue(qemu.source_type)
+  );
+
+  elements.qemuVersion.textContent = displayValue(
+    qemu.current_version,
+  );
+
+  elements.qemuSlot.textContent = displayValue(
+    qemu.active_partition,
+  );
+
+  elements.qemuOtaStatus.textContent = (
+    getStatusLabel(qemu.ota_status)
+  );
+
+  elements.qemuOtaStatus.style.color = (
+    getStatusColor(qemu.ota_status)
+  );
+
+  elements.qemuHealthStatus.textContent = (
+    displayValue(qemu.health_status)
+  );
+
+  elements.qemuHealthStatus.style.color = (
+    connected
+      ? "var(--success)"
+      : "var(--danger)"
+  );
+
+  const connectorError = qemu.connector_error;
+
+  elements.qemuError.hidden = !connectorError;
+
+  elements.qemuError.textContent = (
+    connectorError
+      ? `Connecteur SSH : ${connectorError}`
+      : ""
+  );
+}
 
 function renderDashboard() {
+  renderQemuTarget();
   renderCampaign();
   renderStatusChart();
   renderWaveChart();
@@ -790,6 +870,7 @@ async function loadDashboard() {
       ecus,
       waves,
       events,
+      sources,
     ] = await Promise.all([
       fetchJson(routes.health),
       fetchJson(routes.campaign),
@@ -797,8 +878,8 @@ async function loadDashboard() {
       fetchJson(routes.ecus),
       fetchJson(routes.waves),
       fetchJson(routes.events),
+      fetchJson(routes.sources),
     ]);
-
     if (health.status !== "ok") {
       throw new Error(
         "Le service API n’est pas prêt.",
@@ -810,7 +891,8 @@ async function loadDashboard() {
     state.ecus = ecus;
     state.waves = waves;
     state.events = events;
-
+    state.sources = sources;
+    state.qemu = sources.qemu_rauc_target;
     renderDashboard();
 
     setConnection(

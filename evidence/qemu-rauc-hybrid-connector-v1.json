@@ -1,0 +1,104 @@
+{
+  "schema_version": "1.0",
+  "evidence_id": "qemu-rauc-hybrid-connector-v1",
+  "generated_at": "2026-08-24T12:49:33+00:00",
+  "validation_status": "PASSED",
+  "architecture": {
+    "mode": "HYBRID",
+    "simulated_ecus": 28,
+    "qemu_rauc_targets": 1,
+    "qemu_counted_in_simulated_kpis": false
+  },
+  "git_references": {
+    "mono_ecu_baseline_commit": "ecf89871cdb7fe1c7606e99d843a7cfc8ec27d5b",
+    "connector_image_commit": "a19f3e3a1f54f7913b9f1d04476e333bf64b58dd",
+    "baseline_tag": "pfe-ota-mono-ecu-v2-validated"
+  },
+  "transport": {
+    "protocol": "SSH",
+    "host": "127.0.0.1",
+    "host_port": 2222,
+    "target_port": 22,
+    "firmware": "OVMF_UEFI",
+    "disk_mode": "QCOW2_OVERLAY",
+    "ssh_sessions_per_read": 1,
+    "command_timeout_s": 20
+  },
+  "performance": {
+    "qemu_endpoint_elapsed_s": 1.094,
+    "sources_endpoint_elapsed_s": 1.139
+  },
+  "simulated_campaign": {
+    "campaign_id": "CMP-FINAL-MIXED-001",
+    "total_ecus": 28,
+    "confirmed_ecus": 20,
+    "failed_ecus": 8
+  },
+  "qemu_actual_result": {
+    "campaign_id": "CMP-QEMU-LIVE-001",
+    "ecu_id": "QEMU-ECU-01",
+    "name": "QEMU_RAUC_ECU",
+    "domain": "OTA_DEMONSTRATOR",
+    "source_type": "QEMU_REAL",
+    "current_version": "2.0.0",
+    "target_version": "2.0.0",
+    "active_partition": "A",
+    "ota_status": "CONFIRMED",
+    "health_status": "GOOD",
+    "connected": true,
+    "progress_pct": 100,
+    "elapsed_s": 0.0,
+    "rollback_trigger": null,
+    "rollback_counter": 0,
+    "consecutive_rollback_counter": 0,
+    "rollback_lockout": false,
+    "recovery_boot_counter": 0,
+    "dependencies": []
+  },
+  "sources_actual_result": {
+    "schema_version": "1.0",
+    "source_mode": "HYBRID",
+    "simulated_fleet": {
+      "source_type": "SIMULATED",
+      "available": true,
+      "campaign_id": "CMP-FINAL-MIXED-001",
+      "total_ecus": 28
+    },
+    "qemu_rauc_target": {
+      "source_type": "QEMU_REAL",
+      "ecu_id": "QEMU-ECU-01",
+      "available": true,
+      "connected": true,
+      "health_status": "GOOD",
+      "ota_status": "CONFIRMED",
+      "current_version": "2.0.0",
+      "active_partition": "A",
+      "connector_error": null
+    }
+  },
+  "serial_evidence": {
+    "path": "evidence/qemu-rauc-hybrid-connector-v1.log",
+    "sha256": "073a7d256f61109e826b1d9c2feebdc05323b5b278a7e1f57171ef6c16f1dd99",
+    "healthcheck_success": true,
+    "slot_marked_good": true
+  },
+  "automated_validation": {
+    "test_count": 120,
+    "test_status": "OK"
+  },
+  "checks": {
+    "service_mode_is_hybrid": true,
+    "simulated_campaign_has_28_ecus": true,
+    "simulated_kpis_have_28_ecus": true,
+    "simulated_list_has_28_ecus": true,
+    "qemu_is_separate": true,
+    "qemu_is_available": true,
+    "qemu_is_connected": true,
+    "qemu_version_is_2_0_0": true,
+    "active_slot_is_a": true,
+    "ota_status_is_confirmed": true,
+    "health_status_is_good": true,
+    "physical_healthcheck_passed": true,
+    "slot_was_marked_good": true
+  }
+}

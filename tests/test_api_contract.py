@@ -35,7 +35,7 @@ class APIContractTests(unittest.TestCase):
         )
         self.assertEqual(
             self.contract["source_mode"],
-            "SIMULATION",
+            "HYBRID",
         )
         self.assertTrue(
             self.contract["read_only"]
@@ -49,6 +49,8 @@ class APIContractTests(unittest.TestCase):
             ("GET", "/api/v1/ecus"),
             ("GET", "/api/v1/waves"),
             ("GET", "/api/v1/events"),
+            ("GET", "/api/v1/qemu-ecu"),
+            ("GET", "/api/v1/sources"),
         }
 
         actual_routes = {
@@ -65,7 +67,7 @@ class APIContractTests(unittest.TestCase):
         )
         self.assertEqual(
             len(self.contract["routes"]),
-            6,
+            8,
         )
 
     def test_declared_data_sources_exist(self):

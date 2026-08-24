@@ -420,6 +420,95 @@ main {
   color: var(--muted);
   font-size: 0.76rem;
 }
+.qemu-panel {
+  position: relative;
+  overflow: hidden;
+}
+
+.qemu-panel::before {
+  position: absolute;
+  inset: 0 0 auto;
+  height: 3px;
+  background:
+    linear-gradient(
+      90deg,
+      var(--primary),
+      var(--success)
+    );
+  content: "";
+}
+
+.qemu-connection {
+  display: inline-flex;
+  min-width: 96px;
+  align-items: center;
+  justify-content: center;
+  padding: 7px 12px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--muted);
+  background: rgb(7 17 31 / 66%);
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+
+.qemu-connection.online {
+  border-color: rgb(34 197 94 / 48%);
+  color: var(--success);
+  background: rgb(34 197 94 / 10%);
+}
+
+.qemu-connection.offline {
+  border-color: rgb(239 68 68 / 48%);
+  color: var(--danger);
+  background: rgb(239 68 68 / 10%);
+}
+
+.qemu-grid {
+  display: grid;
+  grid-template-columns:
+    repeat(
+      auto-fit,
+      minmax(150px, 1fr)
+    );
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.qemu-field {
+  min-width: 0;
+  padding: 15px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: rgb(7 17 31 / 48%);
+}
+
+.qemu-field span,
+.qemu-field strong {
+  display: block;
+}
+
+.qemu-field span {
+  margin-bottom: 8px;
+  color: var(--muted);
+  font-size: 0.75rem;
+}
+
+.qemu-field strong {
+  overflow-wrap: anywhere;
+  font-size: 0.94rem;
+}
+
+.qemu-error {
+  margin: 14px 0 0;
+  padding: 11px 13px;
+  border: 1px solid rgb(239 68 68 / 36%);
+  border-radius: var(--radius-md);
+  color: #fecaca;
+  background: rgb(127 29 29 / 18%);
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
 
 .status-chart,
 .wave-chart {
