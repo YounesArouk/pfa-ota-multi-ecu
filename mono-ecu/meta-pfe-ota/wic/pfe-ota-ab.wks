@@ -1,0 +1,11 @@
+# Image disque OTA A/B pour QEMU x86-64
+
+part /boot --source bootimg-efi --sourceparams="loader=grub-efi" --ondisk sda --fstype=vfat --label boot --align 1024 --fixed-size 64M --use-uuid --part-type=C12A7328-F81F-11D2-BA4B-00A0C93EC93B
+
+part / --source rootfs --ondisk sda --fstype=ext4 --label rootfsA --align 1024 --fixed-size 512M --use-uuid --exclude-path boot/
+
+part --ondisk sda --fstype=ext4 --label rootfsB --align 1024 --fixed-size 512M
+
+part /data --ondisk sda --fstype=ext4 --label data --align 1024 --fixed-size 256M --use-uuid
+
+bootloader --ptable gpt --configfile="/home/pfaota/pfe-ota-yocto/meta-pfe-ota/wic/pfe-grub.cfg"

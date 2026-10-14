@@ -1,0 +1,86 @@
+#!/bin/sh
+
+PATH=/sbin:/bin:/usr/sbin:/usr/bin
+
+VERSION_FILE="/etc/pfe-ota-version"
+APPLICATION="/usr/bin/pfe-demo-app"
+FAILURE_FLAG="/data/pfe-force-healthcheck-failure"
+LOG_FILE="/var/log/pfe-healthcheck.log"
+
+log_message()
+{
+    MESSAGE="$(date '+%Y-%m-%d %H:%M:%S') pfe-healthcheck: $*"
+
+    echo "$MESSAGE"
+    echo "$MESSAGE" >> "$LOG_FILE" 2>/dev/null || true
+    logger -t pfe-healthcheck "$*" 2>/dev/null || true
+}
+
+reject_current_slot()
+{
+    REASON="$1"
+
+    log_message "ECHEC - $REASON"
+    log_message "Le slot courant va etre marque bad."
+
+    if rauc status mark-bad >> "$LOG_FILE" 2>&1; then
+        log_message "Slot marque bad avec succes."
+    else
+        log_message "ERREUR - impossible de marquer le slot bad."
+    fi
+
+    sync
+    sleep 3
+    reboot
+    exit 1
+}
+
+log_message "Debut du controle de sante."
+
+# Test 1 : RAUC doit être disponible.
+command -v rauc >/dev/null 2>&1 ||
+    reject_current_slot "Commande RAUC absente"
+
+# Test 2 : le noyau doit indiquer le slot A ou B.
+grep -Eq '(^| )rauc\.slot=[AB]( |$)' /proc/cmdline ||
+    reject_current_slot "Parametre rauc.slot absent ou incorrect"
+
+# Test 3 : RAUC doit pouvoir lire l'état du système.
+rauc status >/dev/null 2>&1 ||
+    reject_current_slot "RAUC ne peut pas lire le statut des slots"
+
+# Test 4 : le fichier de version doit exister et ne pas être vide.
+[ -s "$VERSION_FILE" ] ||
+    reject_current_slot "Fichier de version absent ou vide"
+
+# Test 5 : l'application principale doit être installée.
+[ -x "$APPLICATION" ] ||
+    reject_current_slot "Application principale absente"
+
+# Test 6 : panne forcee one-shot pour la demonstration.
+# Le drapeau est supprime avant mark-bad afin que le slot de secours
+# ne subisse pas la meme panne apres le redemarrage.
+if [ -e "$FAILURE_FLAG" ]; then
+    log_message "Drapeau de panne one-shot detecte."
+
+    if rm -f "$FAILURE_FLAG"; then
+        sync
+        reject_current_slot "Panne applicative forcee depuis /data"
+    fi
+
+    log_message "ERREUR - impossible de supprimer le drapeau de panne."
+    exit 1
+fi
+
+# Test 7 : exécuter l'autotest de l'application.
+"$APPLICATION" --self-test >/dev/null 2>&1 ||
+    reject_current_slot "Autotest de l'application en echec"
+
+# Tous les tests sont réussis : validation du slot.
+if rauc status mark-good >> "$LOG_FILE" 2>&1; then
+    log_message "SUCCES - tous les tests sont valides."
+    log_message "Le slot courant est marque good."
+    exit 0
+fi
+
+reject_current_slot "Impossible de marquer le slot good"

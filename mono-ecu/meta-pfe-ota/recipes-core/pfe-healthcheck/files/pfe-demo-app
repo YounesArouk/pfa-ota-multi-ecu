@@ -1,0 +1,36 @@
+#!/bin/sh
+
+VERSION_FILE="/etc/pfe-ota-version"
+SELFTEST_FILE="/run/pfe-demo-app-selftest.$$"
+
+case "${1:-}" in
+    --self-test)
+        # Vérifier que la version logicielle est accessible.
+        [ -s "$VERSION_FILE" ] || exit 10
+
+        # Vérifier que /proc est disponible.
+        [ -r /proc/cmdline ] || exit 11
+
+        # Vérifier que l'application peut écrire dans /run.
+        printf '%s\n' "PFE_SELFTEST_OK" > "$SELFTEST_FILE" ||
+            exit 12
+
+        grep -qx "PFE_SELFTEST_OK" "$SELFTEST_FILE" || {
+            rm -f "$SELFTEST_FILE"
+            exit 13
+        }
+
+        rm -f "$SELFTEST_FILE"
+        exit 0
+        ;;
+
+    --version)
+        cat "$VERSION_FILE"
+        exit $?
+        ;;
+
+    *)
+        echo "Usage: pfe-demo-app --self-test | --version"
+        exit 2
+        ;;
+esac

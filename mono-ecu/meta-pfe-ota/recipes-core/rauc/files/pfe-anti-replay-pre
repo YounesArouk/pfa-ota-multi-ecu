@@ -1,0 +1,29 @@
+#!/bin/sh
+
+STATE_DIR="/data/rauc/accepted-releases"
+RELEASE_ID="${RAUC_META_PFE_RELEASE_ID:-}"
+
+if [ -z "$RELEASE_ID" ]; then
+    echo "<< error Anti-replay: identifiant release-id absent"
+    exit 1
+fi
+
+case "$RELEASE_ID" in
+    *[!A-Za-z0-9._-]*)
+        echo "<< error Anti-replay: identifiant release-id invalide"
+        exit 1
+        ;;
+esac
+
+mkdir -p "$STATE_DIR" || {
+    echo "<< error Anti-replay: impossible de preparer le registre"
+    exit 1
+}
+
+if [ -e "$STATE_DIR/$RELEASE_ID" ]; then
+    echo "<< error Anti-replay: release deja installee: $RELEASE_ID"
+    exit 1
+fi
+
+echo "<< handler anti-replay-check-ok"
+exit 0
